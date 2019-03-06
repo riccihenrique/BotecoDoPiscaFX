@@ -9,6 +9,6 @@ public class FXMLCADCategoriaController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        //
+           System.out.println("Olá mundo");
     }
 }
