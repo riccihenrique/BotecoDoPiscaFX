@@ -1,6 +1,4 @@
-
 package botecodopiscafx.db.entidades;
-
 
 public class Categoria {
     private int cat_id;

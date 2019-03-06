@@ -5,7 +5,9 @@ public class Banco
     static private Conexao con;
     static public Conexao getCon(){ return con;}
 
-    private Banco() {
+    private Banco() 
+    {
+        
     }
     
     static public boolean conectar()

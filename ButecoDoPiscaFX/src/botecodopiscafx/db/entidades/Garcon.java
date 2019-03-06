@@ -1,8 +1,4 @@
-
 package botecodopiscafx.db.entidades;
-
-import java.awt.image.BufferedImage;
-
 
 public class Garcon {
     private int gar_id;

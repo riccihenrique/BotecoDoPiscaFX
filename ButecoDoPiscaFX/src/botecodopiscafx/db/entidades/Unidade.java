@@ -1,4 +1,3 @@
-
 package botecodopiscafx.db.entidades;
 
 public class Unidade 
