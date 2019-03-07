@@ -80,7 +80,7 @@ public class DALProduto {
                                     rs.getString("prod_nome"), rs.getDouble("prod_preco"), rs.getString("prod_descr")));
             }
         }
-        catch(SQLException e){}
+        catch(SQLException e){ }
         return L;
            
     }     

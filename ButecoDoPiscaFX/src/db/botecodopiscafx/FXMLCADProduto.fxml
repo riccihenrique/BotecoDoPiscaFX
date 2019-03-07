@@ -7,46 +7,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="507.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="botecodopiscafx.FXMLCADProdutoController">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="629.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLCADProdutoController">
    <items>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ddccff;">
          <children>
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="958.0" spacing="10.0" style="-fx-background-color: #8080ff;">
                <children>
-                  <JFXButton layoutX="10.0" layoutY="10.0" onAction="#clkBtnNovo" prefHeight="36.0" prefWidth="119.0" text="Novo" />
-                  <JFXButton onAction="#clkBtnAlterar" prefHeight="36.0" prefWidth="119.0" text="Alterar" />
-                  <JFXButton onAction="#clkBtnApagar" prefHeight="36.0" prefWidth="119.0" text="Apagar" />
-                  <JFXButton onAction="#clkBtnConfirmar" prefHeight="36.0" prefWidth="119.0" text="Confirmar" />
-                  <JFXButton onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
+                  <JFXButton fx:id="BtnNovo" layoutX="10.0" layoutY="10.0" onAction="#clkBtnNovo" prefHeight="36.0" prefWidth="119.0" text="Novo" />
+                  <JFXButton fx:id="BtnAlterar" onAction="#clkBtnAlterar" prefHeight="36.0" prefWidth="119.0" text="Alterar" />
+                  <JFXButton fx:id="BtnApagar" onAction="#clkBtnApagar" prefHeight="36.0" prefWidth="119.0" text="Apagar" />
+                  <JFXButton fx:id="BtnConfirmar" onAction="#clkBtnConfirmar" prefHeight="36.0" prefWidth="119.0" text="Confirmar" />
+                  <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
                </children>
             </HBox>
-            <AnchorPane prefHeight="223.0" prefWidth="604.0">
+            <AnchorPane fx:id="pnDados" prefHeight="279.0" prefWidth="819.0">
                <children>
-                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="24.0" layoutY="27.0" prefHeight="25.0" prefWidth="312.0" promptText="Nome:" />
-                  <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="361.0" layoutY="27.0" prefHeight="25.0" prefWidth="211.0" promptText="Preço (un):" />
-                  <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="24.0" layoutY="69.0" prefHeight="25.0" prefWidth="550.0" promptText="Descrição" />
-                  <JFXTextField fx:id="tbQuantidade" labelFloat="true" layoutX="24.0" layoutY="111.0" prefHeight="25.0" prefWidth="193.0" promptText="Quantidade:" />
-                  <JFXComboBox fx:id="cbCategoria" layoutX="24.0" layoutY="161.0" prefHeight="25.0" prefWidth="273.0" promptText="Categoria" />
-                  <JFXComboBox fx:id="cbUnidade" layoutX="302.0" layoutY="161.0" prefHeight="25.0" prefWidth="273.0" promptText="Unidade" />
+                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="481.0" promptText="Nome:" />
+                  <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="14.0" layoutY="126.0" prefHeight="25.0" prefWidth="772.0" promptText="Preço (un):" />
+                  <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="17.0" layoutY="77.0" prefHeight="25.0" prefWidth="772.0" promptText="Descrição" />
+                  <JFXComboBox fx:id="cbCategoria" layoutX="14.0" layoutY="181.0" prefHeight="25.0" prefWidth="353.0" promptText="Categoria" />
+                  <JFXComboBox fx:id="cbUnidade" layoutX="403.0" layoutY="181.0" prefHeight="25.0" prefWidth="392.0" promptText="Unidade" />
+                  <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="273.0" promptText="Código:" />
                </children>
             </AnchorPane>
          </children>
       </VBox>
       <VBox prefHeight="204.0" prefWidth="958.0">
          <children>
-            <FlowPane prefHeight="45.0" prefWidth="604.0" style="-fx-background-color: #8080ff;">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #8080ff;">
                <children>
-                  <JFXTextField fx:id="tbPesquisa" labelFloat="true" prefHeight="25.0" prefWidth="481.0" />
-                  <JFXButton onAction="#clkBtnPesquisar" prefHeight="36.0" prefWidth="114.0" text="Pesquisar" />
-               </children></FlowPane>
-            <TableView prefHeight="285.0" prefWidth="604.0">
+                  <JFXTextField fx:id="tbPesquisa" onKeyTyped="#clkTbPesquisa" prefHeight="25.0" prefWidth="481.0" promptText="Informe o nome do produto" />
+                  <JFXButton fx:id="BtnPesquisar" onAction="#clkBtnPesquisar" prefHeight="36.0" prefWidth="114.0" text="Pesquisar" />
+               </children>
+            </HBox>
+            <TableView fx:id="tbvDados" prefHeight="285.0" prefWidth="604.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colCod" prefWidth="129.0" text="Código" />
+                <TableColumn fx:id="colNome" prefWidth="517.0" text="Nome" />
+                  <TableColumn fx:id="colPreco" prefWidth="172.0" text="Preço" />
               </columns>
             </TableView>
          </children>
