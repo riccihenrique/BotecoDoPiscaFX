@@ -1,4 +1,4 @@
-package botecodopiscafx.db.banco;
+package db.banco;
 
 public class Banco 
 {

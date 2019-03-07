@@ -1,8 +1,8 @@
 
-package botecodopiscafx.db.dal;
+package db.dal;
 
-import botecodopiscafx.db.banco.Banco;
-import botecodopiscafx.db.entidades.Garcon;
+import db.banco.Banco;
+import db.entidades.Garcon;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;

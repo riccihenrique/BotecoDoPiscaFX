@@ -1,4 +1,4 @@
-package botecodopiscafx;
+package db.botecodopiscafx;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;

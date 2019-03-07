@@ -1,7 +1,6 @@
 
-package botecodopiscafx;
+package db.botecodopiscafx;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,17 +8,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class FXMLCADProdutoController implements Initializable {
+public class FXMLCADTpPagamentoController implements Initializable 
+{
 
-    @FXML
-    private JFXTextField tbPesquisa;
     @FXML
     private JFXTextField tbNome;
-
+    @FXML
+    private JFXTextField tbPesquisar;
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //
-    }    
+    public void initialize(URL url, ResourceBundle rb)
+    {
+       // 
+    }
 
     @FXML
     private void clkBtnNovo(ActionEvent event) {

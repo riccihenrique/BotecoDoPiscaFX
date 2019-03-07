@@ -27,10 +27,11 @@
             <AnchorPane prefHeight="223.0" prefWidth="604.0">
                <children>
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="24.0" layoutY="27.0" prefHeight="25.0" prefWidth="312.0" promptText="Nome:" />
-                  <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="361.0" layoutY="27.0" prefHeight="25.0" prefWidth="214.0" promptText="Preço (un):" />
-                  <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="24.0" layoutY="69.0" prefHeight="25.0" prefWidth="549.0" promptText="Descrição" />
+                  <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="361.0" layoutY="27.0" prefHeight="25.0" prefWidth="211.0" promptText="Preço (un):" />
+                  <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="24.0" layoutY="69.0" prefHeight="25.0" prefWidth="550.0" promptText="Descrição" />
                   <JFXTextField fx:id="tbQuantidade" labelFloat="true" layoutX="24.0" layoutY="111.0" prefHeight="25.0" prefWidth="193.0" promptText="Quantidade:" />
                   <JFXComboBox fx:id="cbCategoria" layoutX="24.0" layoutY="161.0" prefHeight="25.0" prefWidth="273.0" promptText="Categoria" />
+                  <JFXComboBox fx:id="cbUnidade" layoutX="302.0" layoutY="161.0" prefHeight="25.0" prefWidth="273.0" promptText="Unidade" />
                </children>
             </AnchorPane>
          </children>

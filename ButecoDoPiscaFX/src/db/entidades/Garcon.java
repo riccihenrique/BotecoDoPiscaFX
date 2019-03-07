@@ -1,4 +1,4 @@
-package botecodopiscafx.db.entidades;
+package db.entidades;
 
 public class Garcon {
     private int gar_id;

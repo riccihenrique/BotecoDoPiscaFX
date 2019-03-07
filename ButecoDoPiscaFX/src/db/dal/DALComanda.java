@@ -1,9 +1,9 @@
-package botecodopiscafx.db.dal;
+package db.dal;
 
-import botecodopiscafx.db.banco.Banco;
-import botecodopiscafx.db.entidades.Comanda;
-import botecodopiscafx.db.entidades.Comanda.Item;
-import botecodopiscafx.db.entidades.Comanda.Pagamento;
+import db.banco.Banco;
+import db.entidades.Comanda;
+import db.entidades.Comanda.Item;
+import db.entidades.Comanda.Pagamento;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

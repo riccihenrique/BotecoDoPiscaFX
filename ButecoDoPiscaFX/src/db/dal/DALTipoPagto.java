@@ -1,8 +1,8 @@
 
-package botecodopiscafx.db.dal;
+package db.dal;
 
-import botecodopiscafx.db.banco.Banco;
-import botecodopiscafx.db.entidades.TipoPagto;
+import db.banco.Banco;
+import db.entidades.TipoPagto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

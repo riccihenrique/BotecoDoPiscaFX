@@ -32,6 +32,7 @@
                   <JFXTextField fx:id="tbTelefone" labelFloat="true" layoutX="329.0" layoutY="71.0" prefHeight="25.0" prefWidth="199.0" promptText="Telefone:" />
                   <JFXTextField fx:id="tbCidade" layoutX="24.0" layoutY="117.0" text="Cidade:" />
                   <JFXTextField fx:id="tbUf" layoutX="194.0" layoutY="117.0" prefHeight="25.0" prefWidth="95.0" text="UF:" />
+                  <JFXButton buttonType="RAISED" layoutX="329.0" layoutY="146.0" onAction="#clkBtnFoto" prefHeight="25.0" prefWidth="105.0" text="Capturar Foto" />
                </children>
             </AnchorPane>
          </children>

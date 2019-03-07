@@ -1,4 +1,4 @@
-package botecodopiscafx.db.banco;
+package db.banco;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
