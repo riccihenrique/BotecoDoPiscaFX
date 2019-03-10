@@ -3,11 +3,14 @@ package db.botecodopiscafx;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import db.dal.DALCategoria;
 import db.dal.DALProduto;
+import db.dal.DALUnidade;
 import db.entidades.Categoria;
 import db.entidades.Produto;
 import db.entidades.Unidade;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -65,12 +68,22 @@ public class FXMLCADProdutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //preparando as colunas        
+        //preparando as colunas
         colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
-
         estadoOriginal();
+        
+        DALCategoria dc = new DALCategoria();
+        List <Categoria> dadosCategoria = dc.get("");
+        ObservableList <Categoria> obsListCategoria = FXCollections.observableList(dadosCategoria);
+        cbCategoria.setItems(obsListCategoria);
+        
+        
+        DALUnidade du = new DALUnidade();
+        List <Unidade> dadosUnidade = du.get("");
+        ObservableList <Unidade> obsListUnidade = FXCollections.observableList(dadosUnidade);
+        cbUnidade.setItems(obsListUnidade);
     }
 
     private void estadoOriginal() {
@@ -92,7 +105,6 @@ public class FXMLCADProdutoController implements Initializable {
                 ((ComboBox) n).getItems().clear();
             }
         }
-
         carregaTabela("");
     }
 
