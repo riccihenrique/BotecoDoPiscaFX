@@ -25,11 +25,11 @@
             </HBox>
             <AnchorPane fx:id="pnDados" prefHeight="279.0" prefWidth="819.0">
                <children>
-                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="481.0" promptText="Nome:" />
+                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="475.0" promptText="Nome:" />
                   <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="14.0" layoutY="126.0" prefHeight="25.0" prefWidth="772.0" promptText="Preço (un):" />
                   <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="17.0" layoutY="77.0" prefHeight="25.0" prefWidth="772.0" promptText="Descrição" />
                   <JFXComboBox fx:id="cbCategoria" layoutX="14.0" layoutY="181.0" prefHeight="25.0" prefWidth="353.0" promptText="Categoria" />
-                  <JFXComboBox fx:id="cbUnidade" layoutX="403.0" layoutY="181.0" prefHeight="25.0" prefWidth="392.0" promptText="Unidade" />
+                  <JFXComboBox fx:id="cbUnidade" layoutX="403.0" layoutY="181.0" prefHeight="25.0" prefWidth="383.0" promptText="Unidade" />
                   <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="273.0" promptText="Código:" />
                </children>
             </AnchorPane>

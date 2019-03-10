@@ -70,7 +70,7 @@ public class FXMLCADGarconController implements Initializable
     {
         colCod.setCellValueFactory(new PropertyValueFactory("gar_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("gar_nome"));
-        colTelefone.setCellValueFactory(new PropertyValueFactory("gar_telefone"));
+        colTelefone.setCellValueFactory(new PropertyValueFactory("gar_fone"));
 
         estadoOriginal();
     }

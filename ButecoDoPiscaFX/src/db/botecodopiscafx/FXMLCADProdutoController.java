@@ -85,12 +85,9 @@ public class FXMLCADProdutoController implements Initializable {
         ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
         for (Node n : componentes) {
             if (n instanceof TextInputControl) // textfield, textarea e htmleditor
-            {
                 ((TextInputControl) n).setText("");
-            }
-            if (n instanceof ComboBox) {
+            if (n instanceof ComboBox)
                 ((ComboBox) n).getItems().clear();
-            }
         }
 
         carregaTabela("");
