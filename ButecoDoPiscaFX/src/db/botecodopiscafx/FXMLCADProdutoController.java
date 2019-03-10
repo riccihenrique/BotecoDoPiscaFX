@@ -8,7 +8,6 @@ import db.entidades.Categoria;
 import db.entidades.Produto;
 import db.entidades.Unidade;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -66,10 +65,10 @@ public class FXMLCADProdutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //preparando as colunas
-        colCod.setCellFactory(new PropertyValueFactory("prod_id"));
-        colNome.setCellFactory(new PropertyValueFactory("prod_nome"));
-        colPreco.setCellFactory(new PropertyValueFactory("prod_preco"));
+        //preparando as colunas        
+        colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
+        colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
+        colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
 
         estadoOriginal();
     }
