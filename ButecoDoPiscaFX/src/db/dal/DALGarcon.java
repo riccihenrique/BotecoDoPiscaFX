@@ -68,7 +68,7 @@ public class DALGarcon
     public List<Garcon> get(String filtro)
     {
         List<Garcon> L = new ArrayList();
-        String sql = "select * from unidade";
+        String sql = "select * from garcon";
         if(!filtro.isEmpty())
             sql+=" where "+filtro;
         

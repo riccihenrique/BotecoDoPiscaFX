@@ -29,8 +29,8 @@
                   <JFXTextField fx:id="tbCep" labelFloat="true" layoutX="27.0" layoutY="159.0" prefHeight="25.0" prefWidth="114.0" promptText="CEP:" />
                   <JFXTextField fx:id="tbEndereco" labelFloat="true" layoutX="27.0" layoutY="122.0" prefHeight="25.0" prefWidth="227.0" promptText="Endereço:" />
                   <JFXTextField fx:id="tbTelefone" labelFloat="true" layoutX="264.0" layoutY="80.0" prefHeight="25.0" prefWidth="265.0" promptText="Telefone:" />
-                  <JFXTextField fx:id="tbCidade" layoutX="262.0" layoutY="122.0" prefHeight="25.0" prefWidth="265.0" text="Cidade:" />
-                  <JFXTextField fx:id="tbUf" layoutX="159.0" layoutY="159.0" prefHeight="25.0" prefWidth="95.0" text="UF:" />
+                  <JFXTextField fx:id="tbCidade" labelFloat="true" layoutX="262.0" layoutY="122.0" prefHeight="25.0" prefWidth="265.0" promptText="Cidade:" />
+                  <JFXTextField fx:id="tbUf" labelFloat="true" layoutX="159.0" layoutY="159.0" prefHeight="25.0" prefWidth="95.0" promptText="UF:" />
                   <JFXButton buttonType="RAISED" layoutX="342.0" layoutY="159.0" onAction="#clkBtnFoto" prefHeight="25.0" prefWidth="105.0" text="Capturar Foto" />
                   <JFXTextField fx:id="tbCodigo" labelFloat="true" layoutX="27.0" layoutY="33.0" prefHeight="25.0" prefWidth="227.0" promptText="Código" />
                </children>

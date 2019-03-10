@@ -35,12 +35,12 @@ public class FXMLPrincipalController
     {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCADGarcon.fxml"));
         
-        //painelpnprincipal.setCenter(root);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-          
-        stage.setScene(scene);
-        stage.show();
+        painelpnprincipal.setCenter(root);
+//        Scene scene = new Scene(root);
+//        Stage stage = new Stage();
+//          
+//        stage.setScene(scene);
+//        stage.show();
     }
 
     @FXML
