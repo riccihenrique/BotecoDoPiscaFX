@@ -39,34 +39,34 @@ public class FXMLCADGarconController implements Initializable
     {
         
     }
-    
-    private void estadoOriginal() {
-        BtnPesquisar.setDisable(false);
-        BtnNovo.setDisable(true);
-        BtnConfirmar.setDisable(true);
-        BtnCancelar.setDisable(false);
-        BtnApagar.setDisable(true);
-        BtnAlterar.setDisable(true);
-        BtnNovo.setDisable(false);
-
-        ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
-        for (Node n : componentes) {
-            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
-                ((TextInputControl) n).setText("");
-            if (n instanceof ComboBox)
-                ((ComboBox) n).getItems().clear();
-        }
-
-        carregaTabela("");
-    }
-
-    private void carregaTabela(String filtro) {
-        DALProduto dal = new DALProduto();
-        List<Produto> res = dal.get(filtro);
-        ObservableList<Produto> modelo;
-        modelo = FXCollections.observableArrayList(res);
-        tbvDados.setItems(modelo);
-    }
+//    
+//    private void estadoOriginal() {
+//        BtnPesquisar.setDisable(false);
+//        BtnNovo.setDisable(true);
+//        BtnConfirmar.setDisable(true);
+//        BtnCancelar.setDisable(false);
+//        BtnApagar.setDisable(true);
+//        BtnAlterar.setDisable(true);
+//        BtnNovo.setDisable(false);
+//
+//        ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
+//        for (Node n : componentes) {
+//            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+//                ((TextInputControl) n).setText("");
+//            if (n instanceof ComboBox)
+//                ((ComboBox) n).getItems().clear();
+//        }
+//
+//        carregaTabela("");
+//    }
+//
+//    private void carregaTabela(String filtro) {
+//        DALProduto dal = new DALProduto();
+//        List<Produto> res = dal.get(filtro);
+//        ObservableList<Produto> modelo;
+//        modelo = FXCollections.observableArrayList(res);
+//        tbvDados.setItems(modelo);
+//    }
 
     @FXML
     private void clkBtnNovo(ActionEvent event) {
