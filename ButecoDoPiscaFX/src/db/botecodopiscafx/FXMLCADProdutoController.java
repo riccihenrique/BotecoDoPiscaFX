@@ -1,5 +1,6 @@
 package db.botecodopiscafx;
 
+import Util.MaskFieldUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -19,12 +20,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLCADProdutoController implements Initializable {
@@ -72,6 +76,9 @@ public class FXMLCADProdutoController implements Initializable {
         colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
+        
+        MaskFieldUtil.monetaryField(tbPreco);
+        
         estadoOriginal();
     }
 
@@ -83,6 +90,7 @@ public class FXMLCADProdutoController implements Initializable {
         BtnApagar.setDisable(true);
         BtnAlterar.setDisable(true);
         BtnNovo.setDisable(false);
+        pnDados.setDisable(true);
 
         ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
         for (Node n : componentes) {
@@ -115,32 +123,126 @@ public class FXMLCADProdutoController implements Initializable {
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
     }
-
+    
+    private void estadoEdicao()
+    {     // carregar os componentes da tela (listbox, combobox, ...)
+          // p.e. : carregaEstados();
+          tbPesquisa.setDisable(true);
+          pnDados.setDisable(false);
+          BtnConfirmar.setDisable(false);
+          BtnApagar.setDisable(true);
+          BtnAlterar.setDisable(true);
+          tbNome.requestFocus();  
+     }
+    
     @FXML
     private void clkBtnNovo(ActionEvent event) {
+        estadoEdicao();
     }
 
     @FXML
     private void clkBtnAlterar(ActionEvent event) {
+        if(tbvDados.getSelectionModel().getSelectedItem() != null)
+        {
+            Produto p = (Produto)tbvDados.getSelectionModel().getSelectedItem();
+            tbCodigo.setText("" + p.getProd_id());
+            tbDescricao.setText(p.getProd_desc());
+            tbNome.setText(p.getProd_nome());
+            tbPreco.setText("" + p.getProd_preco());
+            estadoEdicao();
+            cbCategoria.getSelectionModel().select(0);
+            cbUnidade.getSelectionModel().select(0);
+            cbCategoria.getSelectionModel().select(p.getCat());
+            cbUnidade.getSelectionModel().select(p.getUni());
+                    
+        }
     }
 
     @FXML
-    private void clkBtnApagar(ActionEvent event) {
+    private void clkBtnApagar(ActionEvent event) 
+    {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Deseja realmente apagar?");
+        if(a.showAndWait().get() == ButtonType.OK)
+        {
+            DALProduto dal = new DALProduto();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
+            {
+                a.setContentText("Produto deletado com sucesso");
+                carregaTabela("");
+            }
+            else
+                a.setContentText("Erro ao deletar produto");
+            
+            a.showAndWait();
+        }
     }
 
     @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
+    private void clkBtnConfirmar(ActionEvent event)
+    {
+        int cod;
+        try
+        {
+            cod = Integer.parseInt(tbCodigo.getText());
+        }
+        catch(Exception e)
+        {
+            cod = 0;
+        }
+        
+        Produto p = new Produto(cod, cbCategoria.getValue(), cbUnidade.getValue(), tbNome.getText(), 
+                    Double.parseDouble(tbPreco.getText().replace(".", "").replace(',', '.')), tbDescricao.getText());
+        
+        DALProduto dal = new DALProduto();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        if(p.getProd_id() == 0)
+        {
+            if(dal.gravar(p))
+                a.setContentText("Produto gravado com sucesso");
+            else
+                a.setContentText("Erro ao gravar o produto");
+        }
+        else
+        {
+            if(dal.alterar(p))
+                a.setContentText("Produto alterado com sucesso");
+            else
+                a.setContentText("Erro ao alterar o produto");
+        }
+        a.showAndWait();
+        estadoOriginal();
     }
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) {
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
     }
 
     @FXML
     private void clkBtnPesquisar(ActionEvent event) {
+        carregaTabela("pro_nome like '%" + tbPesquisa.getText() + "%'");
     }
 
     @FXML
     private void clkTbPesquisa(KeyEvent event) {
+    }
+
+    @FXML
+    private void clkTabela(MouseEvent event) 
+    {
+        if(tbvDados.getSelectionModel().getSelectedIndex()>=0)
+        {
+           BtnAlterar.setDisable(false);
+           BtnApagar.setDisable(false);
+        }
     }
 }

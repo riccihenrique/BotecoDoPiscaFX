@@ -16,11 +16,11 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#clkCadUnidade" text="Unidade" />
-                    <MenuItem mnemonicParsing="false" onAction="#clkCadProduto" text="Produto" />
-                        <MenuItem mnemonicParsing="false" onAction="#clkCadGarcon" text="Garçon" />
                         <MenuItem mnemonicParsing="false" onAction="#clkCadCategoria" text="Categoria" />
+                        <MenuItem mnemonicParsing="false" onAction="#clkCadGarcon" text="Garçon" />
+                    <MenuItem mnemonicParsing="false" onAction="#clkCadProduto" text="Produto" />
                         <MenuItem mnemonicParsing="false" onAction="#clkCadTpPagamento" text="Tipo de Pagamento" />
+                        <MenuItem mnemonicParsing="false" onAction="#clkCadUnidade" text="Unidade" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">

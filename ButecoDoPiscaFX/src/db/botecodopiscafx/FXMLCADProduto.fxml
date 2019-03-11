@@ -30,7 +30,7 @@
                   <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="17.0" layoutY="77.0" prefHeight="25.0" prefWidth="772.0" promptText="Descrição" />
                   <JFXComboBox fx:id="cbCategoria" layoutX="14.0" layoutY="181.0" prefHeight="25.0" prefWidth="353.0" promptText="Categoria" />
                   <JFXComboBox fx:id="cbUnidade" layoutX="403.0" layoutY="181.0" prefHeight="25.0" prefWidth="383.0" promptText="Unidade" />
-                  <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="273.0" promptText="Código:" />
+                  <JFXTextField fx:id="tbCodigo" disable="true" editable="false" labelFloat="true" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="273.0" promptText="Código:" />
                </children>
             </AnchorPane>
          </children>
@@ -43,7 +43,7 @@
                   <JFXButton fx:id="BtnPesquisar" onAction="#clkBtnPesquisar" prefHeight="36.0" prefWidth="114.0" text="Pesquisar" />
                </children>
             </HBox>
-            <TableView fx:id="tbvDados" prefHeight="285.0" prefWidth="604.0">
+            <TableView fx:id="tbvDados" onMouseClicked="#clkTabela" prefHeight="285.0" prefWidth="604.0">
               <columns>
                 <TableColumn fx:id="colCod" prefWidth="129.0" text="Código" />
                 <TableColumn fx:id="colNome" prefWidth="517.0" text="Nome" />

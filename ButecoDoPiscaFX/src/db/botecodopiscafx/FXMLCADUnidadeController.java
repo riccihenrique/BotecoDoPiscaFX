@@ -53,7 +53,7 @@ public class FXMLCADUnidadeController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-    //preparando as colunas        
+        //preparando as colunas        
         colCod.setCellValueFactory(new PropertyValueFactory("uni_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("uni_nome"));
 
@@ -87,13 +87,27 @@ public class FXMLCADUnidadeController implements Initializable
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
     }
+    
+    private void estadoEdicao()
+    {     // carregar os componentes da tela (listbox, combobox, ...)
+          // p.e. : carregaEstados();
+          tbPesquisar.setDisable(true);
+          pnDados.setDisable(false);
+          BtnConfirmar.setDisable(false);
+          BtnApagar.setDisable(true);
+          BtnAlterar.setDisable(true);
+          tbNome.requestFocus();  
+     }
+
 
     @FXML
     private void clkBtnNovo(ActionEvent event) {
+        estadoEdicao();
     }
 
     @FXML
     private void clkBtnAlterar(ActionEvent event) {
+       //
     }
 
     @FXML
@@ -106,9 +120,12 @@ public class FXMLCADUnidadeController implements Initializable
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) {
+       
     }
 
     @FXML
-    private void clkBtnPesquisar(ActionEvent event) {
+    private void clkBtnPesquisar(ActionEvent event) 
+    {
+        carregaTabela("uni_nome = " + tbPesquisar.getText());
     }
 }

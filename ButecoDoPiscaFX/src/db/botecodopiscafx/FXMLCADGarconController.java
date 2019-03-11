@@ -1,11 +1,10 @@
 package db.botecodopiscafx;
 
+import Util.BuscaCep;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
-import db.dal.DALProduto;
 import db.entidades.Garcon;
-import db.entidades.Produto;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -105,6 +104,11 @@ public class FXMLCADGarconController implements Initializable
 
     @FXML
     private void clkBtnNovo(ActionEvent event) {
+        //estadoEdicao();
+        
+        String jsonResult = BuscaCep.consultaCep("19045380");
+        
+        System.out.println(jsonResult);
     }
 
     @FXML
