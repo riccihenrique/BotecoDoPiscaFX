@@ -73,17 +73,6 @@ public class FXMLCADProdutoController implements Initializable {
         colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
         estadoOriginal();
-        
-        DALCategoria dc = new DALCategoria();
-        List <Categoria> dadosCategoria = dc.get("");
-        ObservableList <Categoria> obsListCategoria = FXCollections.observableList(dadosCategoria);
-        cbCategoria.setItems(obsListCategoria);
-        
-        
-        DALUnidade du = new DALUnidade();
-        List <Unidade> dadosUnidade = du.get("");
-        ObservableList <Unidade> obsListUnidade = FXCollections.observableList(dadosUnidade);
-        cbUnidade.setItems(obsListUnidade);
     }
 
     private void estadoOriginal() {
@@ -103,8 +92,22 @@ public class FXMLCADProdutoController implements Initializable {
                 ((ComboBox) n).getItems().clear();
         }
         carregaTabela("");
+        carregaComboBox();
     }
 
+    private void carregaComboBox()
+    {
+        DALCategoria dc = new DALCategoria();
+        List <Categoria> dadosCategoria = dc.get("");
+        ObservableList <Categoria> obsListCategoria = FXCollections.observableList(dadosCategoria);
+        cbCategoria.setItems(obsListCategoria);
+        
+        DALUnidade du = new DALUnidade();
+        List <Unidade> dadosUnidade = du.get("");
+        ObservableList <Unidade> obsListUnidade = FXCollections.observableList(dadosUnidade);
+        cbUnidade.setItems(obsListUnidade);
+    }
+    
     private void carregaTabela(String filtro) {
         DALProduto dal = new DALProduto();
         List<Produto> res = dal.get(filtro);
