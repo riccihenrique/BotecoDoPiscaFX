@@ -228,11 +228,12 @@ public class FXMLCADProdutoController implements Initializable {
     }
 
     @FXML
-    private void clkBtnPesquisar(ActionEvent event) {
-        carregaTabela("pro_nome like '%" + tbPesquisa.getText() + "%'");
+    private void clkBtnPesquisar(ActionEvent event) 
+    {
+        carregaTabela("UPPER(prod_nome) like '%" + tbPesquisa.getText().toUpperCase() + "%'");
     }
 
-    @FXML
+    @FXML 
     private void clkTbPesquisa(KeyEvent event) {
     }
 

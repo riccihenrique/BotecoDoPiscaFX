@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLCADGarconController implements Initializable 
@@ -64,6 +65,8 @@ public class FXMLCADGarconController implements Initializable
     private TableColumn<Garcon, String> colNome;
     @FXML
     private TableColumn<Garcon, String> colTelefone;
+    @FXML
+    private ImageView imgvFoto;
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -133,5 +136,9 @@ public class FXMLCADGarconController implements Initializable
 
     @FXML
     private void clkBtnFoto(ActionEvent event) {
+    }
+
+    @FXML
+    private void clkBtnLocalizar(ActionEvent event) {
     }
 }
