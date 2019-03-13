@@ -24,7 +24,7 @@
             </HBox>
             <AnchorPane fx:id="pnDados" prefHeight="223.0" prefWidth="604.0">
                <children>
-                  <JFXTextField fx:id="tbCódigo" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
+                  <JFXTextField fx:id="tbCodigo" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="204.0" layoutY="39.0" prefHeight="25.0" prefWidth="266.0" promptText="Nome:" />
                </children>
             </AnchorPane>
@@ -38,7 +38,7 @@
                   <JFXButton fx:id="BtnPesquisar" onAction="#clkBtnPesquisar" prefHeight="36.0" prefWidth="114.0" text="Pesquisar" />
                </children>
             </HBox>
-            <TableView fx:id="tbvDados" prefHeight="175.0" prefWidth="509.0">
+            <TableView fx:id="tbvDados" onMouseClicked="#clkTbvDados" prefHeight="175.0" prefWidth="509.0">
                <columns>
                   <TableColumn fx:id="colCod" prefWidth="209.0" text="Código" />
                   <TableColumn fx:id="colNome" minWidth="0.0" prefWidth="299.0" text="Nome" />
