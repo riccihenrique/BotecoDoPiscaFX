@@ -1,15 +1,24 @@
 package db.botecodopiscafx;
 
 import Util.BuscaCep;
+import Util.MaskFieldUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +42,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import org.json.JSONObject;
 
 public class FXMLCADGarconController implements Initializable 
 {
@@ -85,6 +96,26 @@ public class FXMLCADGarconController implements Initializable
         colCod.setCellValueFactory(new PropertyValueFactory("gar_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("gar_nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory("gar_fone"));
+        
+        MaskFieldUtil.cepField(tbCep);
+        MaskFieldUtil.cpfCnpjField(tbCpf);
+        MaskFieldUtil.foneField(tbTelefone);
+        
+        tbCep.focusedProperty().addListener(new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            if(!newValue)
+            {
+                String json = BuscaCep.consultaCep(tbCep.getText().replace("-", ""));
+                Platform.runLater(()-> {
+                    JSONObject ob = new JSONObject(json);
+                    tbCidade.setText(ob.getString("localidade"));
+                    tbEndereco.setText(ob.getString("logradouro"));
+                    tbUf.setText(ob.getString("uf"));
+                });
+            }
+         }
+    });
 
         estadoOriginal();
     }
@@ -107,7 +138,7 @@ public class FXMLCADGarconController implements Initializable
                 ((ComboBox) n).getItems().clear();
         }
 
-        carregaTabela("");
+       // carregaTabela("");
     }
 
     private void carregaTabela(String filtro) {
@@ -178,7 +209,7 @@ public class FXMLCADGarconController implements Initializable
     }
 
     @FXML
-    private void clkBtnConfirmar(ActionEvent event)
+    private void clkBtnConfirmar(ActionEvent event) throws IOException
     {
         int cod;
         try
@@ -198,7 +229,13 @@ public class FXMLCADGarconController implements Initializable
         if(g.getGar_id()== 0)
         {
             if(dal.gravar(g))
+            {
                 a.setContentText("Categoria gravada com sucesso");
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                ImageIO.write((RenderedImage) imgvFoto.getImage(),"png", os); 
+                InputStream fis = new ByteArrayInputStream(os.toByteArray());
+                dal.gravarFoto(g, (FileInputStream) fis);
+            }
             else
                 a.setContentText("Erro ao gravar a categoria");
         }
@@ -207,7 +244,10 @@ public class FXMLCADGarconController implements Initializable
             if(dal.alterar(g))
             {
                 a.setContentText("Categoria alterada com sucesso");
-                imgvFoto.getImage();
+                ByteArrayOutputStream os = new ByteArrayOutputStream();
+                ImageIO.write((RenderedImage) imgvFoto.getImage(),"png", os); 
+                InputStream fis = new ByteArrayInputStream(os.toByteArray());
+                dal.gravarFoto(g, (FileInputStream) fis);
             }
             else 
                 a.setContentText("Erro ao alterar a categoria");
@@ -252,14 +292,7 @@ public class FXMLCADGarconController implements Initializable
         File arq = arquivo.showOpenDialog(null);
         imgvFoto.setImage(new Image(arq.toURI().toString()));
     }
-
-    @FXML
-    private void clkTeclaCep(KeyEvent event) 
-    {
-        String jsonResult = BuscaCep.consultaCep("19045380");
-        System.out.println(jsonResult);
-    }
-
+    
     @FXML
     private void clkTabela(MouseEvent event) 
     {

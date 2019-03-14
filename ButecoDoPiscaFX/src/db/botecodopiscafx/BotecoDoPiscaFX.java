@@ -24,7 +24,7 @@ public class BotecoDoPiscaFX extends Application {
         if(!Banco.conectar())
         {
             JOptionPane.showMessageDialog(null, "Erro: " + Banco.getCon().getMensagemErro());
-            System.exit(-1);
+            //System.exit(-1);
         }
         launch(args);
     }

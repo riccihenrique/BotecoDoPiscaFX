@@ -13,7 +13,7 @@ public class BuscaCep
         StringBuffer dados = new StringBuffer();
         try 
         {
-            URL url = new URL("http://apps.widenet.com.br/busca-cep/api/cep.json?code=" + cep);
+            URL url = new URL("https://viacep.com.br/ws/" + cep + "/json/");
             URLConnection con = url.openConnection();
             
             con.setDoInput(true);

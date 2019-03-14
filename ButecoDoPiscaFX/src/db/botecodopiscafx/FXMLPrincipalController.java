@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
-public class FXMLPrincipalController 
+public class FXMLPrincipalController implements Initializable 
 {    
     private Label label;
     @FXML
@@ -19,11 +19,12 @@ public class FXMLPrincipalController
     
     public static BorderPane spainelpnprincipal = null;
 
-    //@Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         spainelpnprincipal = painelpnprincipal;
     }
+    
     @FXML
     private void clkCadProduto(ActionEvent event) throws IOException
     {

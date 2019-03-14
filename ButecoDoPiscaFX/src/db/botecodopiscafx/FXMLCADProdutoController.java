@@ -11,7 +11,6 @@ import db.entidades.Categoria;
 import db.entidades.Produto;
 import db.entidades.Unidade;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -148,7 +147,7 @@ public class FXMLCADProdutoController implements Initializable {
             tbCodigo.setText("" + p.getProd_id());
             tbDescricao.setText(p.getProd_desc());
             tbNome.setText(p.getProd_nome());
-            tbPreco.setText("" + p.getProd_preco());
+            tbPreco.setText(String.format("%10.2f", p.getProd_preco()));
             estadoEdicao();
             cbCategoria.getSelectionModel().select(0);
             cbUnidade.getSelectionModel().select(0);

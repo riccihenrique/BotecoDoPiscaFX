@@ -1,9 +1,9 @@
 package db.botecodopiscafx;
 
 import com.github.sarxos.webcam.Webcam;
+import db.banco.Banco;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class FXMLWebCamController implements Initializable {
 
@@ -31,7 +31,7 @@ public class FXMLWebCamController implements Initializable {
         }
         catch(Exception e)
         {
-            System.out.println("");
+            JOptionPane.showMessageDialog(null, "Erro: WebCam não encontrada");
         }
     }    
 
@@ -50,6 +50,5 @@ public class FXMLWebCamController implements Initializable {
 
         // aplicar no componente ImageView
         imgCamera.setImage(wimg);
-
     }
 }
