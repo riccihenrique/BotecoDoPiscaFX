@@ -66,6 +66,7 @@ public class FXMLCADUnidadeController implements Initializable
     private void estadoOriginal() {
         BtnPesquisar.setDisable(false);
         BtnNovo.setDisable(true);
+        pnDados.setDisable(true);
         BtnConfirmar.setDisable(true);
         BtnCancelar.setDisable(false);
         BtnApagar.setDisable(true);

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -18,13 +19,11 @@ public class FXMLPrincipalController
     
     public static BorderPane spainelpnprincipal = null;
 
-   
-    public void initialize(URL url, ResourceBundle a)
+    //@Override
+    public void initialize(URL url, ResourceBundle rb) 
     {
         spainelpnprincipal = painelpnprincipal;
     }
-    
-    //
     @FXML
     private void clkCadProduto(ActionEvent event) throws IOException
     {

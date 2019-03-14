@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,15 +14,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class FXMLCADGarconController implements Initializable 
 {
@@ -80,6 +92,7 @@ public class FXMLCADGarconController implements Initializable
     private void estadoOriginal() {
         BtnPesquisar.setDisable(false);
         BtnNovo.setDisable(true);
+        pnDados.setDisable(true);
         BtnConfirmar.setDisable(true);
         BtnCancelar.setDisable(false);
         BtnApagar.setDisable(true);
@@ -105,40 +118,155 @@ public class FXMLCADGarconController implements Initializable
         tbvDados.setItems(modelo);
     }
 
+    private void estadoEdicao()
+    {     // carregar os componentes da tela (listbox, combobox, ...)
+          // p.e. : carregaEstados();
+          BtnNovo.setDisable(true);  
+          tbPesquisa.setDisable(true);
+          pnDados.setDisable(false);
+          BtnConfirmar.setDisable(false);
+          BtnApagar.setDisable(true);
+          BtnAlterar.setDisable(true);
+          tbNome.setDisable(false);
+          tbNome.requestFocus(); 
+     }
+    
     @FXML
     private void clkBtnNovo(ActionEvent event) {
-        //estadoEdicao();
+        estadoEdicao();
+    }
+
+    @FXML
+    private void clkBtnAlterar(ActionEvent event)
+    {
+        if(tbvDados.getSelectionModel().getSelectedItem() != null)
+        {
+            Garcon g = (Garcon)tbvDados.getSelectionModel().getSelectedItem();
+            tbCodigo.setText("" + g.getGar_id());
+            tbNome.setText(g.getGar_nome());
+            tbCep.setText(g.getGar_cep());
+            tbCidade.setText(g.getGar_cidade());
+            tbCpf.setText(g.getGar_cpf());
+            tbEndereco.setText(g.getGar_endereco());
+            tbTelefone.setText(g.getGar_fone());
+            tbUf.setText(g.getGar_uf());
+            DALGarcon dal = new DALGarcon();
+            //imgvFoto.setImage((Image) dal.getFoto(g));
+            estadoEdicao();       
+        }
+    }
+
+    @FXML
+    private void clkBtnApagar(ActionEvent event) 
+    {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Deseja realmente apagar?"); 
+        if(a.showAndWait().get() == ButtonType.OK)
+        {
+            DALGarcon dal = new DALGarcon();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
+            {
+                a.setContentText("Garçon deletado com sucesso");
+                carregaTabela("");
+            }
+            else
+                a.setContentText("Erro ao deletar garçon");
+            
+            a.showAndWait();
+        }
+    }
+
+    @FXML
+    private void clkBtnConfirmar(ActionEvent event)
+    {
+        int cod;
+        try
+        {
+            cod = Integer.parseInt(tbCodigo.getText());
+        }
+        catch(Exception e)
+        {
+            cod = 0;
+        }
         
+        Garcon g = new Garcon(cod, tbNome.getText(), tbCep.getText(), tbCpf.getText(),
+            tbEndereco.getText() , tbCidade.getText(), tbUf.getText(), tbTelefone.getText());
+        DALGarcon dal = new DALGarcon();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        
+        if(g.getGar_id()== 0)
+        {
+            if(dal.gravar(g))
+                a.setContentText("Categoria gravada com sucesso");
+            else
+                a.setContentText("Erro ao gravar a categoria");
+        }
+        else
+        {
+            if(dal.alterar(g))
+            {
+                a.setContentText("Categoria alterada com sucesso");
+                imgvFoto.getImage();
+            }
+            else 
+                a.setContentText("Erro ao alterar a categoria");
+        }
+        a.showAndWait();
+        estadoOriginal();
+    }
+
+    @FXML
+    private void clkBtnCancelar(ActionEvent event) 
+    {
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
+    }
+
+    @FXML
+    private void clkBtnPesquisar(ActionEvent event) 
+    {
+        carregaTabela("UPPER(gar_nome) like '%" + tbPesquisa.getText().toUpperCase() + "%'");
+    }
+
+    @FXML
+    private void clkBtnFoto(ActionEvent event) throws IOException 
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLWebCam.fxml"));
+        Scene cena = new Scene(root);
+        Stage sta = new Stage();
+        sta.setScene(cena);
+        sta.show();
+    }
+
+    @FXML
+    private void clkBtnLocalizar(ActionEvent event) 
+    {
+        FileChooser arquivo = new FileChooser();
+        File arq = arquivo.showOpenDialog(null);
+        imgvFoto.setImage(new Image(arq.toURI().toString()));
+    }
+
+    @FXML
+    private void clkTeclaCep(KeyEvent event) 
+    {
         String jsonResult = BuscaCep.consultaCep("19045380");
-        
         System.out.println(jsonResult);
     }
 
     @FXML
-    private void clkBtnAlterar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnApagar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnCancelar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnPesquisar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnFoto(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkBtnLocalizar(ActionEvent event) {
+    private void clkTabela(MouseEvent event) 
+    {
+        if(tbvDados.getSelectionModel().getSelectedIndex() >= 0)
+        {
+            BtnApagar.setDisable(false);
+            BtnAlterar.setDisable(false);
+        }
     }
 }

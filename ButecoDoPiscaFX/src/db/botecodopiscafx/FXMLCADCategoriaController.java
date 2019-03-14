@@ -3,7 +3,6 @@ package db.botecodopiscafx;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALCategoria;
-import db.dal.DALTipoPagto;
 import db.entidades.Categoria;
 import java.net.URL;
 import java.util.List;
@@ -133,7 +132,7 @@ public class FXMLCADCategoriaController implements Initializable
             a = new Alert(Alert.AlertType.INFORMATION);
             if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
             {
-                a.setContentText("Categpria deletada com sucesso");
+                a.setContentText("Categoria deletada com sucesso");
                 carregaTabela("");
             }
             else
@@ -175,7 +174,14 @@ public class FXMLCADCategoriaController implements Initializable
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) {
-        estadoOriginal();
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
     }
 
     @FXML

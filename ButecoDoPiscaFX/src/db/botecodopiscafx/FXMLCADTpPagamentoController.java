@@ -3,9 +3,7 @@ package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import db.dal.DALProduto;
 import db.dal.DALTipoPagto;
-import db.entidades.Produto;
 import db.entidades.TipoPagto;
 import java.net.URL;
 import java.util.List;
@@ -82,6 +80,7 @@ public class FXMLCADTpPagamentoController implements Initializable
         BtnPesquisar.setDisable(false);
         tbPesquisar.setDisable(false);
         BtnNovo.setDisable(true);
+        pnDados.setDisable(true);
         BtnConfirmar.setDisable(true);
         BtnCancelar.setDisable(false);
         BtnApagar.setDisable(true);
