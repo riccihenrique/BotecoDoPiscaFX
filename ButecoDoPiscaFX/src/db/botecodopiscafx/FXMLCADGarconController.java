@@ -37,7 +37,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -102,20 +101,21 @@ public class FXMLCADGarconController implements Initializable
         MaskFieldUtil.foneField(tbTelefone);
         
         tbCep.focusedProperty().addListener(new ChangeListener<Boolean>() {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            if(!newValue)
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) 
             {
-                String json = BuscaCep.consultaCep(tbCep.getText().replace("-", ""));
-                Platform.runLater(()-> {
-                    JSONObject ob = new JSONObject(json);
-                    tbCidade.setText(ob.getString("localidade"));
-                    tbEndereco.setText(ob.getString("logradouro"));
-                    tbUf.setText(ob.getString("uf"));
-                });
-            }
-         }
-    });
+                if(!newValue)
+                {
+                    String json = BuscaCep.consultaCep(tbCep.getText().replace("-", ""));
+                    Platform.runLater(()-> {
+                        JSONObject ob = new JSONObject(json);
+                        tbCidade.setText(ob.getString("localidade"));
+                        tbEndereco.setText(ob.getString("logradouro"));
+                        tbUf.setText(ob.getString("uf"));
+                    });
+                }
+             }
+        });
 
         estadoOriginal();
     }
@@ -138,7 +138,7 @@ public class FXMLCADGarconController implements Initializable
                 ((ComboBox) n).getItems().clear();
         }
 
-       // carregaTabela("");
+       carregaTabela("");
     }
 
     private void carregaTabela(String filtro) {
@@ -150,8 +150,7 @@ public class FXMLCADGarconController implements Initializable
     }
 
     private void estadoEdicao()
-    {     // carregar os componentes da tela (listbox, combobox, ...)
-          // p.e. : carregaEstados();
+    {   
           BtnNovo.setDisable(true);  
           tbPesquisa.setDisable(true);
           pnDados.setDisable(false);
@@ -182,7 +181,6 @@ public class FXMLCADGarconController implements Initializable
             tbTelefone.setText(g.getGar_fone());
             tbUf.setText(g.getGar_uf());
             DALGarcon dal = new DALGarcon();
-            //imgvFoto.setImage((Image) dal.getFoto(g));
             estadoEdicao();       
         }
     }
