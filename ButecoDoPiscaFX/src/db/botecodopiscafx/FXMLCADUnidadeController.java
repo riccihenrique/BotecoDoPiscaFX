@@ -26,7 +26,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class FXMLCADUnidadeController implements Initializable 
 {
-
     @FXML
     private JFXTextField tbNome;
     @FXML
@@ -55,8 +54,7 @@ public class FXMLCADUnidadeController implements Initializable
     private JFXTextField tbCodigo;
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {
-        //preparando as colunas        
+    {      
         colCod.setCellValueFactory(new PropertyValueFactory("uni_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("uni_nome"));
 
@@ -88,8 +86,7 @@ public class FXMLCADUnidadeController implements Initializable
     }
     
     private void estadoEdicao()
-    {     // carregar os componentes da tela (listbox, combobox, ...)
-          // p.e. : carregaEstados();
+    {     
           BtnNovo.setDisable(true);  
           tbPesquisar.setDisable(true);
           pnDados.setDisable(false);
@@ -177,7 +174,10 @@ public class FXMLCADUnidadeController implements Initializable
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) {
-       estadoOriginal();
+        if(!pnDados.isDisable())
+            estadoOriginal();
+        else
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
     }
 
     @FXML

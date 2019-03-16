@@ -17,15 +17,15 @@ public class DALGarcon
     public boolean gravar(Garcon g)
     {
         String sql="insert into garcon (gar_nome,gar_cpf,gar_cep,gar_endereco,gar_cidade,gar_uf,gar_fone) "
-                                + "values ('#1','#2','#3','#4','#5''#6','#7')";
+                                + "values ('#1','#2','#3','#4','#5','#6','#7')";
         
         sql=sql.replaceAll("#1", g.getGar_nome());
-        sql=sql.replaceAll("#2", g.getGar_cpf());
-        sql=sql.replaceAll("#3", g.getGar_cep());
+        sql=sql.replaceAll("#2", g.getGar_cpf().replace(".", "").replace("-", ""));
+        sql=sql.replaceAll("#3", g.getGar_cep().replace("-", ""));
         sql=sql.replaceAll("#4", g.getGar_endereco());
         sql=sql.replaceAll("#5", g.getGar_cidade());
         sql=sql.replaceAll("#6", g.getGar_uf());
-        sql=sql.replaceAll("#7", g.getGar_fone());
+        sql=sql.replaceAll("#7", g.getGar_fone().replace("(", "").replace(")", "").replace("-", ""));
         
         return Banco.getCon().manipular(sql);
     }
@@ -34,12 +34,12 @@ public class DALGarcon
     {
         String sql="update garcon set gar_nome='#1',gar_cpf='#2',gar_cep='#3',gar_endereco='#4',gar_cidade='#5',gar_uf='#6',gar_fone='#7' where gar_id="+g.getGar_id();
         sql=sql.replaceAll("#1", g.getGar_nome());
-        sql=sql.replaceAll("#2", g.getGar_cpf());
-        sql=sql.replaceAll("#3", g.getGar_cep());
+        sql=sql.replaceAll("#2", g.getGar_cpf().replace(".", "").replace("-", ""));
+        sql=sql.replaceAll("#3", g.getGar_cep().replace("-", ""));
         sql=sql.replaceAll("#4", g.getGar_endereco());
         sql=sql.replaceAll("#5", g.getGar_cidade());
         sql=sql.replaceAll("#6", g.getGar_uf());
-        sql=sql.replaceAll("#7", g.getGar_fone());
+        sql=sql.replaceAll("#7", g.getGar_fone().replace("(", "").replace(")", "").replace("-", ""));
         
         return Banco.getCon().manipular(sql);
     }
@@ -118,6 +118,7 @@ public class DALGarcon
         }
         catch(Exception e)
         {
+            System.out.println(e.getMessage());
             return null;
         }
         

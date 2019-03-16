@@ -55,8 +55,7 @@ public class FXMLCADTpPagamentoController implements Initializable
     private JFXTextField tbCodigo;
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {
-    //preparando as colunas        
+    {      
         colCod.setCellValueFactory(new PropertyValueFactory("tpg_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
 
@@ -64,8 +63,7 @@ public class FXMLCADTpPagamentoController implements Initializable
     }
 
     private void estadoEdicao()
-    {     // carregar os componentes da tela (listbox, combobox, ...)
-          // p.e. : carregaEstados();
+    {     
           BtnNovo.setDisable(true);  
           tbPesquisar.setDisable(true);
           pnDados.setDisable(false);
@@ -177,7 +175,15 @@ public class FXMLCADTpPagamentoController implements Initializable
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) {
-        estadoOriginal();
+        
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
     }
 
     @FXML

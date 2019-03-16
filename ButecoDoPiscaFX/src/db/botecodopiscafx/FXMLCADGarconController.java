@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,6 +22,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,7 +131,7 @@ public class FXMLCADGarconController implements Initializable
         BtnApagar.setDisable(true);
         BtnAlterar.setDisable(true);
         BtnNovo.setDisable(false);
-
+        imgvFoto.setImage(null);
         ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
         for (Node n : componentes) {
             if (n instanceof TextInputControl) // textfield, textarea e htmleditor
@@ -167,7 +169,7 @@ public class FXMLCADGarconController implements Initializable
     }
 
     @FXML
-    private void clkBtnAlterar(ActionEvent event)
+    private void clkBtnAlterar(ActionEvent event) throws IOException
     {
         if(tbvDados.getSelectionModel().getSelectedItem() != null)
         {
@@ -181,6 +183,14 @@ public class FXMLCADGarconController implements Initializable
             tbTelefone.setText(g.getGar_fone());
             tbUf.setText(g.getGar_uf());
             DALGarcon dal = new DALGarcon();
+            InputStream img = dal.getFoto(g);
+            if(img != null)
+            {
+                BufferedImage bimg = ImageIO.read(img);
+                SwingFXUtils.toFXImage(bimg, null);
+                imgvFoto.setImage(SwingFXUtils.toFXImage(bimg, null));
+            }
+            
             estadoEdicao();       
         }
     }
@@ -228,27 +238,45 @@ public class FXMLCADGarconController implements Initializable
         {
             if(dal.gravar(g))
             {
-                a.setContentText("Categoria gravada com sucesso");
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                ImageIO.write((RenderedImage) imgvFoto.getImage(),"png", os); 
-                InputStream fis = new ByteArrayInputStream(os.toByteArray());
-                dal.gravarFoto(g, (FileInputStream) fis);
+                if(imgvFoto.getImage() != null)
+                {
+//                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    byte[] imageInByte;
+//                    ImageIO.write(bimg, "jpg", baos);
+//                    baos.flush();
+//                    imageInByte = baos.toByteArray();
+//                    baos.close();
+//
+//                    InputStream in = new ByteArrayInputStream(imageInByte);
+//                    dal.gravarFoto(g, (FileInputStream) in);
+                }
+                a.setContentText("Garçon gravado com sucesso");
             }
             else
-                a.setContentText("Erro ao gravar a categoria");
+                a.setContentText("Erro ao gravar o garçon");
         }
         else
         {
             if(dal.alterar(g))
             {
-                a.setContentText("Categoria alterada com sucesso");
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                ImageIO.write((RenderedImage) imgvFoto.getImage(),"png", os); 
-                InputStream fis = new ByteArrayInputStream(os.toByteArray());
-                dal.gravarFoto(g, (FileInputStream) fis);
+                if(imgvFoto.getImage() != null)
+                {
+//                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    byte[] imageInByte;
+//                    ImageIO.write(bimg, "jpg", baos);
+//                    baos.flush();
+//                    imageInByte = baos.toByteArray();
+//                    baos.close();
+//
+//                    InputStream in = new ByteArrayInputStream(imageInByte);
+//                    dal.gravarFoto(g, (FileInputStream) in);
+                }
+                a.setContentText("Garçon alterado com sucesso");
             }
             else 
-                a.setContentText("Erro ao alterar a categoria");
+                a.setContentText("Erro ao alterar o garçon");
         }
         a.showAndWait();
         estadoOriginal();

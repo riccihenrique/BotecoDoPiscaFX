@@ -54,8 +54,7 @@ public class FXMLCADCategoriaController implements Initializable
     private JFXTextField tbCodigo;
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
-        //preparando as colunas        
+    {     
         colCod.setCellValueFactory(new PropertyValueFactory("cat_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("cat_nome"));
 
@@ -63,8 +62,7 @@ public class FXMLCADCategoriaController implements Initializable
     }
     
     private void estadoEdicao()
-    {     // carregar os componentes da tela (listbox, combobox, ...)
-          // p.e. : carregaEstados();
+    {     
           BtnNovo.setDisable(true);  
           tbPesquisar.setDisable(true);
           pnDados.setDisable(false);
@@ -79,6 +77,7 @@ public class FXMLCADCategoriaController implements Initializable
         tbPesquisar.setDisable(false);
         BtnPesquisar.setDisable(false);
         BtnNovo.setDisable(true);
+        pnDados.setDisable(true);
         BtnConfirmar.setDisable(true);
         BtnCancelar.setDisable(false);
         BtnApagar.setDisable(true);

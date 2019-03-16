@@ -71,7 +71,6 @@ public class FXMLCADProdutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //preparando as colunas
         colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
         colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
@@ -124,8 +123,7 @@ public class FXMLCADProdutoController implements Initializable {
     }
     
     private void estadoEdicao()
-    {     // carregar os componentes da tela (listbox, combobox, ...)
-          // p.e. : carregaEstados();
+    {     
           tbPesquisa.setDisable(true);
           pnDados.setDisable(false);
           BtnConfirmar.setDisable(false);
@@ -153,7 +151,6 @@ public class FXMLCADProdutoController implements Initializable {
             cbUnidade.getSelectionModel().select(0);
             cbCategoria.getSelectionModel().select(p.getCat());
             cbUnidade.getSelectionModel().select(p.getUni());
-                    
         }
     }
 
