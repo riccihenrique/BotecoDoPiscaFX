@@ -24,7 +24,7 @@
             </HBox>
             <AnchorPane fx:id="pnDados" prefHeight="223.0" prefWidth="604.0">
                <children>
-                  <JFXTextField fx:id="tbCodigo" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
+                  <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="204.0" layoutY="39.0" prefHeight="25.0" prefWidth="266.0" promptText="Nome:" />
                </children>
             </AnchorPane>

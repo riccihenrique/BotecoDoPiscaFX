@@ -1,10 +1,11 @@
 package db.botecodopiscafx;
 
-import Util.MaskFieldUtil;
+import util.MaskFieldUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALCategoria;
+import db.dal.DALGarcon;
 import db.dal.DALProduto;
 import db.dal.DALUnidade;
 import db.entidades.Categoria;
@@ -183,7 +184,7 @@ public class FXMLCADProdutoController implements Initializable {
         {
             cod = Integer.parseInt(tbCodigo.getText());
         }
-        catch(Exception e)
+        catch(NumberFormatException e)
         {
             cod = 0;
         }

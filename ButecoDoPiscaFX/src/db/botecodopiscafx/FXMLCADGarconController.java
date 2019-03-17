@@ -1,13 +1,10 @@
 package db.botecodopiscafx;
 
-import Util.BuscaCep;
-import Util.MaskFieldUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -45,6 +42,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import org.json.JSONObject;
+import util.BuscaCep;
+import util.MaskFieldUtil;
 
 public class FXMLCADGarconController implements Initializable 
 {
@@ -91,6 +90,10 @@ public class FXMLCADGarconController implements Initializable
     private TableColumn<Garcon, String> colTelefone;
     @FXML
     private ImageView imgvFoto;
+    
+    FileChooser arquivo;
+    File arq;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -239,19 +242,21 @@ public class FXMLCADGarconController implements Initializable
             if(dal.gravar(g))
             {
                 if(imgvFoto.getImage() != null)
-                {
-//                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
-//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                    byte[] imageInByte;
-//                    ImageIO.write(bimg, "jpg", baos);
-//                    baos.flush();
-//                    imageInByte = baos.toByteArray();
-//                    baos.close();
-//
-//                    InputStream in = new ByteArrayInputStream(imageInByte);
-//                    dal.gravarFoto(g, (FileInputStream) in);
+                {                    
+                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    byte[] imageInByte;
+                    ImageIO.write(bimg, "jpg", baos);
+                    baos.flush();
+                    imageInByte = baos.toByteArray();
+                    baos.close();
+
+                    InputStream in = new ByteArrayInputStream(imageInByte);
+                    if(dal.gravarFoto(g, (FileInputStream) in))
+                        a.setContentText("Garçon alterado com sucesso");
+                    else
+                        a.setContentText("Garçon alterado sem foto");
                 }
-                a.setContentText("Garçon gravado com sucesso");
             }
             else
                 a.setContentText("Erro ao gravar o garçon");
@@ -262,18 +267,20 @@ public class FXMLCADGarconController implements Initializable
             {
                 if(imgvFoto.getImage() != null)
                 {
-//                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
-//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                    byte[] imageInByte;
-//                    ImageIO.write(bimg, "jpg", baos);
-//                    baos.flush();
-//                    imageInByte = baos.toByteArray();
-//                    baos.close();
-//
-//                    InputStream in = new ByteArrayInputStream(imageInByte);
-//                    dal.gravarFoto(g, (FileInputStream) in);
+                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    byte[] imageInByte;
+                    ImageIO.write(bimg, "jpg", baos);
+                    baos.flush();
+                    imageInByte = baos.toByteArray();
+                    baos.close();
+
+                    InputStream in = new ByteArrayInputStream(imageInByte);
+                    if(dal.gravarFoto(g, (FileInputStream) in))
+                        a.setContentText("Garçon alterado com sucesso");
+                    else
+                        a.setContentText("Garçon alterado sem foto");
                 }
-                a.setContentText("Garçon alterado com sucesso");
             }
             else 
                 a.setContentText("Erro ao alterar o garçon");
@@ -308,14 +315,15 @@ public class FXMLCADGarconController implements Initializable
         Scene cena = new Scene(root);
         Stage sta = new Stage();
         sta.setScene(cena);
-        sta.show();
+        sta.showAndWait();
+        imgvFoto.setImage(FXMLWebCamController.img);
     }
 
     @FXML
     private void clkBtnLocalizar(ActionEvent event) 
     {
-        FileChooser arquivo = new FileChooser();
-        File arq = arquivo.showOpenDialog(null);
+        arquivo = new FileChooser();
+        arq = arquivo.showOpenDialog(null);
         imgvFoto.setImage(new Image(arq.toURI().toString()));
     }
     

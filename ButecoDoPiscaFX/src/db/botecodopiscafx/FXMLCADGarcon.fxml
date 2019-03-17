@@ -26,15 +26,15 @@
             <AnchorPane fx:id="pnDados" prefHeight="146.0" prefWidth="604.0">
                <children>
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="264.0" layoutY="33.0" prefHeight="25.0" prefWidth="265.0" promptText="Nome:" />
-                  <JFXTextField fx:id="tbCpf" labelFloat="true" layoutX="24.0" layoutY="80.0" prefHeight="25.0" prefWidth="227.0" promptText="CPF:" />
-                  <JFXTextField fx:id="tbCep" labelFloat="true" layoutX="24.0" layoutY="168.0" prefHeight="25.0" prefWidth="114.0" promptText="CEP:" />
+                  <JFXTextField fx:id="tbCpf" labelFloat="true" layoutX="27.0" layoutY="80.0" prefHeight="25.0" prefWidth="227.0" promptText="CPF:" />
+                  <JFXTextField fx:id="tbCep" labelFloat="true" layoutX="27.0" layoutY="168.0" prefHeight="25.0" prefWidth="114.0" promptText="CEP:" />
                   <JFXTextField fx:id="tbEndereco" labelFloat="true" layoutX="27.0" layoutY="122.0" prefHeight="25.0" prefWidth="227.0" promptText="Endereço:" />
                   <JFXTextField fx:id="tbTelefone" labelFloat="true" layoutX="264.0" layoutY="80.0" prefHeight="25.0" prefWidth="265.0" promptText="Telefone:" />
-                  <JFXTextField fx:id="tbCidade" labelFloat="true" layoutX="262.0" layoutY="122.0" prefHeight="25.0" prefWidth="265.0" promptText="Cidade:" />
-                  <JFXTextField fx:id="tbUf" labelFloat="true" layoutX="156.0" layoutY="168.0" prefHeight="25.0" prefWidth="95.0" promptText="UF:" />
+                  <JFXTextField fx:id="tbCidade" labelFloat="true" layoutX="264.0" layoutY="122.0" prefHeight="25.0" prefWidth="265.0" promptText="Cidade:" />
+                  <JFXTextField fx:id="tbUf" labelFloat="true" layoutX="159.0" layoutY="168.0" prefHeight="25.0" prefWidth="95.0" promptText="UF:" />
                   <JFXTextField fx:id="tbCodigo" disable="true" editable="false" labelFloat="true" layoutX="27.0" layoutY="33.0" prefHeight="25.0" prefWidth="227.0" promptText="Código" />
                   <JFXButton buttonType="RAISED" layoutX="655.0" layoutY="184.0" onAction="#clkBtnLocalizar" prefHeight="25.0" prefWidth="70.0" text="Localizar" />
-                  <ImageView fx:id="imgvFoto" fitHeight="150.0" fitWidth="200.0" layoutX="539.0" layoutY="18.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imgvFoto" fitHeight="150.0" fitWidth="200.0" layoutX="539.0" layoutY="18.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                   <JFXButton buttonType="RAISED" layoutX="569.0" layoutY="185.0" onAction="#clkBtnFoto" prefHeight="25.0" prefWidth="70.0" text="Capturar" />
                </children>
             </AnchorPane>

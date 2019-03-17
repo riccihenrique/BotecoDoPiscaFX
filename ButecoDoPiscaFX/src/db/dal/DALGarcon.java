@@ -88,7 +88,7 @@ public class DALGarcon
         try
         {
             PreparedStatement ps = Banco.getCon().getConnection().prepareStatement("UPDATE garcon set gar_foto = ? where gar_id = " + g.getGar_id());
-            ps.setBinaryStream(2, pic);
+            ps.setBinaryStream(1, pic);
             ps.executeUpdate();
             ps.close();
             pic.close();
