@@ -23,12 +23,14 @@ public class FXMLPrincipalController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         spainelpnprincipal = painelpnprincipal;
+        efeito(false);
     }
     
     @FXML
     private void clkCadProduto(ActionEvent event) throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCADProduto.fxml"));
+        efeito(true);
         painelpnprincipal.setCenter(root);
          
     }  
@@ -71,5 +73,21 @@ public class FXMLPrincipalController implements Initializable
     private void clkGerenciar(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLPainelComanda.fxml"));
         painelpnprincipal.setCenter(root);
+    }
+    
+    public static void efeito(boolean on)
+    {
+        if(on)
+        {
+//            FadeTransition ft = new FadeTransition(Duration.millis(500), spnprincipal);
+//            ft.setFromValue(1.0);
+//            ft.setToValue(0.5);
+//            ft.play(); 
+              spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura2.png');");
+
+        }
+        else
+            spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura.png');");
+            
     }
 }
