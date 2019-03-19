@@ -190,7 +190,6 @@ public class FXMLCADGarconController implements Initializable
             if(img != null)
             {
                 BufferedImage bimg = ImageIO.read(img);
-                SwingFXUtils.toFXImage(bimg, null);
                 imgvFoto.setImage(SwingFXUtils.toFXImage(bimg, null));
             }
             

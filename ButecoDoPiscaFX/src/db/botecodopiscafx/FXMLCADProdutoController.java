@@ -3,6 +3,8 @@ package db.botecodopiscafx;
 import util.MaskFieldUtil;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALCategoria;
 import db.dal.DALGarcon;
@@ -175,6 +177,14 @@ public class FXMLCADProdutoController implements Initializable {
             a.showAndWait();
         }
     }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
 
     @FXML
     private void clkBtnConfirmar(ActionEvent event)
@@ -197,18 +207,24 @@ public class FXMLCADProdutoController implements Initializable {
         if(p.getProd_id() == 0)
         {
             if(dal.gravar(p))
-                a.setContentText("Produto gravado com sucesso");
+                snackBar("Gravado com sucesso");
             else
+            {
                 a.setContentText("Erro ao gravar o produto");
+                a.showAndWait();
+            }
         }
         else
         {
             if(dal.alterar(p))
-                a.setContentText("Produto alterado com sucesso");
+                snackBar("Alterado com sucesso");
             else
+            {
                 a.setContentText("Erro ao alterar o produto");
+                a.showAndWait();
+            }
         }
-        a.showAndWait();
+        
         estadoOriginal();
     }
 

@@ -60,4 +60,16 @@ public class FXMLPrincipalController implements Initializable
         Parent root = FXMLLoader.load(getClass().getResource("FXMLCADTpPagamento.fxml"));
         painelpnprincipal.setCenter(root);
     }
+
+    @FXML
+    private void clkAbrir(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLComandaAbrir.fxml"));
+        painelpnprincipal.setCenter(root);
+    }
+
+    @FXML
+    private void clkGerenciar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLPainelComanda.fxml"));
+        painelpnprincipal.setCenter(root);
+    }
 }

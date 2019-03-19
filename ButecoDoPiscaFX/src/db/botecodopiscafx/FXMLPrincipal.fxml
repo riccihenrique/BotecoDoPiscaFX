@@ -23,10 +23,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#clkCadUnidade" text="Unidade" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
+                <Menu mnemonicParsing="false" text="Comanda">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clkAbrir" text="Abrir " />
+                        <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Gerenciar" />
+                     </items>
                 </Menu>
               </menus>
             </MenuBar>

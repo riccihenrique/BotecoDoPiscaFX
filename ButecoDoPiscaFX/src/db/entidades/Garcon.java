@@ -94,7 +94,7 @@ public class Garcon {
 
     @Override
     public String toString() {
-        return "Garcon: " +gar_nome;
+        return gar_nome;
     } 
 }
 
