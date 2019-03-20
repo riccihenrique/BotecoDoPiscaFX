@@ -20,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import util.MaskFieldUtil;
 
 public class FXMLInsereProdutoController implements Initializable {
 
@@ -51,6 +52,7 @@ public class FXMLInsereProdutoController implements Initializable {
        colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
        colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
        
+        MaskFieldUtil.numericField(tbQuantidade);
        carregaTabela("");
     }    
 

@@ -102,7 +102,7 @@ public class DALComanda {
             if(result)
             {
                 SQL = "DELETE FROM item where com_id = " + c.getCom_id();
-                result = result && Banco.getCon().manipular(SQL);
+                Banco.getCon().manipular(SQL);
                 List <Item> itens = c.getItens();
 
                 for(Item i: itens)
@@ -113,13 +113,13 @@ public class DALComanda {
                     SQL = SQL.replace("#3", "" + i.getIt_quantidade());
                     SQL = SQL.replace("#4", "" + i.getIt_preco());
 
-                    result = result && Banco.getCon().manipular(SQL);
+                    Banco.getCon().manipular(SQL);
                 }
 
                 if(result)
                 {
                     SQL = "DELETE FROM pagamento where com_id = " + c.getCom_id();
-                    result = result && Banco.getCon().manipular(SQL);
+                    Banco.getCon().manipular(SQL);
                     List <Pagamento> pagamentos = c.getPagamentos();
 
                     for(Pagamento p: pagamentos)
@@ -129,7 +129,7 @@ public class DALComanda {
                         SQL = SQL.replace("#2", "" + p.getPag_valor());
                         SQL = SQL.replace("#3", "" + p.getTipo().getTpg_id());
 
-                        result = result && Banco.getCon().manipular(SQL);
+                        Banco.getCon().manipular(SQL);
                     }
                 }
             }
@@ -207,7 +207,7 @@ public class DALComanda {
                 Sql = "SELECT * FROM item WHERE com_id = " + c.getCom_id();
                 rs = Banco.getCon().consultar(Sql); 
                 while(rs.next())
-                    c.addProduto(p.get(rs.getInt("prod_id")) , rs.getInt("prod_id"), rs.getDouble("it_preco"));
+                    c.addProduto(p.get(rs.getInt("prod_id")) , rs.getInt("it_quantidade"), rs.getDouble("it_preco"));
                 
                 //Le pagamentos da comanda
                 Sql = "SELECT * FROM pagamento WHERE com_id = " + c.getCom_id();
@@ -246,7 +246,7 @@ public class DALComanda {
                 Sql = "SELECT * FROM item WHERE com_id = " + c.get(i).getCom_id();
                 rs_ip = Banco.getCon().consultar(Sql); 
                 while(rs_ip.next())
-                   c.get(i).addProduto(p.get(rs_ip.getInt("prod_id")) , rs_ip.getInt("prod_id"), rs_ip.getDouble("it_preco"));
+                   c.get(i).addProduto(p.get(rs_ip.getInt("prod_id")) , rs_ip.getInt("it_quantidade"), rs_ip.getDouble("it_preco"));
                 
                 //Le pagamentos da comanda
                 Sql = "SELECT * FROM pagamento WHERE com_id = " + c.get(i).getCom_id();

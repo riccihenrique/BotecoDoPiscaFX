@@ -20,14 +20,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.MaskFieldUtil;
 
@@ -75,12 +79,9 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     private JFXButton btnRemoverItem;
     @FXML
     private JFXButton btnRemoverPag;
-    @FXML
-    private TableColumn<Comanda.Pagamento, String> colCodPag;
     
-    private double valor = 0;
     private Comanda c;
-
+    private double valor;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -88,7 +89,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         colPreco.setCellValueFactory(new PropertyValueFactory("it_preco"));
         colQtde.setCellValueFactory(new PropertyValueFactory("it_quantidade"));
         
-        colCodPag.setCellValueFactory(new PropertyValueFactory("pag_id"));
         colTipo.setCellValueFactory(new PropertyValueFactory("tipo"));
         colValor.setCellValueFactory(new PropertyValueFactory("pag_valor"));
         
@@ -117,17 +117,25 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     }
 
     @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
-        DALComanda dal = new DALComanda();
-        if(dal.alterar(c))
-            snackBar("Comanda alterada com sucesso");
-        else
+    private void clkBtnConfirmar(ActionEvent event)
+    {
+        if(isOk())
         {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Erro ao alterar comanda. " + Banco.getCon().getMensagemErro());
-            a.showAndWait();
+           DALComanda dal = new DALComanda();
+            if(dal.alterar(c))
+            {
+                snackBar("Comanda alterada com sucesso");
+                estadoOriginal();
+            }
+            else
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Erro ao alterar comanda. " + Banco.getCon().getMensagemErro());
+                a.showAndWait();
+            } 
         }
     }
+    
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) throws IOException {
@@ -142,29 +150,15 @@ public class FXMLGerenciamentoComandaController implements Initializable {
 
 
     @FXML
-    private void clkBtnFechar(ActionEvent event) throws IOException 
+    private void clkBtnFechar(ActionEvent event) throws IOException, InterruptedException 
     {
-        double valor;
-        
-        try
-        {
-            valor = Double.parseDouble(tbValor.getText().replace(".", "").replace(',', '.'));
-            for(Comanda.Pagamento pg : c.getPagamentos())
-                valor -= pg.getPag_valor();
-            
-        }
-        catch(Exception e)
-        {
-            valor = -1;
-        }
-        
         if(valor == 0)
         {
             c.setCom_status('F');
             DALComanda dal = new DALComanda();
             if(dal.alterar(c))
             {
-                snackBar("Comanda alterada com sucesso");
+                snackBar("Comanda fechada com sucesso"); 
                 estadoOriginal();
                 clkBtnCancelar(event);
             }
@@ -185,6 +179,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     @FXML
     private void clkBtnInserirItem(ActionEvent event) throws IOException {
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLInsereProduto.fxml"));
         Parent root = (Parent) loader.load();
         FXMLInsereProdutoController p = loader.getController();
@@ -196,6 +191,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         c.addProduto(ite.getProd(), ite.getIt_quantidade(), ite.getIt_preco());
         alteraValor();
         carregaTabela();
+        
     }
 
     @FXML
@@ -210,17 +206,26 @@ public class FXMLGerenciamentoComandaController implements Initializable {
 
     @FXML
     private void clkBtnInserirPagamento(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLInserePagamento.fxml"));
-        Parent root = (Parent) loader.load();
-        FXMLInserePagamentoController p = loader.getController();
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.showAndWait();
-        Comanda.Pagamento pg = p.getPgto();
-        c.addPagamento(pg.getPag_valor(), pg.getTipo());
-        alteraValor();
-        carregaTabela();
+        if(valor > 0)
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLInserePagamento.fxml"));
+            Parent root = (Parent) loader.load();
+            FXMLInserePagamentoController p = loader.getController();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.showAndWait();
+            Comanda.Pagamento pg = p.getPgto();
+            c.addPagamento(pg.getPag_valor(), pg.getTipo());
+            alteraValor();
+            carregaTabela();
+        }
+        else
+        {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Não há mais nada para pagar");
+            a.show();
+        }
     }
 
     @FXML
@@ -248,7 +253,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     private void snackBar(String texto)
     {
-        JFXSnackbar snacbar = new JFXSnackbar(pnDados2);
+      JFXSnackbar snacbar = new JFXSnackbar(pnDados2);
         JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
         layout.setStyle("-fx-backgroundcolor:#FFFFF");
         snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
@@ -294,6 +299,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         DALGarcon dal = new DALGarcon();
         ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
         cbGarcon.setItems(ob);
+        cbGarcon.getSelectionModel().select(0);
         cbGarcon.getSelectionModel().select(c.getGarcon());
         dtData.setValue(c.getCom_data());
         alteraValor();
@@ -303,10 +309,34 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     {
         valor = 0;
         for(Comanda.Item ci : c.getItens())
-            valor += ci.getIt_preco()* ci.getIt_quantidade();
+            valor += ci.getIt_preco() * ci.getIt_quantidade();
         for(Comanda.Pagamento p : c.getPagamentos())
             valor -= p.getPag_valor();
         
         tbValor.setText(String.format("%10.2f", valor));
+    }
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados2.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

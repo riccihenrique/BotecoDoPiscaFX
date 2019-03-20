@@ -135,43 +135,47 @@ public class FXMLCADProdutoController implements Initializable {
     @FXML
     private void clkBtnConfirmar(ActionEvent event)
     {
-        int cod;
-        try
+        if(isOk())
         {
-            cod = Integer.parseInt(tbCodigo.getText());
-        }
-        catch(NumberFormatException e)
-        {
-            cod = 0;
-        }
-        
-        Produto p = new Produto(cod, cbCategoria.getValue(), cbUnidade.getValue(), tbNome.getText(), 
-                    Double.parseDouble(tbPreco.getText().replace(".", "").replace(',', '.')), tbDescricao.getText());
-        
-        DALProduto dal = new DALProduto();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        if(p.getProd_id() == 0)
-        {
-            if(dal.gravar(p))
-                snackBar("Gravado com sucesso");
+            int cod;
+            try
+            {
+                cod = Integer.parseInt(tbCodigo.getText());
+            }
+            catch(NumberFormatException e)
+            {
+                cod = 0;
+            }
+
+            Produto p = new Produto(cod, cbCategoria.getValue(), cbUnidade.getValue(), tbNome.getText(), 
+                        Double.parseDouble(tbPreco.getText().replace(".", "").replace(',', '.')), tbDescricao.getText());
+
+            DALProduto dal = new DALProduto();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            if(p.getProd_id() == 0)
+            {
+                if(dal.gravar(p))
+                    snackBar("Gravado com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao gravar o produto");
+                    a.showAndWait();
+                }
+            }
             else
             {
-                a.setContentText("Erro ao gravar o produto");
-                a.showAndWait();
+                if(dal.alterar(p))
+                    snackBar("Alterado com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao alterar o produto");
+                    a.showAndWait();
+                }
             }
-        }
-        else
-        {
-            if(dal.alterar(p))
-                snackBar("Alterado com sucesso");
-            else
-            {
-                a.setContentText("Erro ao alterar o produto");
-                a.showAndWait();
-            }
+
+            estadoOriginal();
         }
         
-        estadoOriginal();
     }
 
     @FXML
@@ -273,5 +277,30 @@ public class FXMLCADProdutoController implements Initializable {
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

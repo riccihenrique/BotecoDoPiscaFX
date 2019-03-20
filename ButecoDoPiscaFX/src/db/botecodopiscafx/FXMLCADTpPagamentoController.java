@@ -110,38 +110,42 @@ public class FXMLCADTpPagamentoController implements Initializable
 
     @FXML
     private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(Exception e)
-        {cod = 0;}
-        
-        TipoPagto tp = new TipoPagto(cod, tbNome.getText());
-        DALTipoPagto dal = new DALTipoPagto();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(tp.getTpg_id() == 0)
+        if(isOk())
         {
-            if(dal.gravar(tp))
-                snackBar("Tipo de pagamento gravado com sucesso");
+            int cod;
+            try
+            {cod = Integer.parseInt(tbCodigo.getText());}
+            catch(Exception e)
+            {cod = 0;}
+
+            TipoPagto tp = new TipoPagto(cod, tbNome.getText());
+            DALTipoPagto dal = new DALTipoPagto();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+
+            if(tp.getTpg_id() == 0)
+            {
+                if(dal.gravar(tp))
+                    snackBar("Tipo de pagamento gravado com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao gravar o tipo de pagamento");
+                    a.showAndWait();
+                }
+            }
             else
             {
-                a.setContentText("Erro ao gravar o tipo de pagamento");
-                a.showAndWait();
+                if(dal.alterar(tp))
+                    snackBar("Tipo de pagamento alterado com sucesso");
+                else 
+                {
+                    a.setContentText("Erro ao alterar o tipo de pagamento");
+                    a.showAndWait();
+                }
             }
-        }
-        else
-        {
-            if(dal.alterar(tp))
-                snackBar("Tipo de pagamento alterado com sucesso");
-            else 
-            {
-                a.setContentText("Erro ao alterar o tipo de pagamento");
-                a.showAndWait();
-            }
+
+            estadoOriginal();  
         }
         
-        estadoOriginal();  
     }
 
     @FXML
@@ -230,5 +234,30 @@ public class FXMLCADTpPagamentoController implements Initializable
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

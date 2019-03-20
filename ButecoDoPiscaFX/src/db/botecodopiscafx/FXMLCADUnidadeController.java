@@ -109,38 +109,44 @@ public class FXMLCADUnidadeController implements Initializable
 
     @FXML
     private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(NumberFormatException e)
-        {cod = 0;}
-        
-        Unidade u = new Unidade(cod,tbNome.getText());
-        DALUnidade dal = new DALUnidade();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(u.getUni_id() == 0)
+        if(isOk())
         {
-            if(dal.gravar(u))
-                snackBar("Unidade gravada com sucesso");
+            int cod;
+            try
+            {
+                cod = Integer.parseInt(tbCodigo.getText());
+            }
+            catch(NumberFormatException e)
+            {
+                cod = 0;
+            }
+
+            Unidade u = new Unidade(cod,tbNome.getText());
+            DALUnidade dal = new DALUnidade();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+
+            if(u.getUni_id() == 0)
+            {
+                if(dal.gravar(u))
+                    snackBar("Unidade gravada com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao gravar a unidade");
+                    a.showAndWait();
+                }
+            }
             else
             {
-                a.setContentText("Erro ao gravar a unidade");
-                a.showAndWait();
+                if(dal.alterar(u))
+                    snackBar("Unidade alterada com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao alterar a unidade");
+                    a.showAndWait();
+                }
             }
+            estadoOriginal();
         }
-        else
-        {
-            if(dal.alterar(u))
-                snackBar("Unidade alterada com sucesso");
-            else
-            {
-                a.setContentText("Erro ao alterar a unidade");
-                a.showAndWait();
-            }
-        }
-        a.showAndWait();
-        estadoOriginal();
     }
 
     @FXML
@@ -227,5 +233,30 @@ public class FXMLCADUnidadeController implements Initializable
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

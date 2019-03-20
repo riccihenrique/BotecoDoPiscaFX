@@ -23,7 +23,7 @@
                   <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
                </children>
             </HBox>
-            <AnchorPane fx:id="pnDados" prefHeight="240.0" prefWidth="819.0">
+            <AnchorPane fx:id="pnDados" prefHeight="276.0" prefWidth="825.0">
                <children>
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="472.0" promptText="Nome:" />
                   <JFXTextField fx:id="tbPreco" labelFloat="true" layoutX="14.0" layoutY="126.0" prefHeight="25.0" prefWidth="772.0" promptText="Preço (un):" />

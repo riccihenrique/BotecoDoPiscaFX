@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import util.MaskFieldUtil;
 public class FXMLInserePagamentoController implements Initializable {
 
     @FXML
@@ -29,10 +30,12 @@ public class FXMLInserePagamentoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MaskFieldUtil.monetaryField(tbValor);
+        
         DALTipoPagto dal = new DALTipoPagto();
         List<TipoPagto> tp = dal.get("");
-       ObservableList<TipoPagto> ob = FXCollections.observableList(tp);
-       cbTpPgto.setItems(ob);
+        ObservableList<TipoPagto> ob = FXCollections.observableList(tp);
+        cbTpPgto.setItems(ob);
     }    
 
     @FXML

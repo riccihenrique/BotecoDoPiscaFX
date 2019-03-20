@@ -22,10 +22,10 @@
                   <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
                </children>
             </HBox>
-            <AnchorPane fx:id="pnDados" prefHeight="92.0" prefWidth="573.0">
+            <AnchorPane fx:id="pnDados" prefHeight="103.0" prefWidth="579.0">
                <children>
-                  <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
-                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="204.0" layoutY="39.0" prefHeight="25.0" prefWidth="266.0" promptText="Nome:" />
+                  <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="29.0" layoutY="26.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
+                  <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="204.0" layoutY="26.0" prefHeight="25.0" prefWidth="266.0" promptText="Nome:" />
                </children>
             </AnchorPane>
          </children>

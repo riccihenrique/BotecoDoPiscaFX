@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import db.banco.Banco;
 import db.dal.DALComanda;
 import db.dal.DALGarcon;
 import db.entidades.Comanda;
@@ -18,7 +19,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -64,17 +69,24 @@ public class FXMLComandaAbrirController implements Initializable {
     @FXML
     private void clkBtnConfirmar(ActionEvent event) 
     {
-        Comanda c = new Comanda(cbGarcon.getValue(), Integer.parseInt(tbMesa.getText()), tbNome.getText(), dtData.getValue(), tbDescricao.getText(), 0, 'A');
-        
-        DALComanda dal = new DALComanda();
-        
-        if(dal.gravar(c))
+        if(isOk())
         {
-            FXMLPrincipalController.efeito(false);
-            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+           Comanda c = new Comanda(cbGarcon.getValue(), Integer.parseInt(tbMesa.getText()), tbNome.getText(), dtData.getValue(), tbDescricao.getText(), 0, 'A');
+        
+            DALComanda dal = new DALComanda();
+
+            if(dal.gravar(c))
+            {
+                FXMLPrincipalController.efeito(false);
+                FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+            }
+            else
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Erro ao abrir comanda. Erro: " + Banco.getCon().getMensagemErro());
+            }
         }
-        else
-            System.out.println("Erro");
+        
     }
     
     private void fadeout()
@@ -83,5 +95,30 @@ public class FXMLComandaAbrirController implements Initializable {
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

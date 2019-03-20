@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
+import db.banco.Banco;
 import db.dal.DALCategoria;
 import db.entidades.Categoria;
 import java.net.URL;
@@ -100,7 +101,7 @@ public class FXMLCADCategoriaController implements Initializable
             }
             else
             {
-                a.setContentText("Erro ao deletar categoria");
+                a.setContentText("Erro ao deletar categoria. Erro: " + Banco.getCon().getMensagemErro());
                 a.showAndWait();
             }
         }
@@ -108,37 +109,40 @@ public class FXMLCADCategoriaController implements Initializable
 
     @FXML
     private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(Exception e)
-        {cod = 0;}
-        
-        Categoria c = new Categoria(cod, tbNome.getText());
-        DALCategoria dal = new DALCategoria();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(c.getCat_id() == 0)
+        if(isOk())
         {
-            if(dal.gravar(c))
-                snackBar("Categoria inserida com sucesso");
+            int cod;
+            try
+            {cod = Integer.parseInt(tbCodigo.getText());}
+            catch(Exception e)
+            {cod = 0;}
+
+            Categoria c = new Categoria(cod, tbNome.getText());
+            DALCategoria dal = new DALCategoria();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+
+            if(c.getCat_id() == 0)
+            {
+                if(dal.gravar(c))
+                    snackBar("Categoria inserida com sucesso");
+                else
+                {
+                    a.setContentText("Erro ao gravar a categoria. Erro: " + Banco.getCon().getMensagemErro());
+                    a.showAndWait();
+                }
+            }
             else
             {
-                a.setContentText("Erro ao gravar a categoria");
-                a.showAndWait();
+                if(dal.alterar(c))
+                    snackBar("Categoria atualizada com sucesso");
+                else 
+                {
+                    a.setContentText("Erro ao alterar a categoria. Erro: " + Banco.getCon().getMensagemErro());
+                    a.showAndWait();
+                }  
             }
+            estadoOriginal(); 
         }
-        else
-        {
-            if(dal.alterar(c))
-                snackBar("Categoria atualizada com sucesso");
-            else 
-            {
-                a.setContentText("Erro ao alterar a categoria");
-                a.showAndWait();
-            }  
-        }
-        estadoOriginal();  
     }
 
     @FXML
@@ -226,5 +230,30 @@ public class FXMLCADCategoriaController implements Initializable
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId() + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }

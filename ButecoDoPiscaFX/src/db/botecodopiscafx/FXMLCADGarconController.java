@@ -210,84 +210,88 @@ public class FXMLCADGarconController implements Initializable
     @FXML
     private void clkBtnConfirmar(ActionEvent event) throws IOException
     {
-        int cod;
-        try
+        if(isOk())
         {
-            cod = Integer.parseInt(tbCodigo.getText());
-        }
-        catch(Exception e)
-        {
-            cod = 0;
-        }
-        
-        Garcon g = new Garcon(cod, tbNome.getText(), tbCep.getText(), tbCpf.getText(),
-            tbEndereco.getText() , tbCidade.getText(), tbUf.getText(), tbTelefone.getText());
-        DALGarcon dal = new DALGarcon();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(g.getGar_id()== 0)
-        {
-            if(dal.gravar(g))
+            int cod;
+            try
             {
-                if(imgvFoto.getImage() != null)
-                {                    
-                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    byte[] imageInByte;
-                    ImageIO.write(bimg, "jpg", baos);
-                    baos.flush();
-                    imageInByte = baos.toByteArray();
-                    baos.close();
+                cod = Integer.parseInt(tbCodigo.getText());
+            }
+            catch(Exception e)
+            {
+                cod = 0;
+            }
 
-                    InputStream in = new ByteArrayInputStream(imageInByte);
-                    if(dal.gravarFoto(g, in, baos.toByteArray().length))
-                        snackBar("Garçon alterado com sucesso");
-                    else
-                    {
-                        a.setContentText("Garçon alterado sem foto");
-                        a.showAndWait();
-                    }   
+            Garcon g = new Garcon(cod, tbNome.getText(), tbCep.getText(), tbCpf.getText(),
+                tbEndereco.getText() , tbCidade.getText(), tbUf.getText(), tbTelefone.getText());
+            DALGarcon dal = new DALGarcon();
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+
+            if(g.getGar_id()== 0)
+            {
+                if(dal.gravar(g))
+                {
+                    if(imgvFoto.getImage() != null)
+                    {                    
+                        BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        byte[] imageInByte;
+                        ImageIO.write(bimg, "jpg", baos);
+                        baos.flush();
+                        imageInByte = baos.toByteArray();
+                        baos.close();
+
+                        InputStream in = new ByteArrayInputStream(imageInByte);
+                        if(dal.gravarFoto(g, in, baos.toByteArray().length))
+                            snackBar("Garçon alterado com sucesso");
+                        else
+                        {
+                            a.setContentText("Garçon alterado sem foto");
+                            a.showAndWait();
+                        }   
+                    }
+                }
+                else
+                {
+                    a.setContentText("Erro ao gravar o garçon");
+                    a.showAndWait();
                 }
             }
             else
             {
-                a.setContentText("Erro ao gravar o garçon");
-                a.showAndWait();
-            }
-        }
-        else
-        {
-            if(dal.alterar(g))
-            {
-                if(imgvFoto.getImage() != null)
+                if(dal.alterar(g))
                 {
-                    BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    byte[] imageInByte;
-                    ImageIO.write(bimg, "jpg", baos);
-                    baos.flush();
-                    imageInByte = baos.toByteArray();
-                    baos.close();
-
-                    InputStream in = new ByteArrayInputStream(imageInByte);
-                    
-                    if(dal.gravarFoto(g, in, baos.toByteArray().length))
-                        snackBar("Garçon alterado com sucesso");
-                    else
+                    if(imgvFoto.getImage() != null)
                     {
-                        a.setContentText("Garçon alterado sem foto");
-                        a.showAndWait();
+                        BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        byte[] imageInByte;
+                        ImageIO.write(bimg, "jpg", baos);
+                        baos.flush();
+                        imageInByte = baos.toByteArray();
+                        baos.close();
+
+                        InputStream in = new ByteArrayInputStream(imageInByte);
+
+                        if(dal.gravarFoto(g, in, baos.toByteArray().length))
+                            snackBar("Garçon alterado com sucesso");
+                        else
+                        {
+                            a.setContentText("Garçon alterado sem foto");
+                            a.showAndWait();
+                        }
                     }
                 }
+                else 
+                {
+                    a.setContentText("Erro ao alterar o garçon");
+                    a.showAndWait();
+                }
             }
-            else 
-            {
-                a.setContentText("Erro ao alterar o garçon");
-                a.showAndWait();
-            }
+
+            estadoOriginal();
         }
         
-        estadoOriginal();
     }
 
     @FXML
@@ -373,5 +377,30 @@ public class FXMLCADGarconController implements Initializable
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play(); 
+    }
+    
+    private boolean isOk()
+    {
+        ObservableList<Node> componentes = pnDados.getChildren();
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl &&  ((TextInputControl) n).getText().isEmpty())
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("tb", "") + " não foi preenchido");
+                if(!n.getId().equals("tbCodigo"))
+                {
+                    a.show();
+                    return false;
+                }
+            }
+            if (n instanceof ComboBox && ((ComboBox) n).getSelectionModel().getSelectedItem()== null)
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("O campo " + n.getId().replace("cb", "") + " não foi selecionado");
+                a.show();
+                return false;
+            }
+        }
+        return true;
     }
 }
