@@ -49,4 +49,8 @@ public class FXMLTileComandaController implements Initializable {
     {
         painel.setStyle("-fx-background-color: " + cor + ";");
     }
+
+    @FXML
+    private void BtnCor(ActionEvent event) {
+    }
 }

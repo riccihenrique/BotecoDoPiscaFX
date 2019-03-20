@@ -12,6 +12,7 @@ public class Comanda
         private Produto prod;
         private int it_quantidade;
         private double it_valor;
+        private String cor;
 
         public Item(Produto prod, int it_quantidade, double it_valor) {
             this.prod = prod;
@@ -19,6 +20,14 @@ public class Comanda
             this.it_valor = it_valor;
         }
 
+        public String getCor() {
+            return cor;
+        }
+
+        public void setCor(String cor) {
+            this.cor = cor;
+        }
+        
         public Produto getProd() {
             return prod;
         }

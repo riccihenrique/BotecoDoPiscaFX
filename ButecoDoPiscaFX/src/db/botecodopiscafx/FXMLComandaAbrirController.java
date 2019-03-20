@@ -1,6 +1,7 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
@@ -62,6 +63,7 @@ public class FXMLComandaAbrirController implements Initializable {
     private void clkBtnConfirmar(ActionEvent event) 
     {
         Comanda c = new Comanda(cbGarcon.getValue(), Integer.parseInt(tbMesa.getText()), tbNome.getText(), dtData.getValue(), tbDescricao.getText(), 0, 'A');
+        
         DALComanda dal = new DALComanda();
         
         if(dal.gravar(c))

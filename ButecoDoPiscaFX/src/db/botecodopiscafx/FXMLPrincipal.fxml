@@ -3,15 +3,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="painelpnprincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLPrincipalController">
    <top>
-      <VBox prefHeight="65.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="33.0" prefWidth="1031.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar prefHeight="0.0" prefWidth="1185.0">
+            <MenuBar prefHeight="30.0" prefWidth="1031.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
@@ -24,13 +23,12 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Comanda">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#clkAbrir" text="Abrir " />
-                        <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Gerenciar" />
+                        <MenuItem mnemonicParsing="false" onAction="#clkAbrir" text="Nova" />
+                        <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
                      </items>
                 </Menu>
               </menus>
             </MenuBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" />
          </children>
       </VBox>
    </top>
