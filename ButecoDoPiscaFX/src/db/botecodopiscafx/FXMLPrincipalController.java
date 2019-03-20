@@ -1,8 +1,12 @@
 package db.botecodopiscafx;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -95,5 +99,14 @@ public class FXMLPrincipalController implements Initializable
         else
             spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura.png');");
             
+    }
+
+    @FXML
+    private void clkLink(ActionEvent event) {
+        try {
+            Desktop.getDesktop().browse(new URI("http://unoeste.br"));
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

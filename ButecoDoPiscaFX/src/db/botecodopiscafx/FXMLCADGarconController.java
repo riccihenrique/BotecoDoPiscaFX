@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
@@ -42,6 +44,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import org.json.JSONObject;
 import util.BuscaCep;
@@ -95,10 +98,13 @@ public class FXMLCADGarconController implements Initializable
     
     FileChooser arquivo;
     File arq;
+    @FXML
+    private SplitPane splitPane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        fadeout();
         colCod.setCellValueFactory(new PropertyValueFactory("gar_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("gar_nome"));
         colTelefone.setCellValueFactory(new PropertyValueFactory("gar_fone"));
@@ -358,5 +364,13 @@ public class FXMLCADGarconController implements Initializable
         BtnAlterar.setDisable(true);
         tbNome.setDisable(false);
         tbNome.requestFocus(); 
+    }
+    
+    private void fadeout()
+    {
+        FadeTransition ft = new FadeTransition(Duration.millis(1000), splitPane);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play(); 
     }
 }
