@@ -42,7 +42,6 @@ public class FXMLInserePagamentoController implements Initializable {
 
     @FXML
     private void clkInserir(ActionEvent event) {
-        //pag = new Comanda.Pagamento();
         pag.setPag_valor(Double.parseDouble(tbValor.getText()));
         pag.setTipo(cbTpPgto.getSelectionModel().getSelectedItem());
         ((Stage) btnInserir.getScene().getWindow()).close();
