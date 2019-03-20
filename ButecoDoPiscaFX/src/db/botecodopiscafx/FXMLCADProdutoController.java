@@ -81,58 +81,6 @@ public class FXMLCADProdutoController implements Initializable {
         
         estadoOriginal();
     }
-
-    private void estadoOriginal() {
-        BtnPesquisar.setDisable(false);
-        BtnNovo.setDisable(true);
-        BtnConfirmar.setDisable(true);
-        BtnCancelar.setDisable(false);
-        BtnApagar.setDisable(true);
-        BtnAlterar.setDisable(true);
-        BtnNovo.setDisable(false);
-        pnDados.setDisable(true);
-
-        ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
-        for (Node n : componentes) {
-            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
-                ((TextInputControl) n).setText("");
-            if (n instanceof ComboBox)
-                ((ComboBox) n).getItems().clear();
-        }
-        carregaTabela("");
-        carregaComboBox();
-    }
-
-    private void carregaComboBox()
-    {
-        DALCategoria dc = new DALCategoria();
-        List <Categoria> dadosCategoria = dc.get("");
-        ObservableList <Categoria> obsListCategoria = FXCollections.observableList(dadosCategoria);
-        cbCategoria.setItems(obsListCategoria);
-        
-        DALUnidade du = new DALUnidade();
-        List <Unidade> dadosUnidade = du.get("");
-        ObservableList <Unidade> obsListUnidade = FXCollections.observableList(dadosUnidade);
-        cbUnidade.setItems(obsListUnidade);
-    }
-    
-    private void carregaTabela(String filtro) {
-        DALProduto dal = new DALProduto();
-        List<Produto> res = dal.get(filtro);
-        ObservableList<Produto> modelo;
-        modelo = FXCollections.observableArrayList(res);
-        tbvDados.setItems(modelo);
-    }
-    
-    private void estadoEdicao()
-    {     
-          tbPesquisa.setDisable(true);
-          pnDados.setDisable(false);
-          BtnConfirmar.setDisable(false);
-          BtnApagar.setDisable(true);
-          BtnAlterar.setDisable(true);
-          tbNome.requestFocus();  
-     }
     
     @FXML
     private void clkBtnNovo(ActionEvent event) {
@@ -167,22 +115,15 @@ public class FXMLCADProdutoController implements Initializable {
             a = new Alert(Alert.AlertType.INFORMATION);
             if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
             {
-                a.setContentText("Produto deletado com sucesso");
+                snackBar("Produto deletado com sucesso");
                 carregaTabela("");
             }
             else
+            {
                 a.setContentText("Erro ao deletar produto");
-            
-            a.showAndWait();
+                a.showAndWait();
+            }
         }
-    }
-    
-    private void snackBar(String texto)
-    {
-        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
-        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
-        layout.setStyle("-fx-backgroundcolor:#FFFFF");
-        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
     }
 
     @FXML
@@ -258,5 +199,65 @@ public class FXMLCADProdutoController implements Initializable {
            BtnAlterar.setDisable(false);
            BtnApagar.setDisable(false);
         }
+    }
+    
+    private void estadoOriginal() {
+        BtnPesquisar.setDisable(false);
+        BtnNovo.setDisable(true);
+        BtnConfirmar.setDisable(true);
+        BtnCancelar.setDisable(false);
+        BtnApagar.setDisable(true);
+        BtnAlterar.setDisable(true);
+        BtnNovo.setDisable(false);
+        pnDados.setDisable(true);
+
+        ObservableList<Node> componentes = pnDados.getChildren(); //”limpa” os componentes
+        for (Node n : componentes) {
+            if (n instanceof TextInputControl) // textfield, textarea e htmleditor
+                ((TextInputControl) n).setText("");
+            if (n instanceof ComboBox)
+                ((ComboBox) n).getItems().clear();
+        }
+        carregaTabela("");
+        carregaComboBox();
+    }
+
+    private void carregaComboBox()
+    {
+        DALCategoria dc = new DALCategoria();
+        List <Categoria> dadosCategoria = dc.get("");
+        ObservableList <Categoria> obsListCategoria = FXCollections.observableList(dadosCategoria);
+        cbCategoria.setItems(obsListCategoria);
+        
+        DALUnidade du = new DALUnidade();
+        List <Unidade> dadosUnidade = du.get("");
+        ObservableList <Unidade> obsListUnidade = FXCollections.observableList(dadosUnidade);
+        cbUnidade.setItems(obsListUnidade);
+    }
+    
+    private void carregaTabela(String filtro) {
+        DALProduto dal = new DALProduto();
+        List<Produto> res = dal.get(filtro);
+        ObservableList<Produto> modelo;
+        modelo = FXCollections.observableArrayList(res);
+        tbvDados.setItems(modelo);
+    }
+    
+    private void estadoEdicao()
+    {     
+        tbPesquisa.setDisable(true);
+        pnDados.setDisable(false);
+        BtnConfirmar.setDisable(false);
+        BtnApagar.setDisable(true);
+        BtnAlterar.setDisable(true);
+        tbNome.requestFocus();  
+   }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
     }
 }

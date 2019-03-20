@@ -2,6 +2,7 @@ package db.botecodopiscafx;
 
 import db.dal.DALComanda;
 import db.entidades.Comanda;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class FXMLPainelComandaController implements Initializable {
                 painel.getChildren().add(root);
             } 
         }
-        catch(Exception e )
+        catch(IOException e )
         {
             System.out.println(e.getMessage());
         }

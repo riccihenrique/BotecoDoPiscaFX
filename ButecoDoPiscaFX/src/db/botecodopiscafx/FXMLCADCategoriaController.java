@@ -1,6 +1,8 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALCategoria;
 import db.entidades.Categoria;
@@ -60,6 +62,113 @@ public class FXMLCADCategoriaController implements Initializable
 
         estadoOriginal();
     }
+
+    @FXML
+    private void clkBtnNovo(ActionEvent event) {
+         estadoEdicao();
+    }
+
+    @FXML
+    private void clkBtnAlterar(ActionEvent event) {
+        if(tbvDados.getSelectionModel().getSelectedItem() != null)
+        {
+            Categoria c = (Categoria)tbvDados.getSelectionModel().getSelectedItem();
+            tbCodigo.setText("" + c.getCat_id());
+            tbNome.setText(c.getCat_nome());
+            estadoEdicao();       
+        }
+    }
+
+    @FXML
+    private void clkBtnApagar(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Deseja realmente apagar?"); 
+        if(a.showAndWait().get() == ButtonType.OK)
+        {
+            DALCategoria dal = new DALCategoria();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
+            {
+                snackBar("Categoria deletada com sucesso");
+                carregaTabela("");
+            }
+            else
+            {
+                a.setContentText("Erro ao deletar categoria");
+                a.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void clkBtnConfirmar(ActionEvent event) {
+        int cod;
+        try
+        {cod = Integer.parseInt(tbCodigo.getText());}
+        catch(Exception e)
+        {cod = 0;}
+        
+        Categoria c = new Categoria(cod, tbNome.getText());
+        DALCategoria dal = new DALCategoria();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        
+        if(c.getCat_id() == 0)
+        {
+            if(dal.gravar(c))
+                snackBar("Categoria inserida com sucesso");
+            else
+            {
+                a.setContentText("Erro ao gravar a categoria");
+                a.showAndWait();
+            }
+        }
+        else
+        {
+            if(dal.alterar(c))
+                snackBar("Categoria atualizada com sucesso");
+            else 
+            {
+                a.setContentText("Erro ao alterar a categoria");
+                a.showAndWait();
+            }  
+        }
+        estadoOriginal();  
+    }
+
+    @FXML
+    private void clkBtnCancelar(ActionEvent event) {
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.efeito(false);
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
+    }
+
+    @FXML
+    private void clkBtnPesquisar(ActionEvent event) {
+        carregaTabela("UPPER(cat_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
+    }
+
+    @FXML
+    private void clkTbvDados(MouseEvent event) {
+        if(tbvDados.getSelectionModel().getSelectedIndex() >= 0)
+        {
+            BtnApagar.setDisable(false);
+            BtnAlterar.setDisable(false);
+        }
+    }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
     
     private void estadoEdicao()
     {     
@@ -103,98 +212,5 @@ public class FXMLCADCategoriaController implements Initializable
         ObservableList<Categoria> modelo;
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
-    }
-
-    @FXML
-    private void clkBtnNovo(ActionEvent event) {
-         estadoEdicao();
-    }
-
-    @FXML
-    private void clkBtnAlterar(ActionEvent event) {
-        if(tbvDados.getSelectionModel().getSelectedItem() != null)
-        {
-            Categoria c = (Categoria)tbvDados.getSelectionModel().getSelectedItem();
-            tbCodigo.setText("" + c.getCat_id());
-            tbNome.setText(c.getCat_nome());
-            estadoEdicao();       
-        }
-    }
-
-    @FXML
-    private void clkBtnApagar(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setContentText("Deseja realmente apagar?"); 
-        if(a.showAndWait().get() == ButtonType.OK)
-        {
-            DALCategoria dal = new DALCategoria();
-            a = new Alert(Alert.AlertType.INFORMATION);
-            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
-            {
-                a.setContentText("Categoria deletada com sucesso");
-                carregaTabela("");
-            }
-            else
-                a.setContentText("Erro ao deletar categoria");
-            
-            a.showAndWait();
-        }
-    }
-
-    @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(Exception e)
-        {cod = 0;}
-        
-        Categoria c = new Categoria(cod, tbNome.getText());
-        DALCategoria dal = new DALCategoria();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(c.getCat_id() == 0)
-        {
-            if(dal.gravar(c))
-                a.setContentText("Categoria gravada com sucesso");
-            else
-                a.setContentText("Erro ao gravar a categoria");
-        }
-        else
-        {
-            if(dal.alterar(c))
-                a.setContentText("Categoria alterada com sucesso");
-            else 
-                a.setContentText("Erro ao alterar a categoria");
-        }
-        a.showAndWait();
-        estadoOriginal();  
-    }
-
-    @FXML
-    private void clkBtnCancelar(ActionEvent event) {
-        if(!pnDados.isDisable())
-        {
-            estadoOriginal();
-        }
-        else
-        {
-            FXMLPrincipalController.efeito(false);
-            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
-        }
-    }
-
-    @FXML
-    private void clkBtnPesquisar(ActionEvent event) {
-        carregaTabela("UPPER(cat_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
-    }
-
-    @FXML
-    private void clkTbvDados(MouseEvent event) {
-        if(tbvDados.getSelectionModel().getSelectedIndex() >= 0)
-        {
-            BtnApagar.setDisable(false);
-            BtnAlterar.setDisable(false);
-        }
     }
 }

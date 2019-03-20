@@ -2,6 +2,8 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALTipoPagto;
 import db.entidades.TipoPagto;
@@ -62,6 +64,116 @@ public class FXMLCADTpPagamentoController implements Initializable
         estadoOriginal();
     }
 
+    @FXML
+    private void clkBtnNovo(ActionEvent event) {
+        estadoEdicao();
+    }
+
+    @FXML
+    private void clkBtnAlterar(ActionEvent event) {
+        
+        if(tbvDados.getSelectionModel().getSelectedItem() != null)
+        {
+            TipoPagto tp = (TipoPagto)tbvDados.getSelectionModel().getSelectedItem();
+            tbCodigo.setText("" + tp.getTpg_id());
+            tbNome.setText(tp.getTpg_nome());
+            estadoEdicao();       
+        }
+    }
+
+    @FXML
+    private void clkBtnApagar(ActionEvent event) {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Deseja realmente apagar?"); 
+        if(a.showAndWait().get() == ButtonType.OK)
+        {
+            DALTipoPagto dal = new DALTipoPagto();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
+            {
+                snackBar("Tipo de pagamento deletado com sucesso");
+                carregaTabela("");
+            }
+            else
+            {
+                a.setContentText("Erro ao deletar tipo de pagamento");
+                a.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void clkBtnConfirmar(ActionEvent event) {
+        int cod;
+        try
+        {cod = Integer.parseInt(tbCodigo.getText());}
+        catch(Exception e)
+        {cod = 0;}
+        
+        TipoPagto tp = new TipoPagto(cod, tbNome.getText());
+        DALTipoPagto dal = new DALTipoPagto();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        
+        if(tp.getTpg_id() == 0)
+        {
+            if(dal.gravar(tp))
+                snackBar("Tipo de pagamento gravado com sucesso");
+            else
+            {
+                a.setContentText("Erro ao gravar o tipo de pagamento");
+                a.showAndWait();
+            }
+        }
+        else
+        {
+            if(dal.alterar(tp))
+                snackBar("Tipo de pagamento alterado com sucesso");
+            else 
+            {
+                a.setContentText("Erro ao alterar o tipo de pagamento");
+                a.showAndWait();
+            }
+        }
+        
+        estadoOriginal();  
+    }
+
+    @FXML
+    private void clkBtnCancelar(ActionEvent event) {
+        
+        if(!pnDados.isDisable())
+        {
+            estadoOriginal();
+        }
+        else
+        {
+            FXMLPrincipalController.efeito(false);
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
+    }
+
+    @FXML
+    private void clkBtnPesquisar(ActionEvent event) {
+        carregaTabela("UPPER(tpg_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
+    }
+
+    @FXML
+    private void clkTbvDados(MouseEvent event) {
+        if(tbvDados.getSelectionModel().getSelectedIndex() >=0)
+        {
+            BtnAlterar.setDisable(false);
+            BtnApagar.setDisable(false);
+        }
+    }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
+
     private void estadoEdicao()
     {     
           BtnNovo.setDisable(true);  
@@ -104,100 +216,5 @@ public class FXMLCADTpPagamentoController implements Initializable
         ObservableList<TipoPagto> modelo;
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
-    }
-
-    @FXML
-    private void clkBtnNovo(ActionEvent event) {
-        estadoEdicao();
-    }
-
-    @FXML
-    private void clkBtnAlterar(ActionEvent event) {
-        
-        if(tbvDados.getSelectionModel().getSelectedItem() != null)
-        {
-            TipoPagto tp = (TipoPagto)tbvDados.getSelectionModel().getSelectedItem();
-            tbCodigo.setText("" + tp.getTpg_id());
-            tbNome.setText(tp.getTpg_nome());
-            estadoEdicao();       
-        }
-    }
-
-    @FXML
-    private void clkBtnApagar(ActionEvent event) {
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setContentText("Deseja realmente apagar?"); 
-        if(a.showAndWait().get() == ButtonType.OK)
-        {
-            DALTipoPagto dal = new DALTipoPagto();
-            a = new Alert(Alert.AlertType.INFORMATION);
-            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
-            {
-                a.setContentText("Tipo de pagamento deletado com sucesso");
-                carregaTabela("");
-            }
-            else
-                a.setContentText("Erro ao deletar tipo de pagamento");
-            
-            a.showAndWait();
-        }
-    }
-
-    @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(Exception e)
-        {cod = 0;}
-        
-        TipoPagto tp = new TipoPagto(cod, tbNome.getText());
-        DALTipoPagto dal = new DALTipoPagto();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(tp.getTpg_id() == 0)
-        {
-            if(dal.gravar(tp))
-                a.setContentText("Tipo de pagamento gravado com sucesso");
-            else
-                a.setContentText("Erro ao gravar o tipo de pagamento");
-        }
-        else
-        {
-            if(dal.alterar(tp))
-                a.setContentText("Tipo de pagamento alterado com sucesso");
-            else 
-                a.setContentText("Erro ao alterar o tipo de pagamento");
-        }
-        a.showAndWait();
-        estadoOriginal();  
-    }
-
-    @FXML
-    private void clkBtnCancelar(ActionEvent event) {
-        
-        if(!pnDados.isDisable())
-        {
-            estadoOriginal();
-        }
-        else
-        {
-            FXMLPrincipalController.efeito(false);
-            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
-        }
-    }
-
-    @FXML
-    private void clkBtnPesquisar(ActionEvent event) {
-        carregaTabela("UPPER(tpg_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
-    }
-
-    @FXML
-    private void clkTbvDados(MouseEvent event) {
-        if(tbvDados.getSelectionModel().getSelectedIndex() >=0)
-        {
-            BtnAlterar.setDisable(false);
-            BtnApagar.setDisable(false);
-        }
     }
 }

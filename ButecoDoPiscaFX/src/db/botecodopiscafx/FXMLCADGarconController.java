@@ -1,6 +1,8 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
@@ -145,26 +147,6 @@ public class FXMLCADGarconController implements Initializable
 
        carregaTabela("");
     }
-
-    private void carregaTabela(String filtro) {
-        DALGarcon dal = new DALGarcon();
-        List<Garcon> res = dal.get(filtro);
-        ObservableList<Garcon> modelo;
-        modelo = FXCollections.observableArrayList(res);
-        tbvDados.setItems(modelo);
-    }
-
-    private void estadoEdicao()
-    {   
-          BtnNovo.setDisable(true);  
-          tbPesquisa.setDisable(true);
-          pnDados.setDisable(false);
-          BtnConfirmar.setDisable(false);
-          BtnApagar.setDisable(true);
-          BtnAlterar.setDisable(true);
-          tbNome.setDisable(false);
-          tbNome.requestFocus(); 
-     }
     
     @FXML
     private void clkBtnNovo(ActionEvent event) {
@@ -208,13 +190,14 @@ public class FXMLCADGarconController implements Initializable
             a = new Alert(Alert.AlertType.INFORMATION);
             if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
             {
-                a.setContentText("Garçon deletado com sucesso");
+                snackBar("Garçon deletado com sucesso");
                 carregaTabela("");
             }
             else
+            {
                 a.setContentText("Erro ao deletar garçon");
-            
-            a.showAndWait();
+                a.showAndWait();
+            }
         }
     }
 
@@ -252,13 +235,19 @@ public class FXMLCADGarconController implements Initializable
 
                     InputStream in = new ByteArrayInputStream(imageInByte);
                     if(dal.gravarFoto(g, (FileInputStream) in))
-                        a.setContentText("Garçon alterado com sucesso");
+                        snackBar("Garçon alterado com sucesso");
                     else
+                    {
                         a.setContentText("Garçon alterado sem foto");
+                        a.showAndWait();
+                    }   
                 }
             }
             else
+            {
                 a.setContentText("Erro ao gravar o garçon");
+                a.showAndWait();
+            }
         }
         else
         {
@@ -276,15 +265,21 @@ public class FXMLCADGarconController implements Initializable
 
                     InputStream in = new ByteArrayInputStream(imageInByte);
                     if(dal.gravarFoto(g, (FileInputStream) in))
-                        a.setContentText("Garçon alterado com sucesso");
+                        snackBar("Garçon alterado com sucesso");
                     else
+                    {
                         a.setContentText("Garçon alterado sem foto");
+                        a.showAndWait();
+                    }
                 }
             }
             else 
+            {
                 a.setContentText("Erro ao alterar o garçon");
+                a.showAndWait();
+            }
         }
-        a.showAndWait();
+        
         estadoOriginal();
     }
 
@@ -335,5 +330,33 @@ public class FXMLCADGarconController implements Initializable
             BtnApagar.setDisable(false);
             BtnAlterar.setDisable(false);
         }
+    }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
+
+    private void carregaTabela(String filtro) {
+        DALGarcon dal = new DALGarcon();
+        List<Garcon> res = dal.get(filtro);
+        ObservableList<Garcon> modelo;
+        modelo = FXCollections.observableArrayList(res);
+        tbvDados.setItems(modelo);
+    }
+
+    private void estadoEdicao()
+    {   
+        BtnNovo.setDisable(true);  
+        tbPesquisa.setDisable(true);
+        pnDados.setDisable(false);
+        BtnConfirmar.setDisable(false);
+        BtnApagar.setDisable(true);
+        BtnAlterar.setDisable(true);
+        tbNome.setDisable(false);
+        tbNome.requestFocus(); 
     }
 }

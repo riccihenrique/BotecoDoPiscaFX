@@ -2,6 +2,8 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALUnidade;
 import db.entidades.Unidade;
@@ -60,6 +62,114 @@ public class FXMLCADUnidadeController implements Initializable
 
         estadoOriginal();
     }
+    
+    @FXML
+    private void clkBtnNovo(ActionEvent event) {
+        estadoEdicao();
+    }
+
+    @FXML
+    private void clkBtnAlterar(ActionEvent event) {
+        if(tbvDados.getSelectionModel().getSelectedItem() != null)
+        {
+            Unidade u = (Unidade)tbvDados.getSelectionModel().getSelectedItem();
+            tbCodigo.setText("" + u.getUni_id());
+            tbNome.setText(u.getUni_nome());
+            estadoEdicao();       
+        }
+    }
+
+    @FXML
+    private void clkBtnApagar(ActionEvent event) {
+        
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText("Deseja realmente apagar?"); 
+        if(a.showAndWait().get() == ButtonType.OK)
+        {
+            DALUnidade dal = new DALUnidade();
+            a = new Alert(Alert.AlertType.INFORMATION);
+            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
+            {
+                snackBar("Produto deletado com sucesso");
+                carregaTabela("");
+            }
+            else
+            {
+                a.setContentText("Erro ao deletar produto");
+                a.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void clkBtnConfirmar(ActionEvent event) {
+        int cod;
+        try
+        {cod = Integer.parseInt(tbCodigo.getText());}
+        catch(NumberFormatException e)
+        {cod = 0;}
+        
+        Unidade u = new Unidade(cod,tbNome.getText());
+        DALUnidade dal = new DALUnidade();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        
+        if(u.getUni_id() == 0)
+        {
+            if(dal.gravar(u))
+                snackBar("Unidade gravada com sucesso");
+            else
+            {
+                a.setContentText("Erro ao gravar a unidade");
+                a.showAndWait();
+            }
+        }
+        else
+        {
+            if(dal.alterar(u))
+                snackBar("Unidade alterada com sucesso");
+            else
+            {
+                a.setContentText("Erro ao alterar a unidade");
+                a.showAndWait();
+            }
+        }
+        a.showAndWait();
+        estadoOriginal();
+    }
+
+    @FXML
+    private void clkBtnCancelar(ActionEvent event) {
+        if(!pnDados.isDisable())
+            estadoOriginal();
+        else
+        {
+            FXMLPrincipalController.efeito(false);
+            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
+    }
+
+    @FXML
+    private void clkBtnPesquisar(ActionEvent event) 
+    {
+        carregaTabela("UPPER(uni_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
+    }
+
+    @FXML
+    private void clkTabela(MouseEvent event) {
+         if(tbvDados.getSelectionModel().getSelectedIndex()>=0)
+        {
+           BtnAlterar.setDisable(false);
+           BtnApagar.setDisable(false);
+        }
+    }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
 
     private void estadoOriginal() {
         BtnPesquisar.setDisable(false);
@@ -103,100 +213,5 @@ public class FXMLCADUnidadeController implements Initializable
         ObservableList<Unidade> modelo;
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
-    }
-    
-    @FXML
-    private void clkBtnNovo(ActionEvent event) {
-        estadoEdicao();
-    }
-
-    @FXML
-    private void clkBtnAlterar(ActionEvent event) {
-        if(tbvDados.getSelectionModel().getSelectedItem() != null)
-        {
-            Unidade u = (Unidade)tbvDados.getSelectionModel().getSelectedItem();
-            tbCodigo.setText("" + u.getUni_id());
-            tbNome.setText(u.getUni_nome());
-            estadoEdicao();       
-        }
-    }
-
-    @FXML
-    private void clkBtnApagar(ActionEvent event) {
-        
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-        a.setContentText("Deseja realmente apagar?"); 
-        if(a.showAndWait().get() == ButtonType.OK)
-        {
-            DALUnidade dal = new DALUnidade();
-            a = new Alert(Alert.AlertType.INFORMATION);
-            if(dal.apagar(tbvDados.getSelectionModel().getSelectedItem()))
-            {
-                a.setContentText("Produto deletado com sucesso");
-                carregaTabela("");
-            }
-            else
-                a.setContentText("Erro ao deletar produto");
-            
-            a.showAndWait();
-        }
-    }
-
-    @FXML
-    private void clkBtnConfirmar(ActionEvent event) {
-        int cod;
-        try
-        {cod = Integer.parseInt(tbCodigo.getText());}
-        catch(Exception e)
-        {cod = 0;}
-        
-        Unidade u = new Unidade(cod,tbNome.getText());
-        DALUnidade dal = new DALUnidade();
-        Alert a = new Alert(Alert.AlertType.INFORMATION);
-        
-        if(u.getUni_id() == 0)
-        {
-            if(dal.gravar(u))
-                a.setContentText("Unidade gravada com sucesso");
-            else
-                a.setContentText("Erro ao gravar a unidade");
-        }
-        else
-        {
-            if(dal.alterar(u))
-                a.setContentText("Unidade alterada com sucesso");
-            else 
-                a.setContentText("Erro ao alterar a unidade");
-        }
-        a.showAndWait();
-        estadoOriginal();
-    }
-
-    @FXML
-    private void clkBtnCancelar(ActionEvent event) {
-        if(!pnDados.isDisable())
-            estadoOriginal();
-        else
-        {
-            FXMLPrincipalController.efeito(false);
-            FXMLPrincipalController.spainelpnprincipal.setCenter(null);
-        }
-            
-    }
-
-    @FXML
-    private void clkBtnPesquisar(ActionEvent event) 
-    {
-        //carregaTabela("uni_nome = " + tbPesquisar.getText());
-        carregaTabela("UPPER(uni_nome) like '%" + tbPesquisar.getText().toUpperCase() + "%'");
-    }
-
-    @FXML
-    private void clkTabela(MouseEvent event) {
-         if(tbvDados.getSelectionModel().getSelectedIndex()>=0)
-        {
-           BtnAlterar.setDisable(false);
-           BtnApagar.setDisable(false);
-        }
     }
 }

@@ -3,10 +3,14 @@ package db.botecodopiscafx;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXSnackbar;
+import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALComanda;
+import db.dal.DALGarcon;
 import db.entidades.Comanda;
 import db.entidades.Garcon;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,7 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -80,10 +86,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         colCod1.setCellValueFactory(new PropertyValueFactory("pag_id"));
         colTipo.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
         colValor.setCellValueFactory(new PropertyValueFactory("pag_valor"));
-        
-        carregaTabela();
-        carregaDados();
-        estadoOriginal();
     } 
     
     private void carregaTabela()
@@ -124,20 +126,36 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             valor += ci.getIt_valor();
         
         tbValor.setText("" + valor);
+        DALGarcon dal = new DALGarcon();
+        ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
+        cbGarcon.setItems(ob);
+        cbGarcon.getSelectionModel().select(c.getGarcon());
+        dtData.setValue(c.getCom_data());
     }
 
     @FXML
     private void clkBtnAlterar(ActionEvent event) {
+        estadoEdicao();
     }
 
     @FXML
     private void clkBtnConfirmar(ActionEvent event) {
+        DALComanda dal = new DALComanda();
+        if(dal.alterar(c))
+            snackBar("Comanda alterada com sucesso");
+        
     }
 
     @FXML
-    private void clkBtnCancelar(ActionEvent event) {
+    private void clkBtnCancelar(ActionEvent event) throws IOException {
+        if(!pnDados1.isDisable())
+            estadoOriginal();
+        else
+        {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLPainelComanda.fxml"));
+            FXMLPrincipalController.spainelpnprincipal.setCenter(root);
+        }
     }
-
 
     @FXML
     private void clkTabela(MouseEvent event) {
@@ -145,6 +163,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
 
     @FXML
     private void clkBtnFechar(ActionEvent event) {
+        
     }
 
     @FXML
@@ -166,5 +185,16 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     public void setComanda(Comanda c)
     {
         this.c = c;
+        carregaTabela();
+        carregaDados();
+        estadoOriginal();
+    }
+    
+    private void snackBar(String texto)
+    {
+        JFXSnackbar snacbar = new JFXSnackbar(pnDados2);
+        JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
+        layout.setStyle("-fx-backgroundcolor:#FFFFF");
+        snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
     }
 }
