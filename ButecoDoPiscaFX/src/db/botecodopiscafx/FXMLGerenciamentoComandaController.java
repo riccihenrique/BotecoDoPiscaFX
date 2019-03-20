@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
+import db.banco.Banco;
 import db.dal.DALComanda;
 import db.dal.DALGarcon;
 import db.entidades.Comanda;
@@ -20,11 +21,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import util.MaskFieldUtil;
 
 public class FXMLGerenciamentoComandaController implements Initializable {
 
@@ -66,12 +71,13 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     private TableColumn<Comanda.Pagamento, String> colTipo;
     @FXML
     private TableColumn<Comanda.Pagamento, String> colValor;
-    
-    private Comanda c;
     @FXML
     private AnchorPane pnDados1;
     @FXML
     private AnchorPane pnDados2;
+    
+    double valor = 0;
+    private Comanda c;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,6 +90,8 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         colCod1.setCellValueFactory(new PropertyValueFactory("pag_id"));
         colTipo.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
         colValor.setCellValueFactory(new PropertyValueFactory("pag_valor"));
+        
+        MaskFieldUtil.monetaryField(tbValor);
     } 
 
     @FXML
@@ -96,6 +104,12 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         DALComanda dal = new DALComanda();
         if(dal.alterar(c))
             snackBar("Comanda alterada com sucesso");
+        else
+        {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Erro ao alterar comanda. " + Banco.getCon().getMensagemErro());
+            a.showAndWait();
+        }
     }
 
     @FXML
@@ -114,10 +128,47 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     }
 
     @FXML
-    private void clkBtnFechar(ActionEvent event) {
+    private void clkBtnFechar(ActionEvent event) throws IOException 
+    {
+        double valor;
         
+        try
+        {
+            valor = Double.parseDouble(tbValor.getText().replace(".", "").replace(',', '.'));
+            for(Comanda.Pagamento pg : c.getPagamentos())
+                valor -= pg.getPag_valor();
+            
+        }
+        catch(Exception e)
+        {
+            valor = -1;
+        }
+        
+        if(valor == 0)
+        {
+            c.setCom_status('F');
+            DALComanda dal = new DALComanda();
+            if(dal.alterar(c))
+            {
+                snackBar("Comanda alterada com sucesso");
+                estadoOriginal();
+                clkBtnCancelar(event);
+            }
+            else
+            {
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setContentText("Erro ao fechar comanda");
+                a.showAndWait();
+            }
+        }
+        else
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Ainda há valor a ser quitado");
+            a.showAndWait();
+        }
     }
-
+    
     @FXML
     private void clkBtnInserirItem(ActionEvent event) {
     }
@@ -127,11 +178,25 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     }
 
     @FXML
-    private void clkBtnInserirPagamento(ActionEvent event) {
+    private void clkBtnInserirPagamento(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLInserePagamento.fxml"));
+        Parent root = (Parent) loader.load();
+        FXMLInserePagamentoController p = loader.getController();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.showAndWait();
+        Comanda.Pagamento pg = p.getPgto();
+        c.addPagamento(pg.getPag_valor(), pg.getTipo());
     }
 
     @FXML
     private void clkBtnRemoverPagamento(ActionEvent event) {
+    }
+    
+    public Comanda getComanda()
+    {
+        return c;
     }
     
     public void setComanda(Comanda c)
@@ -183,11 +248,10 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         tbDescricao.setText(c.getCom_desc());
         tbMesa.setText("" + c.getCom_numero());
         tbNome.setText(c.getCom_nome());
-        double valor = 0;
         for(Comanda.Item ci : c.getItens())
-            valor += ci.getIt_valor();
+            valor += ci.getIt_valor() * ci.getIt_quantidade();
         
-        tbValor.setText("" + valor);
+        tbValor.setText(String.format("%10.2f", valor));
         DALGarcon dal = new DALGarcon();
         ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
         cbGarcon.setItems(ob);

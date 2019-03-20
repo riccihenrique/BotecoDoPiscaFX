@@ -32,7 +32,7 @@ public class FXMLPainelComandaController implements Initializable {
                 if(c.getPagamentos().isEmpty())
                     ctl.setCor("#938d99");
                 else
-                    ctl.setCor("#fffff"); //Alterar cor daqui
+                    ctl.setCor("#a675a1"); //Alterar cor daqui
                 painel.getChildren().add(root);
             } 
         }
