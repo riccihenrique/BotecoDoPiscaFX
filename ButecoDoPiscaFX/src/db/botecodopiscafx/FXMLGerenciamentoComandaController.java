@@ -12,7 +12,6 @@ import db.entidades.Comanda;
 import db.entidades.Garcon;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 public class FXMLGerenciamentoComandaController implements Initializable {
 
@@ -87,51 +85,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         colTipo.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
         colValor.setCellValueFactory(new PropertyValueFactory("pag_valor"));
     } 
-    
-    private void carregaTabela()
-    {
-        ObservableList<Comanda.Item> obItem = FXCollections.observableList(c.getItens());
-        tbvItens.setItems(obItem);
-        ObservableList<Comanda.Pagamento> obPagamento = FXCollections.observableList(c.getPagamentos());
-        tbvPagamentos.setItems(obPagamento);
-    }
-    
-    private void estadoOriginal()
-    {
-        pnDados2.setDisable(true);
-        pnDados1.setDisable(true);
-        BtnConfirmar.setDisable(true);
-        BtnAlterar.setDisable(false);
-        BtnFechar.setDisable(false);
-        BtnFechar.setDisable(false);
-    }
-    
-    private void estadoEdicao()
-    {
-        pnDados2.setDisable(false);
-        pnDados1.setDisable(false);
-        BtnConfirmar.setDisable(false);
-        BtnAlterar.setDisable(true);
-        BtnFechar.setDisable(false);
-        BtnFechar.setDisable(false);
-    }
-    
-    private void carregaDados()
-    {
-        tbDescricao.setText(c.getCom_desc());
-        tbMesa.setText("" + c.getCom_numero());
-        tbNome.setText(c.getCom_nome());
-        double valor = 0;
-        for(Comanda.Item ci : c.getItens())
-            valor += ci.getIt_valor();
-        
-        tbValor.setText("" + valor);
-        DALGarcon dal = new DALGarcon();
-        ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
-        cbGarcon.setItems(ob);
-        cbGarcon.getSelectionModel().select(c.getGarcon());
-        dtData.setValue(c.getCom_data());
-    }
 
     @FXML
     private void clkBtnAlterar(ActionEvent event) {
@@ -143,7 +96,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         DALComanda dal = new DALComanda();
         if(dal.alterar(c))
             snackBar("Comanda alterada com sucesso");
-        
     }
 
     @FXML
@@ -196,5 +148,50 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         JFXSnackbarLayout layout = new JFXSnackbarLayout(texto);
         layout.setStyle("-fx-backgroundcolor:#FFFFF");
         snacbar.fireEvent(new JFXSnackbar.SnackbarEvent(layout));
+    }
+    
+    private void carregaTabela()
+    {
+        ObservableList<Comanda.Item> obItem = FXCollections.observableList(c.getItens());
+        tbvItens.setItems(obItem);
+        ObservableList<Comanda.Pagamento> obPagamento = FXCollections.observableList(c.getPagamentos());
+        tbvPagamentos.setItems(obPagamento);
+    }
+    
+    private void estadoOriginal()
+    {
+        pnDados2.setDisable(true);
+        pnDados1.setDisable(true);
+        BtnConfirmar.setDisable(true);
+        BtnAlterar.setDisable(false);
+        BtnFechar.setDisable(false);
+        BtnFechar.setDisable(false);
+    }
+    
+    private void estadoEdicao()
+    {
+        pnDados2.setDisable(false);
+        pnDados1.setDisable(false);
+        BtnConfirmar.setDisable(false);
+        BtnAlterar.setDisable(true);
+        BtnFechar.setDisable(false);
+        BtnFechar.setDisable(false);
+    }
+    
+    private void carregaDados()
+    {
+        tbDescricao.setText(c.getCom_desc());
+        tbMesa.setText("" + c.getCom_numero());
+        tbNome.setText(c.getCom_nome());
+        double valor = 0;
+        for(Comanda.Item ci : c.getItens())
+            valor += ci.getIt_valor();
+        
+        tbValor.setText("" + valor);
+        DALGarcon dal = new DALGarcon();
+        ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
+        cbGarcon.setItems(ob);
+        cbGarcon.getSelectionModel().select(c.getGarcon());
+        dtData.setValue(c.getCom_data());
     }
 }

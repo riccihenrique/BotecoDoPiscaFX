@@ -10,10 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class FXMLTileComandaController implements Initializable {
 
@@ -37,20 +35,15 @@ public class FXMLTileComandaController implements Initializable {
     @FXML
     private void BtnAbrir(ActionEvent event) throws IOException 
     {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLGerenciamentoComanda.fxml"));
-        Scene cena = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(cena);
-        stage.show();
-//        FXMLPrincipalController.spainelpnprincipal.setCenter(root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLGerenciamentoComanda.fxml"));
+        Parent root = (Parent) loader.load();
+        FXMLGerenciamentoComandaController ger = loader.getController();
+        ger.setComanda(comanda);
+        FXMLPrincipalController.spainelpnprincipal.setCenter(root);
     }
     
     public void setCor(String cor)
     {
         painel.setStyle("-fx-background-color: " + cor + ";");
-    }
-
-    @FXML
-    private void BtnCor(ActionEvent event) {
     }
 }

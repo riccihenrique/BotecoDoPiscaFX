@@ -1,18 +1,15 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
 import db.dal.DALComanda;
 import db.dal.DALGarcon;
 import db.entidades.Comanda;
 import db.entidades.Garcon;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
