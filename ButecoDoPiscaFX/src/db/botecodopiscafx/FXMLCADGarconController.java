@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -241,7 +240,7 @@ public class FXMLCADGarconController implements Initializable
                     baos.close();
 
                     InputStream in = new ByteArrayInputStream(imageInByte);
-                    if(dal.gravarFoto(g, (FileInputStream) in))
+                    if(dal.gravarFoto(g, in, baos.toByteArray().length))
                         snackBar("Garçon alterado com sucesso");
                     else
                     {
@@ -271,7 +270,8 @@ public class FXMLCADGarconController implements Initializable
                     baos.close();
 
                     InputStream in = new ByteArrayInputStream(imageInByte);
-                    if(dal.gravarFoto(g, (FileInputStream) in))
+                    
+                    if(dal.gravarFoto(g, in, baos.toByteArray().length))
                         snackBar("Garçon alterado com sucesso");
                     else
                     {

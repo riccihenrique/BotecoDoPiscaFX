@@ -83,12 +83,12 @@ public class DALGarcon
         return L;
     }
     
-    public boolean gravarFoto(Garcon g, FileInputStream pic)    
+    public boolean gravarFoto(Garcon g, InputStream pic, int length)    
     {
         try
         {
             PreparedStatement ps = Banco.getCon().getConnection().prepareStatement("UPDATE garcon set gar_foto = ? where gar_id = " + g.getGar_id());
-            ps.setBinaryStream(1, pic);
+            ps.setBinaryStream(1, pic, length);
             ps.executeUpdate();
             ps.close();
             pic.close();

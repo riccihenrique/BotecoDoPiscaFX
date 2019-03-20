@@ -71,15 +71,15 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     private AnchorPane pnDados1;
     @FXML
     private AnchorPane pnDados2;
-    
-    double valor = 0;
-    private Comanda c;
     @FXML
     private JFXButton btnRemoverItem;
     @FXML
     private JFXButton btnRemoverPag;
     @FXML
     private TableColumn<Comanda.Pagamento, String> colCodPag;
+    
+    private double valor = 0;
+    private Comanda c;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -184,11 +184,28 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     }
     
     @FXML
-    private void clkBtnInserirItem(ActionEvent event) {
+    private void clkBtnInserirItem(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLInsereProduto.fxml"));
+        Parent root = (Parent) loader.load();
+        FXMLInsereProdutoController p = loader.getController();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.showAndWait();
+        Comanda.Item ite = p.getProduto();
+        c.addProduto(ite.getProd(), ite.getIt_quantidade(), ite.getIt_preco());
+        alteraValor();
+        carregaTabela();
     }
 
     @FXML
     private void clkBtnRemoverItem(ActionEvent event) {
+        if(tbvItens.getSelectionModel().getSelectedItem() != null)
+        {
+            c.getItens().remove(tbvItens.getSelectionModel().getSelectedItem());
+            alteraValor();
+            carregaTabela();
+        }
     }
 
     @FXML
@@ -202,11 +219,18 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         stage.showAndWait();
         Comanda.Pagamento pg = p.getPgto();
         c.addPagamento(pg.getPag_valor(), pg.getTipo());
+        alteraValor();
         carregaTabela();
     }
 
     @FXML
     private void clkBtnRemoverPagamento(ActionEvent event) {
+        if(tbvPagamentos.getSelectionModel().getSelectedItem() != null)
+        {
+           c.getPagamentos().remove(tbvPagamentos.getSelectionModel().getSelectedItem());
+           carregaTabela();
+           alteraValor();
+        }
     }
     
     public Comanda getComanda()
@@ -267,14 +291,22 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         tbDescricao.setText(c.getCom_desc());
         tbMesa.setText("" + c.getCom_numero());
         tbNome.setText(c.getCom_nome());
-        for(Comanda.Item ci : c.getItens())
-            valor += ci.getIt_preco()* ci.getIt_quantidade();
-        
-        tbValor.setText(String.format("%10.2f", valor));
         DALGarcon dal = new DALGarcon();
         ObservableList<Garcon> ob = FXCollections.observableList(dal.get(""));
         cbGarcon.setItems(ob);
         cbGarcon.getSelectionModel().select(c.getGarcon());
         dtData.setValue(c.getCom_data());
+        alteraValor();
+    }
+    
+    private void alteraValor()
+    {
+        valor = 0;
+        for(Comanda.Item ci : c.getItens())
+            valor += ci.getIt_preco()* ci.getIt_quantidade();
+        for(Comanda.Pagamento p : c.getPagamentos())
+            valor -= p.getPag_valor();
+        
+        tbValor.setText(String.format("%10.2f", valor));
     }
 }

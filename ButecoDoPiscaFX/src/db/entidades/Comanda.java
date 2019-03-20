@@ -19,6 +19,11 @@ public class Comanda
             this.it_preco = it_preco;
         }
 
+        public Item() {
+        }
+        
+        
+
         public double getIt_preco() {
             return it_preco;
         }
