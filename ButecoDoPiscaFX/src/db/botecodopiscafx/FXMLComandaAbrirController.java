@@ -54,6 +54,7 @@ public class FXMLComandaAbrirController implements Initializable {
     @FXML
     private void clkBtnCancelar(ActionEvent event)
     {
+        FXMLPrincipalController.efeito(false);
         FXMLPrincipalController.spainelpnprincipal.setCenter(null);
     }
 
@@ -65,7 +66,7 @@ public class FXMLComandaAbrirController implements Initializable {
         
         if(dal.gravar(c))
         {
-            System.out.println("Foi");
+            FXMLPrincipalController.efeito(false);
             FXMLPrincipalController.spainelpnprincipal.setCenter(null);
         }
         else

@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="307.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLComandaAbrirController">
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="245.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLComandaAbrirController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="780.0">
          <children>
             <VBox prefHeight="309.0" prefWidth="782.0" style="-fx-background-color: #ddccff;">
                <children>
-                  <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="59.0" prefWidth="786.0" spacing="10.0" style="-fx-background-color: #8080ff;">
+                  <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="786.0" spacing="10.0" style="-fx-background-color: #8080ff;">
                      <children>
                         <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
                         <JFXButton fx:id="BtnConfirmar" onAction="#clkBtnConfirmar" prefHeight="36.0" prefWidth="119.0" text="Confirmar" />
                      </children>
                   </HBox>
-                  <AnchorPane fx:id="pnDados" prefHeight="250.0" prefWidth="799.0">
+                  <AnchorPane fx:id="pnDados" prefHeight="204.0" prefWidth="782.0">
                      <children>
                         <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="434.0" promptText="Nome:" />
                         <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="14.0" layoutY="77.0" prefHeight="25.0" prefWidth="733.0" promptText="Descrição" />

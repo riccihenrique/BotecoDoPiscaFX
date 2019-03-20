@@ -182,6 +182,7 @@ public class FXMLCADTpPagamentoController implements Initializable
         }
         else
         {
+            FXMLPrincipalController.efeito(false);
             FXMLPrincipalController.spainelpnprincipal.setCenter(null);
         }
     }

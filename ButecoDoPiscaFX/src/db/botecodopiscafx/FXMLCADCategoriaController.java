@@ -179,6 +179,7 @@ public class FXMLCADCategoriaController implements Initializable
         }
         else
         {
+            FXMLPrincipalController.efeito(false);
             FXMLPrincipalController.spainelpnprincipal.setCenter(null);
         }
     }

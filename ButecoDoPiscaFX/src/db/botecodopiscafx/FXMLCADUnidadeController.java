@@ -177,7 +177,11 @@ public class FXMLCADUnidadeController implements Initializable
         if(!pnDados.isDisable())
             estadoOriginal();
         else
+        {
+            FXMLPrincipalController.efeito(false);
             FXMLPrincipalController.spainelpnprincipal.setCenter(null);
+        }
+            
     }
 
     @FXML

@@ -9,20 +9,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.46099290780141844" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="284.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLCADCategoriaController">
+<SplitPane dividerPositions="0.3983050847457627" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="356.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLCADCategoriaController">
    <items>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ddccff;">
+      <VBox prefHeight="209.0" prefWidth="573.0" style="-fx-background-color: #ddccff;">
          <children>
-            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="958.0" spacing="10.0" style="-fx-background-color: #8080ff;">
+            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="595.0" spacing="10.0" style="-fx-background-color: #8080ff;">
                <children>
                   <JFXButton fx:id="BtnNovo" layoutX="10.0" layoutY="10.0" onAction="#clkBtnNovo" prefHeight="36.0" prefWidth="119.0" text="Novo" />
                   <JFXButton fx:id="BtnAlterar" onAction="#clkBtnAlterar" prefHeight="36.0" prefWidth="119.0" text="Alterar" />
-                  <JFXButton fx:id="BtnApagar" onAction="#clkBtnApagar" prefHeight="36.0" prefWidth="119.0" text="Apagar" />
+                  <JFXButton fx:id="BtnApagar" onAction="#clkBtnApagar" prefHeight="60.0" prefWidth="111.0" text="Apagar" />
                   <JFXButton fx:id="BtnConfirmar" onAction="#clkBtnConfirmar" prefHeight="36.0" prefWidth="119.0" text="Confirmar" />
                   <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
                </children>
             </HBox>
-            <AnchorPane fx:id="pnDados" prefHeight="223.0" prefWidth="604.0">
+            <AnchorPane fx:id="pnDados" prefHeight="92.0" prefWidth="573.0">
                <children>
                   <JFXTextField fx:id="tbCodigo" editable="false" labelFloat="true" layoutX="29.0" layoutY="39.0" prefHeight="25.0" prefWidth="143.0" promptText="Código:" />
                   <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="204.0" layoutY="39.0" prefHeight="25.0" prefWidth="266.0" promptText="Nome:" />
@@ -32,7 +32,7 @@
       </VBox>
       <VBox prefHeight="158.0" prefWidth="604.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #8080ff;">
+            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="595.0" style="-fx-background-color: #8080ff;">
                <children>
                   <JFXTextField fx:id="tbPesquisar" prefHeight="25.0" prefWidth="393.0" promptText="Informe o nome do tipo de pagamento" />
                   <JFXButton fx:id="BtnPesquisar" onAction="#clkBtnPesquisar" prefHeight="36.0" prefWidth="114.0" text="Pesquisar" />
@@ -40,8 +40,8 @@
             </HBox>
             <TableView fx:id="tbvDados" onMouseClicked="#clkTbvDados" prefHeight="175.0" prefWidth="509.0">
                <columns>
-                  <TableColumn fx:id="colCod" prefWidth="209.0" text="Código" />
-                  <TableColumn fx:id="colNome" minWidth="0.0" prefWidth="299.0" text="Nome" />
+                  <TableColumn fx:id="colCod" prefWidth="97.0" text="Código" />
+                  <TableColumn fx:id="colNome" minWidth="0.0" prefWidth="475.0" text="Nome" />
                </columns>
             </TableView>
          </children>
