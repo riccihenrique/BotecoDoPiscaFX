@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="painelpnprincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLPrincipalController">
@@ -32,4 +34,11 @@
          </children>
       </VBox>
    </top>
+   <bottom>
+      <HBox alignment="TOP_RIGHT" prefHeight="28.0" prefWidth="1031.0" style="-fx-background-color: #25283d;" BorderPane.alignment="CENTER">
+         <children>
+            <Hyperlink onAction="#clkLink" text="ButecoDoPisca.FXcom" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

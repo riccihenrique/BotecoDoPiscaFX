@@ -10,6 +10,7 @@ import db.entidades.TipoPagto;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,12 +20,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class FXMLCADTpPagamentoController implements Initializable 
 {
@@ -55,9 +58,12 @@ public class FXMLCADTpPagamentoController implements Initializable
     private TableColumn<TipoPagto, String> colNome;
     @FXML
     private JFXTextField tbCodigo;
+    @FXML
+    private SplitPane splitPane;
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {      
+        fadeout();
         colCod.setCellValueFactory(new PropertyValueFactory("tpg_id"));
         colNome.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
 
@@ -216,5 +222,13 @@ public class FXMLCADTpPagamentoController implements Initializable
         ObservableList<TipoPagto> modelo;
         modelo = FXCollections.observableArrayList(res);
         tbvDados.setItems(modelo);
+    }
+    
+    private void fadeout()
+    {
+        FadeTransition ft = new FadeTransition(Duration.millis(1000), splitPane);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play(); 
     }
 }

@@ -12,12 +12,15 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class FXMLComandaAbrirController implements Initializable {
 
@@ -37,6 +40,8 @@ public class FXMLComandaAbrirController implements Initializable {
     private JFXDatePicker dtData;
     @FXML
     private JFXTextField tbMesa;
+    @FXML
+    private SplitPane splitPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,5 +75,13 @@ public class FXMLComandaAbrirController implements Initializable {
         }
         else
             System.out.println("Erro");
+    }
+    
+    private void fadeout()
+    {
+        FadeTransition ft = new FadeTransition(Duration.millis(1000), splitPane);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play(); 
     }
 }
