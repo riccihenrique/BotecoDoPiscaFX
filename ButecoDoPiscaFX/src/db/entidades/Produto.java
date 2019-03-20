@@ -79,6 +79,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "nome=" + prod_nome + ", descrição=" + prod_desc;
+        return prod_nome;
     }
 }

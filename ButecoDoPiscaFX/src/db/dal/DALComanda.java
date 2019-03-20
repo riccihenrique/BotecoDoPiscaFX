@@ -42,7 +42,7 @@ public class DALComanda {
                     SQL = SQL.replace("#1", "" + c.getCom_id());
                     SQL = SQL.replace("#2", "" + i.getProd().getProd_id());
                     SQL = SQL.replace("#3", "" + i.getIt_quantidade());
-                    SQL = SQL.replace("#4", "" + i.getIt_valor());
+                    SQL = SQL.replace("#4", "" + i.getIt_preco());
 
                     result = result && Banco.getCon().manipular(SQL);
                 }
@@ -111,7 +111,7 @@ public class DALComanda {
                     SQL = SQL.replace("#1", "" + c.getCom_id());
                     SQL = SQL.replace("#2", "" + i.getProd().getProd_id());
                     SQL = SQL.replace("#3", "" + i.getIt_quantidade());
-                    SQL = SQL.replace("#4", "" + i.getIt_valor());
+                    SQL = SQL.replace("#4", "" + i.getIt_preco());
 
                     result = result && Banco.getCon().manipular(SQL);
                 }
@@ -252,7 +252,7 @@ public class DALComanda {
                 Sql = "SELECT * FROM pagamento WHERE com_id = " + c.get(i).getCom_id();
                 rs_ip = Banco.getCon().consultar(Sql); 
                 while(rs_ip.next())
-                    c.get(i).addPagamento(rs_ip.getDouble("pag_valor"), tp.get(rs_ip.getInt("tpg_id")));
+                    c.get(i).addPagamento(rs_ip.getInt("pag_id"),rs_ip.getDouble("pag_valor"), tp.get(rs_ip.getInt("tpg_id")));
                 
                 i++;
             }

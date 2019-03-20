@@ -35,7 +35,7 @@ public class TipoPagto {
 
     @Override
     public String toString() {
-        return "TipoPagto: "+tpg_nome;
+        return tpg_nome;
     }
     
     

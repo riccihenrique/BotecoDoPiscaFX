@@ -11,22 +11,23 @@ public class Comanda
     {
         private Produto prod;
         private int it_quantidade;
-        private double it_valor;
-        private String cor;
+        private double it_preco;
 
-        public Item(Produto prod, int it_quantidade, double it_valor) {
+        public Item(Produto prod, int it_quantidade, double it_preco) {
             this.prod = prod;
             this.it_quantidade = it_quantidade;
-            this.it_valor = it_valor;
+            this.it_preco = it_preco;
         }
 
-        public String getCor() {
-            return cor;
+        public double getIt_preco() {
+            return it_preco;
         }
 
-        public void setCor(String cor) {
-            this.cor = cor;
+        public void setIt_preco(double it_preco) {
+            this.it_preco = it_preco;
         }
+
+        
         
         public Produto getProd() {
             return prod;
@@ -43,14 +44,6 @@ public class Comanda
         public void setIt_quantidade(int it_quantidade) {
             this.it_quantidade = it_quantidade;
         }
-
-        public double getIt_valor() {
-            return it_valor;
-        }
-
-        public void setIt_valor(double it_valor) {
-            this.it_valor = it_valor;
-        }
     }
     
     public class Pagamento
@@ -62,6 +55,15 @@ public class Comanda
         public Pagamento(double pag_valor, TipoPagto tipo) {
             this.pag_valor = pag_valor;
             this.tipo = tipo;
+        }
+        
+        public Pagamento(int pag_id, double pag_valor, TipoPagto tipo) {
+            this.pag_id = pag_id;
+            this.pag_valor = pag_valor;
+            this.tipo = tipo;
+        }
+
+        public Pagamento() {
         }
 
         public int getPag_id() {
@@ -209,5 +211,9 @@ public class Comanda
 
     public void addPagamento(double valor, TipoPagto tp) {
         pagamentos.add(new Pagamento(valor, tp));
+    }
+    
+    public void addPagamento(int id, double valor, TipoPagto tp) {
+        pagamentos.add(new Pagamento(id, valor, tp));
     }
 }

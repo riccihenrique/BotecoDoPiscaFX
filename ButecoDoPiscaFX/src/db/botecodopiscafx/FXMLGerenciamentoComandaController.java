@@ -44,8 +44,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     @FXML
     private JFXTextField tbDescricao;
     @FXML
-    private TableColumn<Comanda.Item, String> colCod;
-    @FXML
     private TableColumn<Comanda.Item, String> colNome;
     @FXML
     private JFXButton BtnFechar;
@@ -57,8 +55,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     private JFXTextField tbMesa;
     @FXML
     private JFXDatePicker dtData;
-    @FXML
-    private TableColumn<Comanda.Pagamento, String> colCod1;
     @FXML
     private TableView<Comanda.Item> tbvItens;
     @FXML
@@ -78,17 +74,22 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     double valor = 0;
     private Comanda c;
+    @FXML
+    private JFXButton btnRemoverItem;
+    @FXML
+    private JFXButton btnRemoverPag;
+    @FXML
+    private TableColumn<Comanda.Pagamento, String> colCodPag;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        colCod.setCellValueFactory(new PropertyValueFactory("prod_id"));
-        colNome.setCellValueFactory(new PropertyValueFactory("prod_nome"));
-        colPreco.setCellValueFactory(new PropertyValueFactory("prod_preco"));
-        colQtde.setCellValueFactory(new PropertyValueFactory("ite_quantidade"));
+        colNome.setCellValueFactory(new PropertyValueFactory("prod"));
+        colPreco.setCellValueFactory(new PropertyValueFactory("it_preco"));
+        colQtde.setCellValueFactory(new PropertyValueFactory("it_quantidade"));
         
-        colCod1.setCellValueFactory(new PropertyValueFactory("pag_id"));
-        colTipo.setCellValueFactory(new PropertyValueFactory("tpg_nome"));
+        colCodPag.setCellValueFactory(new PropertyValueFactory("pag_id"));
+        colTipo.setCellValueFactory(new PropertyValueFactory("tipo"));
         colValor.setCellValueFactory(new PropertyValueFactory("pag_valor"));
         
         MaskFieldUtil.monetaryField(tbValor);
@@ -97,6 +98,22 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     @FXML
     private void clkBtnAlterar(ActionEvent event) {
         estadoEdicao();
+    }
+
+    @FXML
+    private void clkTabelaItens(MouseEvent event) {
+        if(tbvItens.getSelectionModel().getSelectedItem() != null)
+        {
+            btnRemoverItem.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void clkTabelaPagamentos(MouseEvent event) {
+        if(tbvPagamentos.getSelectionModel().getSelectedItem() != null)
+        {
+            btnRemoverPag.setDisable(false);
+        }
     }
 
     @FXML
@@ -123,9 +140,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         }
     }
 
-    @FXML
-    private void clkTabela(MouseEvent event) {
-    }
 
     @FXML
     private void clkBtnFechar(ActionEvent event) throws IOException 
@@ -188,6 +202,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         stage.showAndWait();
         Comanda.Pagamento pg = p.getPgto();
         c.addPagamento(pg.getPag_valor(), pg.getTipo());
+        carregaTabela();
     }
 
     @FXML
@@ -225,6 +240,8 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     private void estadoOriginal()
     {
+        btnRemoverItem.setDisable(true);
+        btnRemoverPag.setDisable(true);
         pnDados2.setDisable(true);
         pnDados1.setDisable(true);
         BtnConfirmar.setDisable(true);
@@ -235,6 +252,8 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     private void estadoEdicao()
     {
+        btnRemoverItem.setDisable(true);
+        btnRemoverPag.setDisable(true);
         pnDados2.setDisable(false);
         pnDados1.setDisable(false);
         BtnConfirmar.setDisable(false);
@@ -249,7 +268,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         tbMesa.setText("" + c.getCom_numero());
         tbNome.setText(c.getCom_nome());
         for(Comanda.Item ci : c.getItens())
-            valor += ci.getIt_valor() * ci.getIt_quantidade();
+            valor += ci.getIt_preco()* ci.getIt_quantidade();
         
         tbValor.setText(String.format("%10.2f", valor));
         DALGarcon dal = new DALGarcon();

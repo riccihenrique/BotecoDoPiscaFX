@@ -23,7 +23,7 @@ public class FXMLInserePagamentoController implements Initializable {
     @FXML
     private JFXTextField tbValor;
     private Button fechar = new Button();
-    private Comanda.Pagamento pag;
+    private Comanda c = new Comanda();
     @FXML
     private JFXButton btnInserir;
     
@@ -42,13 +42,23 @@ public class FXMLInserePagamentoController implements Initializable {
 
     @FXML
     private void clkInserir(ActionEvent event) {
-        pag.setPag_valor(Double.parseDouble(tbValor.getText()));
-        pag.setTipo(cbTpPgto.getSelectionModel().getSelectedItem());
+        Double valor;
+        try
+        {
+            valor = Double.parseDouble(tbValor.getText().replace(".", "").replace(',', '.'));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+            valor = 0.0;
+        }
+        
+        c.addPagamento(valor, cbTpPgto.getSelectionModel().getSelectedItem());
         ((Stage) btnInserir.getScene().getWindow()).close();
     }
     
     public Comanda.Pagamento getPgto()
     {
-        return pag;
+        return c.getPagamentos().get(0);
     }
 }
