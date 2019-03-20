@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLTileComandaController">
+<AnchorPane fx:id="painel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="193.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLTileComandaController">
    <children>
       <Label fx:id="lbComanda" layoutX="64.0" layoutY="43.0" text="Comanda #" />
       <JFXButton layoutX="77.0" layoutY="121.0" onAction="#BtnAbrir" text="Abrir" />

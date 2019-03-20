@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALCategoria;
-import db.dal.DALGarcon;
 import db.dal.DALProduto;
 import db.dal.DALUnidade;
 import db.entidades.Categoria;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db.botecodopiscafx;
 
 import db.dal.DALComanda;
@@ -33,6 +28,10 @@ public class FXMLPainelComandaController implements Initializable {
                 Parent root = (Parent) loader.load();
                 FXMLTileComandaController ctl = loader.getController();
                 ctl.setComanda(c);
+                if(c.getPagamentos().isEmpty())
+                    ctl.setCor("#938d99");
+                else
+                    ctl.setCor("#fffff"); //Alterar cor daqui
                 painel.getChildren().add(root);
             } 
         }
