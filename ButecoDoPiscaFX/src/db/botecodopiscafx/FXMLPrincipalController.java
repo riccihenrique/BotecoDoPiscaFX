@@ -109,4 +109,10 @@ public class FXMLPrincipalController implements Initializable
             Logger.getLogger(FXMLPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void clkBtnHome(ActionEvent event) {
+        painelpnprincipal.setCenter(null);
+        efeito(false);
+    }
 }
