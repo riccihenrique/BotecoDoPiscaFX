@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
+import db.banco.Banco;
 import db.dal.DALGarcon;
 import db.entidades.Garcon;
 import java.awt.image.BufferedImage;
@@ -198,6 +199,7 @@ public class FXMLCADGarconController implements Initializable
             {
                 snackBar("Garçon deletado com sucesso");
                 carregaTabela("");
+                estadoOriginal();
             }
             else
             {
@@ -232,7 +234,8 @@ public class FXMLCADGarconController implements Initializable
                 if(dal.gravar(g))
                 {
                     if(imgvFoto.getImage() != null)
-                    {                    
+                    {                 
+                        g.setGar_id(Banco.getCon().getMaxPK("garcon", "gar_id"));
                         BufferedImage bimg = SwingFXUtils.fromFXImage(imgvFoto.getImage(), null);
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         byte[] imageInByte;
@@ -240,7 +243,6 @@ public class FXMLCADGarconController implements Initializable
                         baos.flush();
                         imageInByte = baos.toByteArray();
                         baos.close();
-
                         InputStream in = new ByteArrayInputStream(imageInByte);
                         if(dal.gravarFoto(g, in, baos.toByteArray().length))
                             snackBar("Garçon alterado com sucesso");
@@ -270,7 +272,6 @@ public class FXMLCADGarconController implements Initializable
                         baos.flush();
                         imageInByte = baos.toByteArray();
                         baos.close();
-
                         InputStream in = new ByteArrayInputStream(imageInByte);
 
                         if(dal.gravarFoto(g, in, baos.toByteArray().length))
