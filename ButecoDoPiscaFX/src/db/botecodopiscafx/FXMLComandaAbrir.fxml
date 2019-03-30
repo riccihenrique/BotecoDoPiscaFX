@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane fx:id="splitPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="249.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLComandaAbrirController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="254.0" prefWidth="780.0">
+         <children>
+            <VBox prefHeight="309.0" prefWidth="782.0" style="-fx-background-color: #ddccff;">
+               <children>
+                  <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="786.0" spacing="10.0" style="-fx-background-color: #8080ff;">
+                     <children>
+                        <JFXButton fx:id="BtnCancelar" onAction="#clkBtnCancelar" prefHeight="36.0" prefWidth="119.0" text="Cancelar" />
+                        <JFXButton fx:id="BtnConfirmar" onAction="#clkBtnConfirmar" prefHeight="36.0" prefWidth="119.0" text="Confirmar" />
+                     </children>
+                  </HBox>
+                  <AnchorPane fx:id="pnDados" prefHeight="197.0" prefWidth="782.0">
+                     <children>
+                        <JFXTextField fx:id="tbNome" labelFloat="true" layoutX="314.0" layoutY="29.0" prefHeight="25.0" prefWidth="434.0" promptText="Nome:" />
+                        <JFXTextField fx:id="tbDescricao" labelFloat="true" layoutX="14.0" layoutY="77.0" prefHeight="25.0" prefWidth="733.0" promptText="Descrição" />
+                        <JFXComboBox fx:id="cbGarcon" layoutX="314.0" layoutY="130.0" prefHeight="25.0" prefWidth="434.0" promptText="Garçon" />
+                        <JFXTextField fx:id="tbMesa" labelFloat="true" layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="273.0" promptText="Mesa:" />
+                        <JFXDatePicker fx:id="dtData" layoutX="14.0" layoutY="130.0" prefHeight="25.0" prefWidth="195.0" promptText="Data" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>

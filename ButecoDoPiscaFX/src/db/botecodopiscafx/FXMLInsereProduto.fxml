@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="441.0" style="-fx-background-color: #ddccff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLInsereProdutoController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="329.0" style="-fx-background-color: #8080ff;">
+         <children>
+            <JFXButton fx:id="btCancelar" onAction="#clkCancelar" text="Cancelar" />
+            <JFXButton fx:id="btInserir" onAction="#clkInserir" text="Inserir" />
+         </children>
+      </HBox>
+      <VBox prefHeight="322.0" prefWidth="441.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <JFXTextField fx:id="tbNonoe" disable="true" promptText="Produto" />
+                  <JFXTextField fx:id="tbQuantidade" promptText="Quantidade" />
+               </children>
+            </HBox>
+            <VBox prefHeight="220.0" prefWidth="441.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="35.0" prefWidth="329.0" style="-fx-background-color: #8080ff;">
+                     <children>
+                        <JFXTextField fx:id="tbPesquisa" prefHeight="25.0" prefWidth="179.0" promptText="Informe o nome do produto" />
+                        <JFXButton onAction="#clkPesquisar" text="Pesquisar" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tbvDados" onMouseClicked="#clkTabela" prefHeight="188.0" prefWidth="441.0">
+                     <columns>
+                        <TableColumn fx:id="colCod" prefWidth="71.0" text="Código" />
+                        <TableColumn fx:id="colNpme" prefWidth="238.0" text="Nome" />
+                        <TableColumn fx:id="colPreco" prefWidth="128.0" text="Preço" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

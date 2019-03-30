@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="203.0" prefWidth="329.0" style="-fx-background-color: #ddccff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLInserePagamentoController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="329.0" style="-fx-background-color: #8080ff;">
+         <children>
+            <JFXButton onAction="#clkCancelar" text="Cancelar" />
+            <JFXButton fx:id="btnInserir" onAction="#clkInserir" text="Inserir" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="154.0" prefWidth="329.0" spacing="15.0">
+         <children>
+            <JFXComboBox fx:id="cbTpPgto" prefHeight="25.0" prefWidth="136.0" promptText="Tipo de Pagamento:" />
+            <JFXTextField fx:id="tbValor" labelFloat="true" prefHeight="25.0" prefWidth="163.0" promptText="Valor:" />
+         </children>
+      </HBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>
