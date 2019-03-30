@@ -1,8 +1,15 @@
 package arquivos;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList;
 import java.io.RandomAccessFile;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Arquivo
 {
@@ -780,6 +787,9 @@ public class Arquivo
         
         int count[] = new int[range];
         
+        for(i = 0; i < TL; i++)
+            count[i] = 0;
+        
         //contar os elementos
         for(i = 0; i < TL; i++)
         {
@@ -797,8 +807,9 @@ public class Arquivo
         {
             seekArq(i);
             reg.leDoArq(arquivo);
-            aux_arq[count[reg.getCodigo()] - 1] = reg;
+            aux_arq[count[reg.getCodigo() - 1]] = reg;
             count[reg.getCodigo()]--;
+            reg = new Registro();
         } 
         
         //gravando no arquivo

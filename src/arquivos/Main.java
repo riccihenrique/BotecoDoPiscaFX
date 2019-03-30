@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class Main 
 {
-    static final int n = 15;
+    static final int n = 7;
     private Arquivo ordenado, reverso, randomico, auxreverso, auxrandomico;
     private FileWriter txt;
     private PrintWriter escritor;
@@ -493,7 +493,39 @@ public class Main
     
     private void bucket()
     {
+        //Bucket
+        //Arquivo Odernado
+        ordenado.initComp();
+        ordenado.initMov();
+        tini = (int) System.currentTimeMillis();
+        ordenado.bucket();
+        tfim = (int) System.currentTimeMillis();
+        com = ordenado.getComp();
+        mov = ordenado.getMov();
+        escreveTabela("|Bucket Sort\t     |", com, -1, mov, -1, tfim - tini);
         
+        //Arquivo Reverso
+        auxreverso.copiaArquivo(reverso.getFile());
+        auxreverso.initComp();
+        auxreverso.initMov();
+        tini = (int) System.currentTimeMillis();
+        auxreverso.bucket();
+        tfim = (int) System.currentTimeMillis();
+        com = auxreverso.getComp();
+        mov = auxreverso.getMov();
+        escreveTabela("", com, -1, mov, -1, tfim - tini);
+        
+        //Arquivo Randômico
+        auxrandomico.copiaArquivo(randomico.getFile());
+        auxrandomico.initComp();
+        auxrandomico.initMov();
+        tini = (int) System.currentTimeMillis();
+        auxrandomico.bucket();
+        tfim = (int) System.currentTimeMillis();
+        com = auxrandomico.getComp();
+        mov = auxrandomico.getMov();
+        escreveTabela("", com, -1, mov, -1, tfim - tini);
+        escritor.println("\n"); 
     }
    
     private void radix()
@@ -577,22 +609,22 @@ public class Main
         reverso.geraArquivoReverso();
         randomico.geraArquivoRandomico();
         
-//        insertionSort(); //OK;;;;;;;
-//        binaryInsertion(); //OK
-//        selectionSort(); //OK
-//        bubbleSort(); //Ok - falta complexidade
-//        shakeSort(); //Ok
-//        shellSort();
-//        heapSort(); //Ok - falta complexidade
-//        quickSortI();
-//        quickSortII();
-        //mergeI();
-        //mergeII();
-          //counting();
-        //bucket();
+//        insertionSort(); // OK
+//        binaryInsertion(); // OK
+//        selectionSort(); // OK
+//        bubbleSort(); // Ok - falta complexidade
+//        shakeSort(); // Ok
+//        shellSort(); // Ok
+//        heapSort(); // Ok - falta complexidade
+//        quickSortI(); // Ok
+//        quickSortII(); // Ok --
+//        mergeI(); // Ok
+//        mergeII(); // Ok --
+//        counting();
+        bucket();
 //        radix();
 //        comb();
-       gnome();
+//        gnome(); // Ok
 //        tim();
 
         ordenado.exibirArq(); System.out.println("");
