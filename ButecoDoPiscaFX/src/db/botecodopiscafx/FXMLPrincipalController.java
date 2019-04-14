@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -128,7 +129,7 @@ public class FXMLPrincipalController implements Initializable
     @FXML
     private void clkRelProd(ActionEvent event) {
         String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
-        gerarRelatorio(sql, "rel/Simple_Blue.jasper", "Relação Simples de Produtos");
+        gerarRelatorioIntegrado(sql, "rel/Simple_Blue.jasper");
     }
     
     private void gerarRelatorio(String sql, String relat, String titulotela)
@@ -156,7 +157,7 @@ public class FXMLPrincipalController implements Initializable
             //implementação da interface JRDataSource para DataSource ResultSet
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             //preenchendo e chamando o relatório
-            String jasperPrint = JasperFillManager.fillReportToFile(relat, null, jrRS);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(relat, null, jrRS);
             
             /*
             CORRIGIR as linhas 166 e 167
@@ -164,13 +165,11 @@ public class FXMLPrincipalController implements Initializable
             garçon - ordem alfabética
             */
             
-            
-            
-            
-            JRViewer viewer = new JRViewer(jasperPrint, false, false);
-            viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);//maximizado
-            //viewer.setTitle(titulotela);
+            JRViewer viewer = new JRViewer(jasperPrint);
+            viewer.setOpaque(true);
             viewer.setVisible(true);
+            viewer.setZoomRatio(1f);
+            
             SwingNode sn = new SwingNode();
             SwingUtilities.invokeLater(()->{sn.setContent(viewer);});
             painelpnprincipal.setCenter(sn);
