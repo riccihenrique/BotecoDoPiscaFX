@@ -179,4 +179,10 @@ public class FXMLPrincipalController implements Initializable
             System.out.println(erro);
         }
     } 
+
+    @FXML
+    private void clkRelProdCat(ActionEvent event) {
+        String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
+        gerarRelatorioIntegrado(sql, "rel/Simple_Blue.jasper");
+    }
 }

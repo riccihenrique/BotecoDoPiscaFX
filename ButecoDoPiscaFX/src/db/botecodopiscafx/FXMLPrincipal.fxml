@@ -35,8 +35,8 @@
                      <items>
                         <Menu mnemonicParsing="false" text="Básicos">
                            <items>
-                              <MenuItem mnemonicParsing="false" onAction="#clkRelProd" text="Produto" />
-                              <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelProd" text="Produtos" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelProdCat" text="Produtos por Categoria" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Avançados">
