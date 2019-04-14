@@ -13,7 +13,8 @@ public class BotecoDoPiscaFX extends Application {
     @Override
     public void start(Stage stage) throws Exception 
     {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));Scene scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+        Scene scene = new Scene(root);
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
@@ -24,7 +25,7 @@ public class BotecoDoPiscaFX extends Application {
         if(!Banco.conectar())
         {
             JOptionPane.showMessageDialog(null, "Erro: " + Banco.getCon().getMensagemErro());
-            //System.exit(-1);
+            System.exit(-1);
         }
         launch(args);
     }

@@ -31,6 +31,22 @@
                         <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
                      </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Relatórios">
+                     <items>
+                        <Menu mnemonicParsing="false" text="Básicos">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelProd" text="Produto" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Avançados">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#clkAbrir" text="Nova" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
+                           </items>
+                        </Menu>
+                     </items>
+                  </Menu>
               </menus>
             </MenuBar>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">

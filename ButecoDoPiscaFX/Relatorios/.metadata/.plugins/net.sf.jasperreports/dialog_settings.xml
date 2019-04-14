@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="com.jaspersoft.studio.model.image.command.dialog.ImageCreationDialog">
+		<item value="513" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="137" key="dialogY"/>
+		<item value="704" key="dialogX"/>
+		<item value="575" key="dialogHeight"/>
+		<item value="513" key="dialogWidth"/>
+		<item value="575" key="DIALOG_HEIGHT"/>
+		<item value="712" key="DIALOG_X_ORIGIN"/>
+		<item value="145" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
