@@ -667,3 +667,22 @@ com.jaspersoft.studio.model.command.CancelledOperationException: cancelled
 
 !ENTRY org.eclipse.core.resources 2 10035 2019-04-11 10:03:47.551
 !MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2019-04-14 20:46:00.532 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_151
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data @noDefault
+
+!ENTRY org.eclipse.core.resources 2 10035 2019-04-14 20:46:04.437
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.jaspersoft.studio 1 0 2019-04-14 20:46:09.522
+!MESSAGE Starting JaspersoftStudio bundle - Version: 6.8.0.final
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-04-14 20:46:29.179
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\ricci'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
