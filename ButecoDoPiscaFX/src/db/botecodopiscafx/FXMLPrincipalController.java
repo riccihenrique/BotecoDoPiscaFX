@@ -129,7 +129,7 @@ public class FXMLPrincipalController implements Initializable
     @FXML
     private void clkRelProd(ActionEvent event) {
         String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
-        gerarRelatorioIntegrado(sql, "rel/Simple_Blue.jasper");
+        gerarRelatorioIntegrado(sql, "rel/rel_produtos.jasper");
     }
     
     private void gerarRelatorio(String sql, String relat, String titulotela)
@@ -182,15 +182,14 @@ public class FXMLPrincipalController implements Initializable
 
     @FXML
     private void clkRelProdCat(ActionEvent event) {
-        String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
-        gerarRelatorioIntegrado(sql, "rel/Simple_Blue.jasper");
+        String sql = "SELECT * FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY  c.cat_nome, p.prod_nome";
+        gerarRelatorioIntegrado(sql, "rel/rel_prod_agp2.jasper");
     }
 
     @FXML
     private void clkRelGarCid(ActionEvent event) {
         String sql = "select gar_cidade, gar_nome from garcon order by gar_cidade";
         gerarRelatorioIntegrado(sql, "rel/rel_garcon.jasper");
-        //aaaaa
     }
 
     @FXML
