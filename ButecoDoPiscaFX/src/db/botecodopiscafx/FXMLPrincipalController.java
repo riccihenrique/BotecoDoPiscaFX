@@ -185,4 +185,18 @@ public class FXMLPrincipalController implements Initializable
         String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
         gerarRelatorioIntegrado(sql, "rel/Simple_Blue.jasper");
     }
+
+    @FXML
+    private void clkRelGarCid(ActionEvent event) {
+        String sql = "select gar_cidade, gar_nome from garcon order by gar_cidade";
+        gerarRelatorioIntegrado(sql, "rel/rel_garcon.jasper");
+    }
+
+    @FXML
+    private void clkRelCat(ActionEvent event) {
+    }
+
+    @FXML
+    private void clkRelUni(ActionEvent event) {
+    }
 }

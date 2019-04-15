@@ -37,6 +37,9 @@
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#clkRelProd" text="Produtos" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelProdCat" text="Produtos por Categoria" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelGarCid" text="Garçons por Cidade" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelCat" text="Categoria" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelUni" text="Unidade" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Avançados">
