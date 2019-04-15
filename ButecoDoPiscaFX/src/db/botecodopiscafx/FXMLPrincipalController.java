@@ -190,6 +190,7 @@ public class FXMLPrincipalController implements Initializable
     private void clkRelGarCid(ActionEvent event) {
         String sql = "select gar_cidade, gar_nome from garcon order by gar_cidade";
         gerarRelatorioIntegrado(sql, "rel/rel_garcon.jasper");
+        //aaaaa
     }
 
     @FXML
