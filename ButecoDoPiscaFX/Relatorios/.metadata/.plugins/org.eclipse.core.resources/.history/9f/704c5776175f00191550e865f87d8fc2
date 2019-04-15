@@ -50,7 +50,7 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 					<reportElement mode="Opaque" x="280" y="6" width="265" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4e2b1e4f-effd-4112-8413-cc3ef54be193">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c00a0e2-4bf7-4fc4-b5c7-a4a010156eff"/>
 					</reportElement>
-					<textElement textAlignment="Left">
+					<textElement textAlignment="Center">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nome]]></text>
