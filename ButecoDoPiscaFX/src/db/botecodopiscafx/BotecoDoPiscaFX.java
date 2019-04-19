@@ -25,8 +25,22 @@ public class BotecoDoPiscaFX extends Application {
         if(!Banco.conectar())
         {
             JOptionPane.showMessageDialog(null, "Erro: " + Banco.getCon().getMensagemErro());
-            System.exit(-1);
+            if(JOptionPane.showConfirmDialog(null, "Deseja criar uma base de dados?") == JOptionPane.YES_OPTION)
+            {
+                if(!Banco.criarBD("boteco"))
+                    JOptionPane.showMessageDialog(null, "Erro ao criar banco: " + Banco.getCon().getMensagemErro());
+                else
+                    if(!Banco.criarTabelas("script/script.txt", "boteco"))
+                        JOptionPane.showMessageDialog(null, "Erro ao criar tabelas: " + Banco.getCon().getMensagemErro());
+                    else
+                        JOptionPane.showMessageDialog(null, "Tudo certo consagrado");
+                
+            }    
+            else
+                System.exit(-1);
         }
+        
+        //Banco.realizaBackup("restore");
         launch(args);
     }
 }
