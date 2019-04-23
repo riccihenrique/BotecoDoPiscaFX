@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_prod_agp2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07fa65dc-67ab-4264-b29d-a10743931cd1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Boteco"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Postgre"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id 
 ORDER BY  c.cat_nome, p.prod_nome]]>
@@ -16,6 +16,7 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 	<field name="cat_nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cat_nome"/>
 	</field>
+	<field name="prod_preco" class="java.lang.String"/>
 	<group name="Group1">
 		<groupExpression><![CDATA[$F{cat_nome}]]></groupExpression>
 		<groupHeader>
@@ -38,7 +39,7 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="2f60369e-b2ef-4e84-ae0c-711b80ea19d8"/>
 				</line>
 				<staticText>
-					<reportElement mode="Opaque" x="190" y="6" width="87" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ce7eff84-5d72-4a04-9050-c9008a2f299e">
+					<reportElement mode="Opaque" x="190" y="11" width="87" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ce7eff84-5d72-4a04-9050-c9008a2f299e">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9f7f284d-3acd-4821-976b-4922418a055e"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -47,7 +48,16 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 					<text><![CDATA[Código]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Opaque" x="280" y="6" width="265" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4e2b1e4f-effd-4112-8413-cc3ef54be193">
+					<reportElement mode="Opaque" x="435" y="11" width="120" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4e2b1e4f-effd-4112-8413-cc3ef54be193">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c00a0e2-4bf7-4fc4-b5c7-a4a010156eff"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Preço]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="277" y="11" width="158" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ae192e40-2b9c-4b0a-8aac-e86f1c34512b">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c00a0e2-4bf7-4fc4-b5c7-a4a010156eff"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -96,7 +106,7 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="29">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="07ee7f5e-f935-4a52-abe5-64ec0f1c6271"/>
 			</line>
@@ -110,13 +120,22 @@ ORDER BY  c.cat_nome, p.prod_nome]]>
 				<textFieldExpression><![CDATA[$F{prod_id}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="277" y="0" width="277" height="20" uuid="440c2c64-7229-48b0-978f-9a00bb8da1af">
+				<reportElement x="277" y="0" width="158" height="20" uuid="440c2c64-7229-48b0-978f-9a00bb8da1af">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c00a0e2-4bf7-4fc4-b5c7-a4a010156eff"/>
 				</reportElement>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{prod_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="435" y="0" width="118" height="20" uuid="21e552dd-84e9-4e7a-bc28-0b3e27579f93">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c00a0e2-4bf7-4fc4-b5c7-a4a010156eff"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prod_preco}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

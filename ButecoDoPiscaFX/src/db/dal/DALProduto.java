@@ -45,7 +45,7 @@ public class DALProduto {
         Produto p = null;
         DALCategoria c = new DALCategoria();
         DALUnidade u = new DALUnidade();
-        ResultSet rs = Banco.getCon().consultar("select * from produto where prod_id="+cod);
+        ResultSet rs = Banco.getCon().consultar("select * ->^.^<- from produto where prod_id="+cod);
         try
         {
             if(rs.next())

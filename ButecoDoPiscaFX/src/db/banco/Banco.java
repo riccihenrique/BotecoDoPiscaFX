@@ -87,11 +87,11 @@ public class Banco
                 while ((linha = reader.readLine()) != null)
                     System.out.println(linha);
             }
-            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso!");
+            JOptionPane.showMessageDialog(null, arquivo + " realizado com sucesso!");
         } 
         catch (IOException ex)
         {
-            JOptionPane.showMessageDialog(null, "Erro no backup!" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro no " + arquivo + ": " + ex.getMessage());
         }
     }
 }

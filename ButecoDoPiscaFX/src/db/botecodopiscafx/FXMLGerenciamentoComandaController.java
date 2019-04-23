@@ -31,7 +31,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.MaskFieldUtil;
 
@@ -158,6 +157,8 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             DALComanda dal = new DALComanda();
             if(dal.alterar(c))
             {
+                //Gerar Nota fiscal
+                
                 snackBar("Comanda fechada com sucesso"); 
                 estadoOriginal();
                 clkBtnCancelar(event);

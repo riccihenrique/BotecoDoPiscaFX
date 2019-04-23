@@ -2,10 +2,12 @@ package db.botecodopiscafx;
 
 import db.banco.Banco;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,14 +159,13 @@ public class FXMLPrincipalController implements Initializable
             //implementação da interface JRDataSource para DataSource ResultSet
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             //preenchendo e chamando o relatório
-            JasperPrint jasperPrint = JasperFillManager.fillReport(relat, null, jrRS);
             
-            /*
-            CORRIGIR as linhas 166 e 167
-            Criar um rel simples ou por agrupamento (categoria, garçon e unidade)
-            garçon - ordem alfabética
-            */
             
+            String titulo = "Relatório de produtos";
+            HashMap param = new HashMap<String, String>();
+            param.put("Title 1", titulo);
+            
+            JasperPrint jasperPrint = JasperFillManager.fillReport(relat, param, jrRS);
             JRViewer viewer = new JRViewer(jasperPrint);
             viewer.setOpaque(true);
             viewer.setVisible(true);
@@ -198,5 +199,32 @@ public class FXMLPrincipalController implements Initializable
 
     @FXML
     private void clkRelUni(ActionEvent event) {
+    }
+
+    @FXML
+    private void clkBackup(ActionEvent event) {
+        Banco.realizaBackup("backup");        
+    }
+
+    @FXML
+    private void clkRestore(ActionEvent event) {
+        Banco.realizaBackup("restore");
+        painelpnprincipal.setCenter(null);
+    }
+
+    @FXML
+    private void clkAjuda(ActionEvent event)
+    {
+        //Baixar HelpnDoc
+        
+        // Arrumar aqui
+        try 
+        {
+            Runtime.getRuntime().exec("HH.EXE ms-its:" + new File("help/Ajuda.chm").getAbsolutePath());
+        } 
+        catch (IOException e1) 
+        {
+            e1.printStackTrace();
+        }
     }
 }
