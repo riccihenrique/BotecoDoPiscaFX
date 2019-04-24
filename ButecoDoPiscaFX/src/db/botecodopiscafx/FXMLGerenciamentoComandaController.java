@@ -120,7 +120,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     {
         if(isOk())
         {
-           DALComanda dal = new DALComanda();
+            DALComanda dal = new DALComanda();
             if(dal.alterar(c))
             {
                 snackBar("Comanda alterada com sucesso");
@@ -134,7 +134,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             } 
         }
     }
-    
 
     @FXML
     private void clkBtnCancelar(ActionEvent event) throws IOException {
@@ -146,7 +145,6 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             FXMLPrincipalController.spainelpnprincipal.setCenter(root);
         }
     }
-
 
     @FXML
     private void clkBtnFechar(ActionEvent event) throws IOException, InterruptedException 

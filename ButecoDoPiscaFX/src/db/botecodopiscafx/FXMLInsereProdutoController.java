@@ -1,7 +1,6 @@
 package db.botecodopiscafx;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import db.dal.DALProduto;
 import db.entidades.Comanda;

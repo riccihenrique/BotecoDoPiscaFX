@@ -56,7 +56,10 @@
                         <MenuItem mnemonicParsing="false" onAction="#clkRestore" text="Restore" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" onAction="#clkAjuda" text="Ajuda" />
+                  <Menu mnemonicParsing="false" text="Sobre">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clkAjuda" text="Ajuda" />
+                     </items></Menu>
               </menus>
             </MenuBar>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">

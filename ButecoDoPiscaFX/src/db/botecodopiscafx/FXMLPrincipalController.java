@@ -100,14 +100,7 @@ public class FXMLPrincipalController implements Initializable
     public static void efeito(boolean on)
     {
         if(on)
-        {
-//            FadeTransition ft = new FadeTransition(Duration.millis(500), spnprincipal);
-//            ft.setFromValue(1.0);
-//            ft.setToValue(0.5);
-//            ft.play(); 
-              spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura2.png');");
-
-        }
+            spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura2.png');");
         else
             spainelpnprincipal.setStyle("-fx-background-image: url('icons/textura.png');");
             
@@ -136,7 +129,9 @@ public class FXMLPrincipalController implements Initializable
     
     private void gerarRelatorio(String sql, String relat, String titulotela)
     {
-        try {  //sql para obter os dados para o relatorio
+        try 
+        {  
+            //sql para obter os dados para o relatorio
             ResultSet rs = Banco.getCon().consultar(sql);
             //implementação da interface JRDataSource para DataSource ResultSet
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
@@ -154,12 +149,13 @@ public class FXMLPrincipalController implements Initializable
     } 
     private void gerarRelatorioIntegrado(String sql, String relat)
     {
-        try {  //sql para obter os dados para o relatorio
+        try 
+        {  
+            //sql para obter os dados para o relatorio
             ResultSet rs = Banco.getCon().consultar(sql);
             //implementação da interface JRDataSource para DataSource ResultSet
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             //preenchendo e chamando o relatório
-            
             
             String titulo = "Relatório de produtos";
             HashMap param = new HashMap<String, String>();
@@ -174,7 +170,6 @@ public class FXMLPrincipalController implements Initializable
             SwingNode sn = new SwingNode();
             SwingUtilities.invokeLater(()->{sn.setContent(viewer);});
             painelpnprincipal.setCenter(sn);
-            
 
         } catch (JRException erro) {
             System.out.println(erro);
@@ -215,9 +210,6 @@ public class FXMLPrincipalController implements Initializable
     @FXML
     private void clkAjuda(ActionEvent event)
     {
-        //Baixar HelpnDoc
-        
-        // Arrumar aqui
         try 
         {
             Runtime.getRuntime().exec("HH.EXE ms-its:" + new File("help/Ajuda.chm").getAbsolutePath());

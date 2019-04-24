@@ -61,7 +61,7 @@ public class DALComanda {
                         result = result && Banco.getCon().manipular(SQL);
                     }
                 }
-            }   
+            }
         }
         catch(Exception e)
         {
@@ -74,6 +74,8 @@ public class DALComanda {
                 Banco.getCon().getConnection().commit();
             else
                 Banco.getCon().getConnection().rollback();
+            
+            Banco.getCon().getConnection().setAutoCommit(true);
         }
         catch(SQLException sql){}
         
@@ -145,6 +147,8 @@ public class DALComanda {
                 Banco.getCon().getConnection().commit();
             else
                 Banco.getCon().getConnection().rollback();
+            
+            Banco.getCon().getConnection().setAutoCommit(true);
         }
         catch(Exception e) { }
         
@@ -167,6 +171,7 @@ public class DALComanda {
 
             SQL = "DELETE FROM comanda where com_id = " + c.getCom_id();
             result = result && Banco.getCon().manipular(SQL);
+            
         }
         catch(SQLException sql)
         {
@@ -179,6 +184,8 @@ public class DALComanda {
                 Banco.getCon().getConnection().commit();
             else
                 Banco.getCon().getConnection().rollback();
+            
+            Banco.getCon().getConnection().setAutoCommit(true);
         }
         catch(Exception e) { }
 

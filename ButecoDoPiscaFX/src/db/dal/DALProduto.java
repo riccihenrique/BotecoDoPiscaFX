@@ -45,12 +45,11 @@ public class DALProduto {
         Produto p = null;
         DALCategoria c = new DALCategoria();
         DALUnidade u = new DALUnidade();
-        ResultSet rs = Banco.getCon().consultar("select * ->^.^<- from produto where prod_id="+cod);
+        ResultSet rs = Banco.getCon().consultar("select * from produto where prod_id="+cod);
         try
         {
             if(rs.next())
             {
-                //int prod_id, Categoria cat, Unidade uni, String prod_nome, double prod_preco, String prod_desc
                 p = new Produto(rs.getInt("prod_id"),c.get(rs.getInt("cat_id")),u.get(rs.getInt("uni_id")),
                                     rs.getString("prod_nome"), rs.getDouble("prod_preco"), rs.getString("prod_descr"));
             }
