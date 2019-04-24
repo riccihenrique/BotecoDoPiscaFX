@@ -86,7 +86,6 @@ public class FXMLComandaAbrirController implements Initializable {
                 a.setContentText("Erro ao abrir comanda. Erro: " + Banco.getCon().getMensagemErro());
             }
         }
-        
     }
     
     private void fadeout()

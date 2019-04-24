@@ -81,6 +81,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     
     private Comanda c;
     private double valor;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -155,11 +156,9 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             DALComanda dal = new DALComanda();
             if(dal.alterar(c))
             {
-                //Gerar Nota fiscal
-                
-                snackBar("Comanda fechada com sucesso"); 
-                estadoOriginal();
-                clkBtnCancelar(event);
+                String sql = "select * from comanda c join item i on i.com_id = c.com_id join pagamento p on p.com_id = c.com_id join produto pr on pr.prod_id = i.prod_id join tipopgto tp on p.tpg_id = tp.tpg_id where c.com_id = " + c.getCom_id();
+                FXMLPrincipalController.gerarRelatorioIntegrado(sql, "rel/nota_fiscal.jasper");
+                //clkBtnCancelar(event);
             }
             else
             {
@@ -307,11 +306,13 @@ public class FXMLGerenciamentoComandaController implements Initializable {
     private void alteraValor()
     {
         valor = 0;
+        double val = 0;
         for(Comanda.Item ci : c.getItens())
             valor += ci.getIt_preco() * ci.getIt_quantidade();
         for(Comanda.Pagamento p : c.getPagamentos())
-            valor -= p.getPag_valor();
+            val += p.getPag_valor();
         
+        valor = valor - val;
         tbValor.setText(String.format("%10.2f", valor));
     }
     private boolean isOk()

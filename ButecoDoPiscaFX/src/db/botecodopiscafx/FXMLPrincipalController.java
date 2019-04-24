@@ -147,7 +147,7 @@ public class FXMLPrincipalController implements Initializable
             System.out.println(erro);
         }
     } 
-    private void gerarRelatorioIntegrado(String sql, String relat)
+    public static void gerarRelatorioIntegrado(String sql, String relat)
     {
         try 
         {  
@@ -169,7 +169,7 @@ public class FXMLPrincipalController implements Initializable
             
             SwingNode sn = new SwingNode();
             SwingUtilities.invokeLater(()->{sn.setContent(viewer);});
-            painelpnprincipal.setCenter(sn);
+            spainelpnprincipal.setCenter(sn);
 
         } catch (JRException erro) {
             System.out.println(erro);
