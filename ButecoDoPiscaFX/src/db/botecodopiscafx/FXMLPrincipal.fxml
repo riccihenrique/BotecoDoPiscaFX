@@ -38,15 +38,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#clkRelProd" text="Produtos" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelProdCat" text="Produtos por Categoria" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelGarCid" text="Garçons por Cidade" />
-                              <MenuItem mnemonicParsing="false" onAction="#clkRelCat" text="Categoria" />
-                              <MenuItem mnemonicParsing="false" onAction="#clkRelUni" text="Unidade" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelComPer" text="Comanda por periodo" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Avançados">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#clkAbrir" text="Nova" />
-                              <MenuItem mnemonicParsing="false" onAction="#clkGerenciar" text="Visualizar " />
                            </items>
                         </Menu>
                      </items>

@@ -157,7 +157,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
             if(dal.alterar(c))
             {
                 String sql = "select * from comanda c join item i on i.com_id = c.com_id join pagamento p on p.com_id = c.com_id join produto pr on pr.prod_id = i.prod_id join tipopgto tp on p.tpg_id = tp.tpg_id where c.com_id = " + c.getCom_id();
-                FXMLPrincipalController.gerarRelatorioIntegrado(sql, "rel/nota_fiscal.jasper");
+                FXMLPrincipalController.gerarRelatorioIntegrado(sql, "rel/nota_fiscal.jasper", null, null);
                 //clkBtnCancelar(event);
             }
             else
@@ -309,6 +309,7 @@ public class FXMLGerenciamentoComandaController implements Initializable {
         double val = 0;
         for(Comanda.Item ci : c.getItens())
             valor += ci.getIt_preco() * ci.getIt_quantidade();
+        c.setCom_valor(valor);
         for(Comanda.Pagamento p : c.getPagamentos())
             val += p.getPag_valor();
         

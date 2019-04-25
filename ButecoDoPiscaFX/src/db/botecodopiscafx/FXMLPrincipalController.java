@@ -124,7 +124,7 @@ public class FXMLPrincipalController implements Initializable
     @FXML
     private void clkRelProd(ActionEvent event) {
         String sql = "SELECT p.prod_id,p.prod_nome,c.cat_nome,p.prod_descr,p.prod_preco FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY p.prod_nome";
-        gerarRelatorioIntegrado(sql, "rel/rel_produtos.jasper");
+        gerarRelatorioIntegrado(sql, "rel/rel_produtos.jasper", null, null);
     }
     
     private void gerarRelatorio(String sql, String relat, String titulotela)
@@ -147,7 +147,7 @@ public class FXMLPrincipalController implements Initializable
             System.out.println(erro);
         }
     } 
-    public static void gerarRelatorioIntegrado(String sql, String relat)
+    public static void gerarRelatorioIntegrado(String sql, String relat, String titulo, String parame)
     {
         try 
         {  
@@ -157,9 +157,8 @@ public class FXMLPrincipalController implements Initializable
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             //preenchendo e chamando o relatório
             
-            String titulo = "Relatório de produtos";
             HashMap param = new HashMap<String, String>();
-            param.put("Title 1", titulo);
+            param.put(parame, titulo);
             
             JasperPrint jasperPrint = JasperFillManager.fillReport(relat, param, jrRS);
             JRViewer viewer = new JRViewer(jasperPrint);
@@ -179,22 +178,15 @@ public class FXMLPrincipalController implements Initializable
     @FXML
     private void clkRelProdCat(ActionEvent event) {
         String sql = "SELECT * FROM produto p JOIN categoria c ON  p.cat_id = c.cat_id ORDER BY  c.cat_nome, p.prod_nome";
-        gerarRelatorioIntegrado(sql, "rel/rel_prod_agp2.jasper");
+        gerarRelatorioIntegrado(sql, "rel/rel_prod_agp2.jasper", null, null);
     }
 
     @FXML
     private void clkRelGarCid(ActionEvent event) {
         String sql = "select gar_cidade, gar_nome from garcon order by gar_cidade, gar_nome";
-        gerarRelatorioIntegrado(sql, "rel/rel_garcon.jasper");
+    gerarRelatorioIntegrado(sql, "rel/rel_garcon.jasper", null, null);
     }
 
-    @FXML
-    private void clkRelCat(ActionEvent event) {
-    }
-
-    @FXML
-    private void clkRelUni(ActionEvent event) {
-    }
 
     @FXML
     private void clkBackup(ActionEvent event) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_CJ7LgGcGEemVPoO6xlZW1A" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_CJ7LgWcGEemVPoO6xlZW1A" bindingContexts="_CJ70qGcGEemVPoO6xlZW1A">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_produtos.jasper&quot; tooltip=&quot;MyReports/rel_produtos.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_produtos.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_produtos.jrxml&quot; tooltip=&quot;MyReports/rel_produtos.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_produtos.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_comanda_data.jrxml&quot; tooltip=&quot;MyReports/rel_comanda_data.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_comanda_data.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_comanda_periodo.jrxml&quot; tooltip=&quot;MyReports/rel_comanda_periodo.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_comanda_periodo.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;nota_fiscal.jrxml&quot; tooltip=&quot;MyReports/nota_fiscal.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/nota_fiscal.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_garcon.jasper&quot; tooltip=&quot;MyReports/rel_garcon.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_garcon.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_garcon.jrxml&quot; tooltip=&quot;MyReports/rel_garcon.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_garcon.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_prod_agp2.jasper&quot; tooltip=&quot;MyReports/rel_prod_agp2.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_prod_agp2.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_prod_agp2.jrxml&quot; tooltip=&quot;MyReports/rel_prod_agp2.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_prod_agp2.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_nota_fiscal.jrxml&quot; tooltip=&quot;MyReports/rel_nota_fiscal.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_nota_fiscal.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;nota_fiscal.jrxml&quot; tooltip=&quot;MyReports/nota_fiscal.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/nota_fiscal.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_produtos.jasper&quot; tooltip=&quot;MyReports/rel_produtos.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_produtos.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_produtos.jrxml&quot; tooltip=&quot;MyReports/rel_produtos.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_produtos.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_comanda_data.jrxml&quot; tooltip=&quot;MyReports/rel_comanda_data.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_comanda_data.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_comanda_periodo.jrxml&quot; tooltip=&quot;MyReports/rel_comanda_periodo.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_comanda_periodo.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_garcon.jasper&quot; tooltip=&quot;MyReports/rel_garcon.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_garcon.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_garcon.jrxml&quot; tooltip=&quot;MyReports/rel_garcon.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_garcon.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor.jasper&quot; name=&quot;rel_prod_agp2.jasper&quot; tooltip=&quot;MyReports/rel_prod_agp2.jasper&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_prod_agp2.jasper&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_prod_agp2.jrxml&quot; tooltip=&quot;MyReports/rel_prod_agp2.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_prod_agp2.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;rel_nota_fiscal.jrxml&quot; tooltip=&quot;MyReports/rel_nota_fiscal.jrxml&quot;>&#xD;&#xA;&lt;persistable path=&quot;/MyReports/rel_nota_fiscal.jrxml&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>ModelMigrationProcessor.001</tags>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_CJ7LgWcGEemVPoO6xlZW1A" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_CJ7LgmcGEemVPoO6xlZW1A" x="0" y="0" width="1024" height="768">
@@ -24,7 +24,7 @@
           <tags>persp.actionSet:org.eclipse.ui.externaltools.ExternalToolsSet</tags>
           <tags>persp.actionSet:org.eclipse.search.searchActionSet</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LhWcGEemVPoO6xlZW1A" selectedElement="_CJ7LjGcGEemVPoO6xlZW1A" horizontal="true">
-            <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LhmcGEemVPoO6xlZW1A" containerData="2500" selectedElement="_CJ7Lh2cGEemVPoO6xlZW1A">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LhmcGEemVPoO6xlZW1A" containerData="2500" selectedElement="_CJ7LimcGEemVPoO6xlZW1A">
               <children xsi:type="basic:PartStack" xmi:id="_CJ7Lh2cGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.RepositoryMStack" containerData="5000" selectedElement="_CJ7LiWcGEemVPoO6xlZW1A">
                 <children xsi:type="advanced:Placeholder" xmi:id="_CJ7LiGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.Repository" ref="_CJ7MgGcGEemVPoO6xlZW1A"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_CJ7LiWcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_CJ7Mg2cGEemVPoO6xlZW1A"/>
@@ -34,11 +34,9 @@
               </children>
             </children>
             <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LjGcGEemVPoO6xlZW1A" containerData="7500" selectedElement="_CJ7LjWcGEemVPoO6xlZW1A" horizontal="true">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LjWcGEemVPoO6xlZW1A" containerData="7000" selectedElement="_CJ7Lj2cGEemVPoO6xlZW1A">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_CJ7LjWcGEemVPoO6xlZW1A" containerData="7000" selectedElement="_CJ7LjmcGEemVPoO6xlZW1A">
                 <children xsi:type="advanced:Placeholder" xmi:id="_CJ7LjmcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_CJ7MdmcGEemVPoO6xlZW1A"/>
                 <children xsi:type="basic:PartStack" xmi:id="_CJ7Lj2cGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.preview.reportstateMStack" containerData="2500" selectedElement="_CJ7LkGcGEemVPoO6xlZW1A">
-                  <tags>active</tags>
-                  <tags>noFocus</tags>
                   <children xsi:type="advanced:Placeholder" xmi:id="_CJ7LkGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.preview.reportstate" ref="_CJ7y7mcGEemVPoO6xlZW1A"/>
                 </children>
               </children>
@@ -90,6 +88,7 @@
       <children xsi:type="basic:PartStack" xmi:id="_CJ7Md2cGEemVPoO6xlZW1A" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_CJ7MfGcGEemVPoO6xlZW1A">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+        <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_CJ7MeGcGEemVPoO6xlZW1A" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="nota_fiscal.jrxml" iconURI="platform:/plugin/com.jaspersoft.studio/icons/jrxml_icon.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;com.jaspersoft.studio.editor.JrxmlEditor&quot; name=&quot;nota_fiscal.jrxml&quot; partName=&quot;nota_fiscal.jrxml&quot; title=&quot;nota_fiscal.jrxml&quot; tooltip=&quot;MyReports/nota_fiscal.jrxml&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/MyReports/nota_fiscal.jrxml&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -117,6 +116,8 @@
           <tags>Editor</tags>
           <tags>com.jaspersoft.studio.editor.JrxmlEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_CJ7MfWcGEemVPoO6xlZW1A" elementId="#TextEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#TextEditorContext</tags>
@@ -222,7 +223,6 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:Jaspersoft Studio</tags>
-      <tags>active</tags>
       <menus xmi:id="_CJ7y72cGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.preview.reportstate">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -236,43 +236,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7y9GcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y9WcGEemVPoO6xlZW1A" elementId="new.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y9mcGEemVPoO6xlZW1A" elementId="newWizardDropDown">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y92cGEemVPoO6xlZW1A" elementId="new.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y-GcGEemVPoO6xlZW1A" elementId="save.group" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y-WcGEemVPoO6xlZW1A" elementId="save">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y-mcGEemVPoO6xlZW1A" elementId="saveAll">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y-2cGEemVPoO6xlZW1A" elementId="save.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_CJ7y_GcGEemVPoO6xlZW1A" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_CJ8eEGcGEemVPoO6xlZW1A"/>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y_WcGEemVPoO6xlZW1A" elementId="print.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y_mcGEemVPoO6xlZW1A" elementId="build.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7y_2cGEemVPoO6xlZW1A" elementId="build">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zAGcGEemVPoO6xlZW1A" elementId="build.ext" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zAWcGEemVPoO6xlZW1A" elementId="additions">
-          <tags>Opaque</tags>
-        </children>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GH5kt2dNEemr7LAi0IlF0A" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_CJ8eEGcGEemVPoO6xlZW1A"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zAmcGEemVPoO6xlZW1A" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -280,21 +244,9 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zGmcGEemVPoO6xlZW1A" elementId="org.eclipse.debug.ui.launchActionSet">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zG2cGEemVPoO6xlZW1A" elementId="debug">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zHGcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.externaltools.ExternalToolMenuDelegateToolbar">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zHWcGEemVPoO6xlZW1A" elementId="org.eclipse.search.searchActionSet">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zHmcGEemVPoO6xlZW1A" elementId="Search">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zH2cGEemVPoO6xlZW1A" elementId="org.eclipse.search.OpenSearchDialogPage">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zIGcGEemVPoO6xlZW1A" elementId="group.nav" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -302,82 +254,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zImcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zI2cGEemVPoO6xlZW1A" elementId="history.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zJGcGEemVPoO6xlZW1A" elementId="group.application" visible="false">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zJWcGEemVPoO6xlZW1A" elementId="backardHistory">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zJmcGEemVPoO6xlZW1A" elementId="forwardHistory">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zJ2cGEemVPoO6xlZW1A" elementId="pin.group">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_CJ7zKGcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_CJ8djWcGEemVPoO6xlZW1A"/>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zKWcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.edit.text.gotoNextAnnotation">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zKmcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.edit.text.gotoPreviousAnnotation">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zK2cGEemVPoO6xlZW1A" elementId="org.eclipse.ui.edit.text.gotoLastEditPosition">
-          <tags>Opaque</tags>
-        </children>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GIDVtWdNEemr7LAi0IlF0A" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_CJ8djWcGEemVPoO6xlZW1A"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_CJ7zLGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.graphic.text" visible="false">
+      <children xsi:type="menu:ToolBar" xmi:id="_CJ7zLGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.graphic.text">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zLWcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.text.font_name">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zLmcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.text.font_size">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zL2cGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.text.increment">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zMGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.text.decrement">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zMWcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.text.text_attributes">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zMmcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.graphic.size">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zM2cGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.size_width">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zNGcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.size_height">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zNWcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.action.size_both">
-          <tags>Opaque</tags>
-        </children>
-      </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_CJ7zNmcGEemVPoO6xlZW1A" elementId="com.jaspersoft.studio.editor.JrxmlEditor">
-        <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zN2cGEemVPoO6xlZW1A" elementId="undo">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zOGcGEemVPoO6xlZW1A" elementId="redo">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zOWcGEemVPoO6xlZW1A">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zOmcGEemVPoO6xlZW1A" elementId="org.eclipse.gef.zoom_in">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zO2cGEemVPoO6xlZW1A" elementId="org.eclipse.gef.zoom_out">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zPGcGEemVPoO6xlZW1A" elementId="org.eclipse.gef.zoom_widget">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zPWcGEemVPoO6xlZW1A" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -389,12 +272,6 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_CJ7zQWcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.workbench.help" visible="false">
         <tags>Draggable</tags>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zQmcGEemVPoO6xlZW1A" elementId="group.help">
-          <tags>Opaque</tags>
-        </children>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_CJ7zQ2cGEemVPoO6xlZW1A" elementId="group.application" visible="false">
-          <tags>Opaque</tags>
-        </children>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_CJ7zRGcGEemVPoO6xlZW1A" elementId="PerspectiveSpacer" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
         <tags>stretch</tags>
@@ -2127,7 +2004,7 @@
   <addons xmi:id="_CJ8fdGcGEemVPoO6xlZW1A" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.ui.workbench" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_CJ8fdWcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.workbench" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_CJ8fdmcGEemVPoO6xlZW1A" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_CJ8fd2cGEemVPoO6xlZW1A" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <categories xmi:id="_CJ8feGcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.category.views" name="Views" description="Commands for opening views"/>
   <categories xmi:id="_CJ8feWcGEemVPoO6xlZW1A" elementId="org.eclipse.team.ui.category.team" name="Team" description="Actions that apply when working with a Team"/>
   <categories xmi:id="_CJ8femcGEemVPoO6xlZW1A" elementId="org.eclipse.ui.category.edit" name="Edit"/>
