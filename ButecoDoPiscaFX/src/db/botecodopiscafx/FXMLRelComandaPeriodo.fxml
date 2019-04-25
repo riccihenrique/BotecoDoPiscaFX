@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="224.0" prefWidth="445.0" style="-fx-background-color: #ddccff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="db.botecodopiscafx.FXMLRelComandaPeriodoController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="329.0" style="-fx-background-color: #8080ff;">
+         <children>
+            <JFXButton onAction="#clkCancelar" text="Cancelar" />
+            <JFXButton onAction="#clkConfirmar" text="Gerar" />
+         </children>
+      </HBox>
+      <HBox prefHeight="62.0" prefWidth="475.0">
+         <children>
+            <Label text="Selecione o período:" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="85.0" prefWidth="475.0">
+         <children>
+            <JFXDatePicker fx:id="dtPickerIni" promptText="Data inicial" />
+            <JFXDatePicker fx:id="dtPickerFim" promptText="Data final" />
+         </children>
+      </HBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</VBox>

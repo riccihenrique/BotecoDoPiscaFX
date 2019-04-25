@@ -219,4 +219,11 @@ public class FXMLPrincipalController implements Initializable
             e1.printStackTrace();
         }
     }
+
+    @FXML
+    private void clkRelComPer(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLRelComandaPeriodo.fxml"));
+        efeito(true);
+        painelpnprincipal.setCenter(root);
+    }
 }

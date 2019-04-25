@@ -40,6 +40,7 @@
                               <MenuItem mnemonicParsing="false" onAction="#clkRelGarCid" text="Garçons por Cidade" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelCat" text="Categoria" />
                               <MenuItem mnemonicParsing="false" onAction="#clkRelUni" text="Unidade" />
+                              <MenuItem mnemonicParsing="false" onAction="#clkRelComPer" text="Comanda por periodo" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Avançados">

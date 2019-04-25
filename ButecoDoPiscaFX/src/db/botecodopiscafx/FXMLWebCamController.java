@@ -3,6 +3,7 @@ package db.botecodopiscafx;
 import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -24,15 +25,16 @@ import javax.swing.JOptionPane;
 
 public class FXMLWebCamController implements Initializable {
 
-    @FXML
     private ImageView imgCamera;
     public static Image img;
     
     private Webcam webcam;
-    @FXML
     private JFXComboBox<Webcam> cbWebCam;
-    @FXML
     private JFXButton btnCapturar;
+    @FXML
+    private JFXDatePicker dtPickerIni;
+    @FXML
+    private JFXDatePicker dtPickerFim;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -82,7 +84,6 @@ public class FXMLWebCamController implements Initializable {
         }
     }    
 
-    @FXML
     private void clkFoto(ActionEvent event) 
     {
         BufferedImage bimage;
@@ -100,7 +101,6 @@ public class FXMLWebCamController implements Initializable {
         // obter a imagem
     }
 
-    @FXML
     private void clkCbWeb(ActionEvent event) 
     {
         new Thread(new Task<Void>() 
