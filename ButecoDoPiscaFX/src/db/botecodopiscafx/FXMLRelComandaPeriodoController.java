@@ -41,5 +41,4 @@ public class FXMLRelComandaPeriodoController implements Initializable {
             gerarRelatorioIntegrado(sql, "rel/rel_comanda_data.jasper", dtPickerIni.getValue().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")) + " à " + dtPickerFim.getValue().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")), "periodo");
         }
     }
-    
 }
