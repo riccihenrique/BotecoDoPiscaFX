@@ -10,6 +10,9 @@ O sistema conta com cadastros de
 - Tipo de Pagamento (cartão, cheque, ...)
 
 Nele, também é possível criar comandas e gerenciar os pedidos feitos pelos clientes. Também é possível dividir pagamentos.
+
+### Exemplos
+
 <br>Cadastro de Garçom <br>
 ![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/garcon.png)
 
