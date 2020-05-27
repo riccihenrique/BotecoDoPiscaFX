@@ -11,13 +11,13 @@ O sistema conta com cadastros de
 
 Nele, também é possível criar comandas e gerenciar os pedidos feitos pelos clientes. Também é possível dividir pagamentos.
 Cadastro de Garçom
-![alt text](https://github.com/riccihenrique/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/garçon.png)
 
 Abertura de comanda
-![alt text](https://github.com/riccihenrique/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/comanda.png)
 
 Inserção de pagamentos
-![alt text](https://github.com/riccihenrique/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/pagamento.png)
 
 
 O sistema também emite relatórios de garçons, comandas por período, produtos e emite nota fiscal.
