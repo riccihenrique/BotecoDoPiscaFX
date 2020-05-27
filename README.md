@@ -10,13 +10,13 @@ O sistema conta com cadastros de
 - Tipo de Pagamento (cartão, cheque, ...)
 
 Nele, também é possível criar comandas e gerenciar os pedidos feitos pelos clientes. Também é possível dividir pagamentos.
-Cadastro de Garçom
-![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/garçon.png)
+<br>Cadastro de Garçom <br>
+![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/garcon.png)
 
-Abertura de comanda
+<br>Abertura de comanda <br>
 ![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/comanda.png)
 
-Inserção de pagamentos
+<br>Inserção de pagamentos<br>
 ![alt text](https://github.com/riccihenrique/BotecoDoPiscaFX/blob/comitAqui/ButecoDoPiscaFX/imgs/pagamento.png)
 
 
