@@ -1,6 +1,6 @@
 # BotecoDoPiscaFX
 
-Sistema para gerenciamento de Bares e Pubs
+Sistema para gerenciamento de Bares e Pubs desenvolvido para a disciplina de ferramentas computacionais 3
 
 O sistema conta com cadastros de
 - Garçom
